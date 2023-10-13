@@ -14,7 +14,7 @@
         <div class="mb-3">
             <label for="slug" class="form-label">Slug</label>
             <input type="text" name="slug" class="form-control" id="slug"
-                   value="{{old('title')}}">
+                   value="{{old('slug')}}">
 
             @error('slug')
             <p class="text-danger">{{ $message }}</p>

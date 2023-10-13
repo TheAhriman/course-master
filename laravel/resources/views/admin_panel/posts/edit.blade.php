@@ -82,6 +82,6 @@
                 <input name="image" type="file" id="image" value="{{ $data['post']->image_path }}">
             </label>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 @endsection

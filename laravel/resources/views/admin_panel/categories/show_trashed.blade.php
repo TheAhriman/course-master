@@ -11,11 +11,10 @@
     @endif
 @endsection
 @section('navbar_category')
-    <a class='btn btn-primary' href="{{route('admin.categories.edit', $data['category']->id)}}">Edit</a>
-    <form action="{{ route('admin.categories.destroy',$data['category']->id) }}" method="post">
+    <form action="{{ route('admin.categories.destroy',['category' => $data['category']->id, 'permanent' => true]) }}" method="post">
         @csrf
         @method('delete')
-        <input type="submit" value="Delete" class="btn btn-danger">
+        <input type="submit" value="Permanent delete" class="btn btn-danger">
     </form>
-    <a class='btn btn-primary' href="{{route('admin.categories.index')}}">Back</a>
+    <a class='btn btn-primary' href="{{route('admin.categories.indexTrashed')}}">Back</a>
 @endsection

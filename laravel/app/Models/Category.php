@@ -12,6 +12,7 @@ class Category extends Model
     use SoftDeletes;
 
     protected $table = 'categories';
+    protected $guarded = false;
 
     public function posts()
     {
@@ -20,7 +21,7 @@ class Category extends Model
 
     public function parent()
     {
-        return $this->belongsTo(self::class,'id','parent_id');
+        return $this->belongsTo(self::class,'parent_id','id');
     }
 
     public function children()

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('posts',\App\Http\Controllers\PostController::class)->except('destroy');
-Route::get('/posts_trashed',[\App\Http\Controllers\PostController::class,'indexTrashed'])->name('posts.indexTrashed');
-Route::get('/posts_trashed/{post}',[\App\Http\Controllers\PostController::class,'showTrashed'])->name('posts.showTrashed');
-Route::delete('/posts/{post}/{permanent?}',[\App\Http\Controllers\PostController::class,'destroy'])->name('posts.destroy');
+Route::resource('posts', PostController::class)->except('destroy');
+Route::get('/posts_trashed',[PostController::class,'indexTrashed'])->name('posts.indexTrashed');
+Route::get('/posts_trashed/{post}',[PostController::class,'showTrashed'])->name('posts.showTrashed');
+Route::delete('/posts/{post}/{permanent?}',[PostController::class,'destroy'])->name('posts.destroy');
 
-Route::resource('categories',\App\Http\Controllers\CategoryController::class);
+Route::resource('categories', CategoryController::class)->except('destroy');
+Route::get('/categories_trashed',[CategoryController::class,'indexTrashed'])->name('categories.indexTrashed');
+Route::get('/categories_trashed/{category}',[CategoryController::class,'showTrashed'])->name('categories.showTrashed');
+Route::delete('/categories/{category}/{permanent?}',[CategoryController::class,'destroy'])->name('categories.destroy');
+
+Route::resource('tags', TagController::class)->except('destroy');
+Route::get('/tags_trashed',[TagController::class,'indexTrashed'])->name('tags.indexTrashed');
+Route::get('/tags_trashed/{tag}',[TagController::class,'showTrashed'])->name('tags.showTrashed');
+Route::delete('/tags/{tag}/{permanent?}',[TagController::class,'destroy'])->name('tags.destroy');
 
 Auth::routes();
 
