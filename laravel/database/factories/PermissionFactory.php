@@ -20,7 +20,7 @@ class PermissionFactory extends Factory
     {
         return [
             'name' => fake()->text(10),
-            'role_id' => Role::get()->random(),
+            'role_id' => Role::query()->get()->random(),
         ];
     }
 }

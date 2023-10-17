@@ -13,16 +13,19 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('description');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('post_id');
+            $table->text('description');
+            $table->unsignedBigInteger('lesson_id');
             $table->timestamps();
+            $table->softDeletes();
 
-            $table->index('user_id','comment_user_idx');
-            $table->index('post_id','comment_post_idx');
-
-            $table->foreign('user_id','comment_user_fk')->on('users')->references('id');
-            $table->foreign('post_id','comment_post_fk')->on('posts')->references('id');
+            $table->index('user_id','comments_users_idx');
+            $table->foreign('user_id','comments_users_idx')
+                ->on('users')
+                ->references('id');
+            $table->foreign('lesson_id','comments_lessons_idx')
+                ->on('lessons')
+                ->references('id');
         });
     }
 

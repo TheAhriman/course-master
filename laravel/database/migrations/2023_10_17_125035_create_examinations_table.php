@@ -11,11 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('examinations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
+            $table->enum('type',[1,2]);
+            $table->unsignedBigInteger('lesson_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('lesson_id','examinations_lessons_idx');
+            $table->foreign('lesson_id','examinations_lessons_fk')
+                ->on('lessons')
+                ->references('id');
         });
     }
 
@@ -24,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('examinations');
     }
 };

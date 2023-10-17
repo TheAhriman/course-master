@@ -6,18 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Permission extends Model
+class QuestionResponse extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = "permissions";
-    protected $guarded = false;
+    protected $table = "question_responses";
 
-    public function role() : BelongsTo
+    public function question(): BelongsTo
     {
-        return $this->belongsTo(Role::class,'role_id','id');
+        return $this->belongsTo(Question::class,'question_id','id');
+    }
+
+    public function user_answers(): HasMany
+    {
+        return $this->hasMany(UserAnswer::class,'question_response_id','id');
     }
 }

@@ -2,13 +2,14 @@
 
 namespace App\Http\Services;
 
+use App\Http\Resources\PostResource;
 use App\Http\Services\Interfaces\BaseServiceInterface;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
-use http\Env\Request;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class BaseService implements BaseServiceInterface
 {
@@ -20,18 +21,18 @@ class BaseService implements BaseServiceInterface
     /**
      * @param BaseRepositoryInterface $repository
      */
-    public function __construct(BaseRepositoryInterface $repository)
+    public function __construct(BaseRepositoryInterface $repository, protected JsonResource $resource)
     {
         $this->repository = $repository;
     }
 
     /**
      * @param int $id
-     * @return Model
+     * @return JsonResource
      */
-    public function getById(int $id): Model
+    public function getById(int $id): JsonResource
     {
-        return $this->repository->findById($id);
+        return new $this->resource($this->repository->findById($id));
     }
 
     /**
@@ -42,11 +43,12 @@ class BaseService implements BaseServiceInterface
     {
         return $this->repository->findOnlyTrashedById($id);
     }
+
     /**
      * @param int|null $limit
-     * @return Collection|LengthAwarePaginator|array
+     * @return ResourceCollection
      */
-    public function getAll(?int $limit = null): Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator|array
+    public function getAll(?int $limit = null): ResourceCollection
     {
         return $this->repository->getAll($limit);
     }

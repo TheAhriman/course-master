@@ -5,20 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comment extends Model
+class Examination extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table="comments";
+    protected $table = "examinations";
 
     public function lesson(): BelongsTo
     {
         return $this->belongsTo(Lesson::class,'lesson_id','id');
     }
-    public function user(): BelongsTo
+
+    public function question_groups(): HasMany
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->hasMany(QuestionGroup::class,'examination_id','id');
+    }
+
+    public function scale_criterias(): HasMany
+    {
+        return $this->hasMany(ScaleCriteria::class,'examination_id','id');
     }
 }

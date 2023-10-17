@@ -7,6 +7,8 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class BaseRepository implements BaseRepositoryInterface
 {
@@ -21,13 +23,13 @@ class BaseRepository implements BaseRepositoryInterface
 
     /**
      * @param int|null $limit
-     * @return LengthAwarePaginator|Builder[]|Collection
+     * @return ResourceCollection
      */
-    public function getAll(?int $limit = null): Collection|LengthAwarePaginator|array
+    public function getAll(?int $limit = null): ResourceCollection
     {
             return is_null($limit)
-            ? $this->model->query()->get()
-            : $this->model->query()->paginate($limit);
+            ? new ResourceCollection($this->model->query()->get())
+            : new ResourceCollection($this->model->query()->paginate($limit));
     }
 
     /**
@@ -43,9 +45,9 @@ class BaseRepository implements BaseRepositoryInterface
 
     /**
      * @param int $id
-     * @return Model|null
+     * @return Model
      */
-    public function findById(int $id): ?Model
+    public function findById(int $id)
     {
         return $this->model->query()->where('id',$id)->first();
     }

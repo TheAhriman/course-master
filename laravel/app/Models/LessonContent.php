@@ -7,18 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comment extends Model
+class LessonContent extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table="comments";
+    protected $table = "lesson_contents";
 
     public function lesson(): BelongsTo
     {
         return $this->belongsTo(Lesson::class,'lesson_id','id');
-    }
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class,'user_id','id');
     }
 }

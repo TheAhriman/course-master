@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
@@ -13,9 +14,14 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
      *
      * @param Post $post
      */
-    public function __construct(Post $post)
+    public function __construct(Post $post, PostResource $resource)
     {
-        parent::__construct($post);
+        parent::__construct($post, $resource);
+    }
+
+    public function findById(int $id): PostResource
+    {
+        return new PostResource(parent::findById($id));
     }
 
     /**
@@ -60,7 +66,7 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
      * @param array $attachTagsData
      * @return void
      */
-    public function attachTags(array $attachTagsData) : void
+    public function attachTags(array $attachTagsData): void
     {
         $attachTagsData['post']->tags()->attach($attachTagsData['tagsIds']);
     }
