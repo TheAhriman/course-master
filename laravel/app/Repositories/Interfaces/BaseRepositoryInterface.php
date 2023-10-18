@@ -11,46 +11,47 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 interface BaseRepositoryInterface
 {
-
-    public function getAll() : ResourceCollection;
-
+    /**
+     * @return mixed
+     */
+    public function getAll() : mixed;
 
     /**
      * @param int|null $limit
-     * @return LengthAwarePaginator|Builder[]|Collection
+     * @return ResourceCollection
      */
-    public function getAllTrashed(?int $limit = null): Collection|LengthAwarePaginator|array;
+    public function getAllTrashed(?int $limit = null): mixed;
 
     /**
      * @param int $id
-     * @return JsonResource
+     * @return mixed
      */
-    public function findById(int $id);
+    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): mixed;
 
     /**
      * @param int $id
-     * @return Model|null
+     * @return mixed
      */
-    public function findWithTrashedById(int $id) : ?Model;
+    public function findWithTrashedById(int $id) : mixed;
 
     /**
      * @param int $id
-     * @return Model|null
+     * @return mixed
      */
-    public function findOnlyTrashedById(int $id) : ?Model;
+    public function findOnlyTrashedById(int $id) : mixed;
 
     /**
      * @param array $data
-     * @return Model|null
+     * @return void
      */
-    public function create(array $data) : ?Model;
+    public function create(array $data) : void;
 
     /**
      * @param int $id
      * @param array $data
-     * @return Model|null
+     * @return void
      */
-    public function updateById(int $id, array $data) : ?Model;
+    public function updateById(int $id, array $data) : void;
 
     /**
      * @param int $id

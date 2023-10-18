@@ -13,8 +13,6 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class BaseRepository implements BaseRepositoryInterface
 {
     /**
-     * BaseRepository constructor
-     *
      * @param Model $model
      */
     public function __construct(protected Model $model)
@@ -23,20 +21,20 @@ class BaseRepository implements BaseRepositoryInterface
 
     /**
      * @param int|null $limit
-     * @return ResourceCollection
+     * @return mixed
      */
-    public function getAll(?int $limit = null): ResourceCollection
+    public function getAll(?int $limit = null): mixed
     {
             return is_null($limit)
-            ? new ResourceCollection($this->model->query()->get())
-            : new ResourceCollection($this->model->query()->paginate($limit));
+            ? $this->model->query()->get()
+            : $this->model->query()->paginate($limit);
     }
 
     /**
      * @param int|null $limit
-     * @return LengthAwarePaginator|Builder[]|Collection
+     * @return ResourceCollection
      */
-    public function getAllTrashed(?int $limit = null): Collection|LengthAwarePaginator|array
+    public function getAllTrashed(?int $limit = null): mixed
     {
         return is_null($limit)
             ? $this->model->query()->onlyTrashed()->get()
@@ -44,52 +42,55 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param int $id
-     * @return Model
+     * @param string $value
+     * @param array|null $option
+     * @param array|null $columns
+     * @param string|null $condition
+     * @return mixed
      */
-    public function findById(int $id)
+    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): mixed
     {
-        return $this->model->query()->where('id',$id)->first();
+        return $this->model->query()->select($columns)->where($condition,$value)->with($option)->first();
     }
 
     /**
      * @param int $id
-     * @return Model|null
+     * @return mixed
      */
-    public function findWithTrashedById(int $id): ?Model
+    public function findWithTrashedById(int $id): mixed
     {
         return $this->model->query()->withTrashed()->where('id', $id)->first();
     }
 
     /**
      * @param int $id
-     * @return Model|null
+     * @return mixed
      */
-    public function findOnlyTrashedById(int $id): ?Model
+    public function findOnlyTrashedById(int $id): mixed
     {
         return $this->model->query()->onlyTrashed()->where('id', $id)->first();
     }
 
     /**
      * @param array $data
-     * @return Model|null
+     * @return void
      */
-    public function create(array $data): ?Model
+    public function create(array $data): void
     {
-        return $this->model->query()->create($data)->fresh();
+        $this->model->query()->create($data)->fresh();
     }
 
     /**
      * @param int $id
      * @param array $data
-     * @return Model|null
+     * @return void
      */
-    public function updateById(int $id, array $data): ?Model
+    public function updateById(int $id, array $data): void
     {
         $model = $this->findById($id);
         $model->update($data);
 
-        return $model->refresh();
+        $model->refresh();
     }
 
     /**

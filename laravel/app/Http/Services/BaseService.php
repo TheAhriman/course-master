@@ -2,8 +2,6 @@
 
 namespace App\Http\Services;
 
-use App\Http\Resources\PostResource;
-use App\Http\Services\Interfaces\BaseServiceInterface;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -11,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class BaseService implements BaseServiceInterface
+class BaseService
 {
     /**
      * @var BaseRepositoryInterface
@@ -21,25 +19,26 @@ class BaseService implements BaseServiceInterface
     /**
      * @param BaseRepositoryInterface $repository
      */
-    public function __construct(BaseRepositoryInterface $repository, protected JsonResource $resource)
+    public function __construct(BaseRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
     /**
      * @param int $id
+     * @param array|null $option
      * @return JsonResource
      */
-    public function getById(int $id): JsonResource
+    public function getById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
     {
-        return new $this->resource($this->repository->findById($id));
+        return $this->repository->findById($value, $option, $columns, $condition);
     }
 
     /**
      * @param int $id
-     * @return Model
+     * @return JsonResource
      */
-    public function getByIdTrashed(int $id): Model
+    public function getByIdTrashed(int $id): mixed
     {
         return $this->repository->findOnlyTrashedById($id);
     }
@@ -55,9 +54,9 @@ class BaseService implements BaseServiceInterface
 
     /**
      * @param int|null $limit
-     * @return Collection|LengthAwarePaginator|array
+     * @return ResourceCollection
      */
-    public function getAllTrashed(?int $limit = null): Collection|LengthAwarePaginator|array
+    public function getAllTrashed(?int $limit = null): ResourceCollection
     {
         return $this->repository->getAllTrashed($limit);
     }

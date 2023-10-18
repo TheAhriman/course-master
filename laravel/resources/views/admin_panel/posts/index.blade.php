@@ -6,6 +6,6 @@
 
     {{ $posts->links() }}
 @endsection
-@section('navbar_post')
+@section('navbar')
     <a class="btn btn-primary" href="{{route('admin.posts.indexTrashed')}}">Deleted posts</a>
 @endsection

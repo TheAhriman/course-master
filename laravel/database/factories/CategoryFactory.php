@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Role;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Role>
+ * @extends Factory<Category>
  */
-class RoleFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,9 @@ class RoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(10)
+            'name' => fake()->name(15),
+            'slug' => fake()->url(),
+            'description' => fake()->text(100)
         ];
     }
 }

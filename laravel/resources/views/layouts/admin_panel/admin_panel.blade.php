@@ -17,11 +17,8 @@
     <div class="border-end bg-white" id="sidebar-wrapper">
         <div class="sidebar-heading border-bottom bg-light">Admin panel</div>
         <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.posts.index')}}">Посты</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.categories.index')}}">Категории</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.tags.index')}}">Теги</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.courses.index')}}">Курсы</a>
         </div>
     </div>
     <!-- Page content wrapper-->

@@ -1,4 +1,4 @@
-@extends('layouts.admin_panel.categories')
+@extends('layouts.admin_panel.admin_panel')
 @section('content')
     <form action="{{route('admin.categories.store')}}" method="post" enctype="multipart/form-data">
         @csrf
@@ -42,4 +42,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
+@endsection
+@section('navbar')
+    @component('components.link')
+        @slot('link'){{route('admin.courses.index')}}@endslot
+        @slot('button')Back @endslot
+    @endcomponent
 @endsection
