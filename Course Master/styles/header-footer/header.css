@@ -1,5 +1,6 @@
-
-*, *:before, *:after {
+*,
+*:before,
+*:after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-user-select: none;
@@ -7,7 +8,58 @@
     -ms-user-select: none;
     user-select: none;
 }
-html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+code,
+em,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+main,
+canvas,
+embed,
+footer,
+header,
+nav,
+section,
+video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -22,59 +74,84 @@ html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockq
     text-size-adjust: none;
     text-decoration: none;
 }
-footer, header, nav, section, main {
+
+footer,
+header,
+nav,
+section,
+main {
     display: block;
 }
+
 body {
     line-height: 1;
 }
-ol, ul {
+
+ol,
+ul {
     list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
     quotes: none;
 }
-blockquote:before, blockquote:after, q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: "";
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 input {
     -webkit-appearance: none;
     border-radius: 0;
 }
+
 * img {
-    max-width: 100%}
-html, body {
+    max-width: 100%
+}
+
+html,
+body {
     font-family: "Montserrat", sans-serif;
     height: 100%;
     font-weight: 400;
     font-size: 16px;
     line-height: 27px;
 }
-.header{
+
+.header {
     width: 100%;
     height: 200px;
     background: #1E212C;
     max-height: 50px;
 }
-.header_nav_menu .header_link:hover{
-    transform: scale(1.2);
+
+.header_nav_menu .header_link:hover {
     color: #fff;
+    transition: 0.3s;
 }
-.exite_links .exite_link:hover{
-    transform: scale(1.2);
+
+.exite_links .exite_link:hover {
     color: #fff;
+    transition: 0.3s;
 }
-.header_container{
+
+.header_container {
     display: flex;
     justify-content: space-between;
     max-height: 50px;
 }
-.header_nav_menu{
+
+.header_nav_menu {
     display: flex;
     column-gap: 10px;
     margin-left: 30px;
@@ -82,28 +159,33 @@ html, body {
     justify-content: center;
     align-items: center;
 }
-.link_logo{
+
+.link_logo {
     font-size: 24px;
     color: #fff;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
-.linl_logo_span{
+
+.linl_logo_span {
     color: #009579;
 }
-.header_link{
+
+.header_link {
     font-size: 16px;
     padding-top: 3px;
-    color: #787A80; 
+    color: #787A80;
     padding-left: 15px;
     font-family: 'Poppins', sans-serif;
 }
-.header_nav_buttons{
+
+.header_nav_buttons {
     display: flex;
     column-gap: 10px;
     align-items: center;
 }
-.header_search{
+
+.header_search {
     height: 35px;
     width: 250px;
     font-family: 'Poppins', sans-serif;
@@ -111,16 +193,19 @@ html, body {
     background-color: #4a4c4f;
     border-radius: 3px;
     padding: 10px 20px;
-    color:#787A80;
+    color: #787A80;
 }
-.header_nav_buttons input::placeholder{
+
+.header_nav_buttons input::placeholder {
     color: #787A80;
     font-family: 'Poppins', sans-serif;
 }
-.header_nav_buttons input:focus{
+
+.header_nav_buttons input:focus {
     outline: none;
     font-family: 'Poppins', sans-serif;
     background: #fff;
+    transition: 0.2s;
 }
 
 .dropbtn {
@@ -132,11 +217,11 @@ html, body {
     cursor: pointer;
     margin-right: -30px;
     font-family: 'Poppins', sans-serif;
-    border:  0.1px solid #4a4c4f;
+    border: 0.1px solid #4a4c4f;
     border-radius: 3px;
-    }
+}
 
-  
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -147,7 +232,7 @@ html, body {
     position: absolute;
     background-color: #1E212C;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -162,19 +247,20 @@ html, body {
     background-color: #4a4c4f;
     color: #fff;
 }
-    
-.show{
-    display:block;
+
+.show {
+    display: block;
 }
 
-.exite_links{
+.exite_links {
     display: flex;
     column-gap: 15px;
     padding: 50px 30px;
 }
-.exite_link{
+
+.exite_link {
     color: #787A80;
     padding: 3px 10px;
-    border:  0.1px solid #4a4c4f;
+    border: 0.1px solid #4a4c4f;
     border-radius: 3px;
 }

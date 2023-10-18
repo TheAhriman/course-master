@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-user-select: none;
@@ -8,7 +10,57 @@
     -ms-user-select: none;
     user-select: none;
 }
-html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
+html,
+body,
+div,
+span,
+object,
+iframe,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+code,
+em,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+main,
+canvas,
+embed,
+footer,
+header,
+nav,
+section,
+video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -23,33 +75,53 @@ html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockq
     text-size-adjust: none;
     text-decoration: none;
 }
-footer, header, nav, section, main {
+
+footer,
+header,
+nav,
+section,
+main {
     display: block;
 }
+
 body {
     line-height: 1;
 }
-ol, ul {
+
+ol,
+ul {
     list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
     quotes: none;
 }
-blockquote:before, blockquote:after, q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: "";
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 input {
     -webkit-appearance: none;
     border-radius: 0;
 }
+
 * img {
-    max-width: 100%}
-html, body {
+    max-width: 100%
+}
+
+html,
+body {
     font-family: "Montserrat", sans-serif;
     height: 100%;
     font-weight: 400;
@@ -57,13 +129,14 @@ html, body {
     line-height: 27px;
 }
 
-body{
+body {
     min-height: 100vh;
     width: 100%;
     background-color: #009579;
     font-family: 'Poppins', sans-serif;
 }
-.container{
+
+.container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -72,18 +145,21 @@ body{
     width: 100%;
     background: #fff;
     border-radius: 7px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
-.container .form{
+
+.container .form {
     padding: 2rem;
 }
-.form h1{
+
+.form h1 {
     font-size: 2rem;
     font-weight: 500;
     text-align: center;
     margin-bottom: 1.5rem;
 }
-.form input{
+
+.form input {
     height: 60px;
     width: 100%;
     padding: 0px 15px;
@@ -93,18 +169,22 @@ body{
     border-radius: 6px;
     outline: 0;
 }
-.form input:focus{
-    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+
+.form input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
-.form a{
+
+.form a {
     font-size: 16px;
     color: #009579;
     text-decoration: none;
 }
-.form a:hover{
+
+.form a:hover {
     text-decoration: underline;
 }
-.form input.button{
+
+.form input.button {
     color: #fff;
     background: #009579;
     font-size: 1.2rem;
@@ -114,17 +194,21 @@ body{
     cursor: pointer;
     transition: 0.4s;
 }
-.form input.button:hover{
+
+.form input.button:hover {
     background: #006653;
 }
-.singup{
+
+.singup {
     font-size: 17px;
     text-align: center;
 }
-.singup a{
+
+.singup a {
     color: #009579;
     cursor: pointer;
 }
-.singup label:hover{
+
+.singup label:hover {
     text-decoration: underline;
 }
