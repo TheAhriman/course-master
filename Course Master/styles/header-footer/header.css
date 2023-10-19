@@ -187,7 +187,7 @@ body {
 
 .header_search {
     height: 35px;
-    width: 250px;
+    width: 50%;
     font-family: 'Poppins', sans-serif;
     border: none;
     background-color: #4a4c4f;
