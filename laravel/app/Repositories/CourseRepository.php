@@ -32,17 +32,18 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         return new CourseCollection(parent::getAllTrashed($limit));
     }
 
-    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
+    public function findById(string $value, ?array $option = [],
+        ?array $columns = ['*'], ?string $condition = 'id'): CourseResource
     {
         return new CourseResource(parent::findById($value, $option, $columns, $condition));
     }
 
-    public function findOnlyTrashedById(int $id): JsonResource
+    public function findOnlyTrashedById(int $id): CourseResource
     {
         return new CourseResource(parent::findOnlyTrashedById($id));
     }
 
-    public function findWithTrashedById(int $id): JsonResource
+    public function findWithTrashedById(int $id): CourseResource
     {
         return new CourseResource(parent::findWithTrashedById($id));
     }

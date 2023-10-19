@@ -23,10 +23,14 @@ interface BaseRepositoryInterface
     public function getAllTrashed(?int $limit = null): mixed;
 
     /**
-     * @param int $id
+     * @param string $value
+     * @param array|null $option
+     * @param array|null $columns
+     * @param string|null $condition
      * @return mixed
      */
-    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): mixed;
+    public function findById(string $value, ?array $option = [],
+        ?array $columns = ['*'], ?string $condition = 'id'): mixed;
 
     /**
      * @param int $id

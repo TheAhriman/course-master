@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('examinations', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->enum('type',[1,2]);
+            $table->string('string');
             $table->unsignedBigInteger('lesson_id');
             $table->timestamps();
             $table->softDeletes();

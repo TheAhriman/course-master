@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategory;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Services\CategoryService;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -49,7 +49,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategory $request): RedirectResponse
+    public function store(StoreCategoryRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $this->categoryService->create($data);
@@ -88,7 +88,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCategory $request, string $id)
+    public function update(StoreCategoryRequest $request, string $id)
     {
         $data = $request->validated();
         $this->categoryService->updateById($id, $data);

@@ -1,6 +1,6 @@
 @extends('layouts.admin_panel.admin_panel')
 @section('content')
-    <form action="{{route('admin.courses.update')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('admin.courses.update',$course->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <div class="mb-3">

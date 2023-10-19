@@ -14,6 +14,8 @@ class Lesson extends Model
 
     protected $table = "lessons";
 
+    protected $guarded = false;
+
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class,'lesson_id','id');

@@ -19,6 +19,10 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.categories.index')}}">Категории</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.courses.index')}}">Курсы</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.users.index')}}">Пользователи</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.roles.index')}}">Роли</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.permissions.index')}}">Разрешения</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.lessons.index')}}">Уроки</a>
         </div>
     </div>
     <!-- Page content wrapper-->

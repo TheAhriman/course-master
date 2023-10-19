@@ -7,6 +7,10 @@ use App\Http\Services\CategoryService;
 use App\Http\Services\CourseService;
 use App\Models\Course;
 use App\Models\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -17,14 +21,14 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $courses = $this->courseService->getAll(15);
 
         return view('admin_panel.courses.index',compact('courses'));
     }
 
-    public function indexTrashed()
+    public function indexTrashed(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $courses = $this->courseService->getAllTrashed(15);
 
@@ -34,7 +38,7 @@ class CourseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $categories = $this->categoryService->getAll();
         $users = User::all();
@@ -56,14 +60,14 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Course $course)
+    public function show(Course $course): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $course = $this->courseService->getById($course->id);
 
         return view('admin_panel.courses.show',compact('course'));
     }
 
-    public function showTrashed(string $id)
+    public function showTrashed(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $course = $this->courseService->getByIdTrashed($id);
 
@@ -73,7 +77,7 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Course $course)
+    public function edit(Course $course): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         //Пока не придумал как организовать экшен правильно, поэтому пока так:)
         $course = $this->courseService->getById($course->id);
@@ -86,10 +90,10 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCourseRequest $request, Course $course)
+    public function update(StoreCourseRequest $request, string $id): RedirectResponse
     {
         $data = $request->validated();
-        $this->courseService->updateCourseAndCategories($data, $course->id);
+        $this->courseService->updateCourseAndCategories($data, $id);
 
         return redirect()->route('admin.courses.index');
     }
@@ -97,14 +101,14 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course)
+    public function destroy(Course $course): RedirectResponse
     {
         $this->courseService->deleteById($course->id);
 
         return redirect()->route('admin.courses.index');
     }
 
-    public function restore(string $id)
+    public function restore(string $id): RedirectResponse
     {
         $this->courseService->restoreById($id);
 

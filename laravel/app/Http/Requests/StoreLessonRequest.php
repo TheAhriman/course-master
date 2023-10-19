@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-class StoreCategory extends FormRequest
+class StoreLessonRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,15 @@ class StoreCategory extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string | required | max:255',
-            'slug' => 'string | required | max:255',
-            'description' => 'string | required | max:1000',
-            'parent_id' => ''
+            'title' => 'string | required | max:100',
+            'slug' => 'string | required | max: 2048',
+            'description' => 'string | required',
+            'course_id' => 'integer | required',
+            'priority' => 'integer | required'
         ];
     }
 
-    protected function prepareForValidation(): void
+    public function prepareForValidation()
     {
         $this->merge([
             'slug' => Str::slug($this->slug)
