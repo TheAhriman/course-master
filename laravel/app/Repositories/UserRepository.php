@@ -31,9 +31,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return new UserCollection(parent::getAllTrashed($limit));
     }
 
-    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
+    public function findFirst(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
     {
-        return new UserResource(parent::findById($value, $option, $columns, $condition));
+        return new UserResource(parent::findFirst($value, $option, $columns, $condition));
     }
 
     public function findOnlyTrashedById(int $id): JsonResource

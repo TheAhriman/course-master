@@ -28,9 +28,9 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
         return new RoleCollection(parent::getAllTrashed($limit));
     }
 
-    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): RoleResource
+    public function findFirst(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): RoleResource
     {
-        return new RoleResource(parent::findById($value, $option, $columns, $condition));
+        return new RoleResource(parent::findFirst($value, $option, $columns, $condition));
     }
 
     public function findOnlyTrashedById(int $id): RoleResource

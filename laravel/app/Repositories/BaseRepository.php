@@ -48,7 +48,7 @@ class BaseRepository implements BaseRepositoryInterface
      * @param string|null $condition
      * @return mixed
      */
-    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): mixed
+    public function findFirst(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): mixed
     {
         return $this->model->query()->select($columns)->where($condition,$value)->with($option)->first();
     }
@@ -87,7 +87,7 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function updateById(int $id, array $data): void
     {
-        $model = $this->findById($id);
+        $model = $this->findFirst($id);
         $model->update($data);
 
         $model->refresh();
@@ -99,7 +99,7 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function deleteById(int $id): void
     {
-        $this->findById($id)->delete();
+        $this->findFirst($id)->delete();
     }
 
     /**

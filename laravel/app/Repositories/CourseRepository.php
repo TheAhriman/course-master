@@ -32,10 +32,10 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         return new CourseCollection(parent::getAllTrashed($limit));
     }
 
-    public function findById(string $value, ?array $option = [],
+    public function findFirst(string $value, ?array $option = [],
         ?array $columns = ['*'], ?string $condition = 'id'): CourseResource
     {
-        return new CourseResource(parent::findById($value, $option, $columns, $condition));
+        return new CourseResource(parent::findFirst($value, $option, $columns, $condition));
     }
 
     public function findOnlyTrashedById(int $id): CourseResource

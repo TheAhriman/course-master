@@ -31,9 +31,9 @@ class LessonRepository extends BaseRepository implements LessonRepositoryInterfa
         return new LessonCollection(parent::getAllTrashed($limit));
     }
 
-    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
+    public function findFirst(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
     {
-        return new LessonResource(parent::findById($value, $option, $columns, $condition));
+        return new LessonResource(parent::findFirst($value, $option, $columns, $condition));
     }
 
     public function findOnlyTrashedById(int $id): JsonResource

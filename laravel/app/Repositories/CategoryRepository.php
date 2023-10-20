@@ -31,9 +31,9 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return new CategoryCollection(parent::getAllTrashed($limit));
     }
 
-    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
+    public function findFirst(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
     {
-        return new CategoryResource(parent::findById($value, $option, $columns, $condition));
+        return new CategoryResource(parent::findFirst($value, $option, $columns, $condition));
     }
 
     public function findOnlyTrashedById(int $id): JsonResource

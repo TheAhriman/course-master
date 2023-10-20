@@ -36,7 +36,7 @@ class CourseService extends BaseService
             $categoriesIds = $data['category_id'];
             unset($data['category_id']);
         }
-        $course = $this->repository->findById($id);
+        $course = $this->repository->findFirst($id);
         $this->repository->syncCourseAndCategories($course, $categoriesIds);
         parent::updateById($id, $data);
     }

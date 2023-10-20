@@ -31,9 +31,9 @@ class ExaminationRepository extends BaseRepository implements ExaminationReposit
         return new ExaminationCollection(parent::getAllTrashed($limit));
     }
 
-    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
+    public function findFirst(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
     {
-        return new ExaminationResource(parent::findById($value, $option, $columns, $condition));
+        return new ExaminationResource(parent::findFirst($value, $option, $columns, $condition));
     }
 
     public function findOnlyTrashedById(int $id): JsonResource

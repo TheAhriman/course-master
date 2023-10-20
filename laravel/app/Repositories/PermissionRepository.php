@@ -28,9 +28,9 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
         return new PermissionCollection(parent::getAllTrashed($limit));
     }
 
-    public function findById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): PermissionResource
+    public function findFirst(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): PermissionResource
     {
-        return new PermissionResource(parent::findById($value, $option, $columns, $condition));
+        return new PermissionResource(parent::findFirst($value, $option, $columns, $condition));
     }
 
     public function findOnlyTrashedById(int $id): PermissionResource

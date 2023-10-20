@@ -19,6 +19,8 @@ class Examination extends Model
         'type' => ExaminationTypeEnum::class
     ];
 
+    protected $guarded = false;
+
     public function lesson(): BelongsTo
     {
         return $this->belongsTo(Lesson::class,'lesson_id','id');

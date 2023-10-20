@@ -44,6 +44,11 @@ Route::get('/lessons_trashed',[\App\Http\Controllers\LessonController::class,'in
 Route::get('/lessons_trashed/{lesson}',[\App\Http\Controllers\LessonController::class,'showTrashed'])->name('lessons.show_trashed');
 Route::get('/lessons_trashed/{lesson}/restore',[\App\Http\Controllers\LessonController::class,'restore'])->name('lessons.restore');
 
+Route::resource('examinations',\App\Http\Controllers\ExaminationController::class);
+Route::get('/examinations_trashed',[\App\Http\Controllers\ExaminationController::class,'indexTrashed'])->name('examinations.index_trashed');
+Route::get('/examinations_trashed/{examination}',[\App\Http\Controllers\ExaminationController::class,'showTrashed'])->name('examinations.show_trashed');
+Route::get('/examinations_trashed/{examination}/restore',[\App\Http\Controllers\ExaminationController::class,'restore'])->name('examinations.restore');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -23,6 +23,7 @@
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.roles.index')}}">Роли</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.permissions.index')}}">Разрешения</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.lessons.index')}}">Уроки</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.examinations.index')}}">Тесты</a>
         </div>
     </div>
     <!-- Page content wrapper-->

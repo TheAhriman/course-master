@@ -2,10 +2,18 @@
 
 namespace App\Enums;
 
-enum ExaminationTypeEnum: string
+enum ExaminationTypeEnum: int
 {
-    case INPUT = "Текстовое поле";
-    case RADIO = "Один из списка";
+    case INPUT = 1;
+    case RADIO = 2;
+
+    public function title(): string
+    {
+        return match($this){
+            self::INPUT => 'Поле для ввода',
+            self::RADIO => 'Один из списка'
+        };
+    }
 
     public static function toArray(): array
     {

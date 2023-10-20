@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ExaminationTypeEnum;
 use App\Http\Requests\StoreExaminationRequest;
 use App\Http\Services\ExaminationService;
 use App\Http\Services\LessonService;
@@ -26,7 +27,7 @@ class ExaminationController extends Controller
 
     public function indexTrashed()
     {
-        $examinations = $this->examinationService->getAll(15);
+        $examinations = $this->examinationService->getAllTrashed(15);
 
         return view('admin_panel.examinations.index_trashed',compact('examinations'));
     }
@@ -77,15 +78,18 @@ class ExaminationController extends Controller
         $lessons = $this->lessonService->getAll();
         $examination = $this->examinationService->getById($id);
 
-        return view('admin_panel.examinations.edit',compact('lessons'))
+        return view('admin_panel.examinations.edit',compact(['lessons','examination']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreExaminationRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $this->examinationService->updateById($id, $data);
+
+        return redirect()->route('admin.examinations.index');
     }
 
     /**
@@ -93,6 +97,15 @@ class ExaminationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->examinationService->deleteById($id);
+
+        return redirect()->route('admin.examinations.index');
+    }
+
+    public function restore(string $id)
+    {
+        $this->examinationService->restoreById($id);
+
+        return redirect()->route('admin.examinations.index');
     }
 }

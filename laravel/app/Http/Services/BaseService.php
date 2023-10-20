@@ -31,7 +31,7 @@ class BaseService
      */
     public function getById(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): JsonResource
     {
-        return $this->repository->findById($value, $option, $columns, $condition);
+        return $this->repository->findFirst($value, $option, $columns, $condition);
     }
 
     /**

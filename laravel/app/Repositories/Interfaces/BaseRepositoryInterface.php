@@ -29,7 +29,7 @@ interface BaseRepositoryInterface
      * @param string|null $condition
      * @return mixed
      */
-    public function findById(string $value, ?array $option = [],
+    public function findFirst(string $value, ?array $option = [],
         ?array $columns = ['*'], ?string $condition = 'id'): mixed;
 
     /**
