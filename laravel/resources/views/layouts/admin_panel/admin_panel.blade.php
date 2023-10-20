@@ -24,6 +24,8 @@
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.permissions.index')}}">Разрешения</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.lessons.index')}}">Уроки</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.examinations.index')}}">Тесты</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.criterias.index')}}">Критерии оценки</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.comments.index')}}">Комментарии</a>
         </div>
     </div>
     <!-- Page content wrapper-->

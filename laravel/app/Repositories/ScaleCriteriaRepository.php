@@ -4,20 +4,22 @@ namespace App\Repositories;
 
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
+use App\Models\ScaleCriteria;
 use App\Models\User;
+use App\Repositories\Interfaces\ScaleCriteriaRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Js;
 
-class UserRepository extends BaseRepository implements UserRepositoryInterface
+class ScaleCriteriaRepository extends BaseRepository implements ScaleCriteriaRepositoryInterface
 {
     /**
-     * @param User $user
+     * @param ScaleCriteria $scaleCriteria
      */
-    public function __construct(User $user)
+    public function __construct(ScaleCriteria $scaleCriteria)
     {
-        parent::__construct($user);
+        parent::__construct($scaleCriteria);
     }
 }

@@ -22,41 +22,22 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         parent::__construct($course);
     }
 
-    public function getAll(?int $limit = null): ResourceCollection
-    {
-        return new CourseCollection(parent::getAll($limit));
-    }
-
-    public function getAllTrashed(?int $limit = null): ResourceCollection
-    {
-        return new CourseCollection(parent::getAllTrashed($limit));
-    }
-
-    public function findFirst(string $value, ?array $option = [],
-        ?array $columns = ['*'], ?string $condition = 'id'): CourseResource
-    {
-        return new CourseResource(parent::findFirst($value, $option, $columns, $condition));
-    }
-
-    public function findOnlyTrashedById(int $id): CourseResource
-    {
-        return new CourseResource(parent::findOnlyTrashedById($id));
-    }
-
-    public function findWithTrashedById(int $id): CourseResource
-    {
-        return new CourseResource(parent::findWithTrashedById($id));
-    }
-
-
-
-    public function syncCourseAndCategories(CourseResource $course,array $categoriesIds) : void
+    /**
+     * @param JsonResource $course
+     * @param array $categoriesIds
+     * @return void
+     */
+    public function syncCourseAndCategories(JsonResource $course,array $categoriesIds) : void
     {
         $course->categories()->sync($categoriesIds);
     }
 
-    public function findLastCourse(): CourseResource
+    /**
+     * @return JsonResource
+     */
+    public function findLastCourse(): JsonResource
     {
-        return new CourseResource($this->model->query()->latest('id')->first());
+        return new JsonResource($this->model->newQuery()->latest()->first());
     }
+
 }

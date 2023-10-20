@@ -13,6 +13,7 @@ class Comment extends Model
 
     protected $table="comments";
 
+    protected $guarded = false;
     public function lesson(): BelongsTo
     {
         return $this->belongsTo(Lesson::class,'lesson_id','id');

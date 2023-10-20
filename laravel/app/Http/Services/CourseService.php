@@ -20,12 +20,14 @@ class CourseService extends BaseService
 
     public function createCourseAndCategories(array $data): void
     {
-        $this->repository->create($data);
         if (array_key_exists('category_id',$data)){
             $categoriesIds = $data['category_id'];
             unset($data['category_id']);
+            $this->repository->create($data);
             $course = $this->repository->findLastCourse();
             $this->repository->syncCourseAndCategories($course, $categoriesIds);
+        } else {
+            $this->repository->create($data);
         }
     }
 
@@ -36,7 +38,7 @@ class CourseService extends BaseService
             $categoriesIds = $data['category_id'];
             unset($data['category_id']);
         }
-        $course = $this->repository->findFirst($id);
+        $course = $this->repository->first($id);
         $this->repository->syncCourseAndCategories($course, $categoriesIds);
         parent::updateById($id, $data);
     }

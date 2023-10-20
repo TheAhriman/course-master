@@ -2,16 +2,21 @@
 
 namespace App\Repositories;
 
+use App\Enums\RepositoryParamEnum;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class BaseRepository implements BaseRepositoryInterface
 {
+    /**
+     * @var array
+     */
+    protected array $params = [];
+
     /**
      * @param Model $model
      */
@@ -20,55 +25,97 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param int|null $limit
-     * @return mixed
+     * @param string $name
+     * @param array $arguments
+     * @return $this
      */
-    public function getAll(?int $limit = null): mixed
+    public function __call(string $name, array $arguments)
     {
-            return is_null($limit)
-            ? $this->model->query()->get()
-            : $this->model->query()->paginate($limit);
+        if (($method = RepositoryParamEnum::tryFrom($name)) !== null) {
+            $this->setParam($method->value, ...$arguments);
+        }
+
+        return $this;
     }
 
     /**
-     * @param int|null $limit
-     * @return ResourceCollection
+     * @return Builder
      */
-    public function getAllTrashed(?int $limit = null): mixed
+    protected function newQuery(): Builder
     {
-        return is_null($limit)
-            ? $this->model->query()->onlyTrashed()->get()
-            : $this->model->query()->onlyTrashed()->paginate($limit);
+        return $this->applyQueryParams(
+            $this->model::query()
+        );
     }
 
     /**
-     * @param string $value
-     * @param array|null $option
-     * @param array|null $columns
-     * @param string|null $condition
-     * @return mixed
+     * @param Builder $query
+     * @return Builder
      */
-    public function findFirst(string $value, ?array $option = [], ?array $columns = ['*'], ?string $condition = 'id'): mixed
+    protected function applyQueryParams(Builder $query): Builder
     {
-        return $this->model->query()->select($columns)->where($condition,$value)->with($option)->first();
+        foreach ($this->params as $param){
+            $query->{array_search($param,$this->params)}($param);
+        }
+
+        return $query;
     }
 
     /**
-     * @param int $id
-     * @return mixed
+     * @param string $key
+     * @param mixed $value
+     * @return void
      */
-    public function findWithTrashedById(int $id): mixed
+    protected function setParam(string $key, mixed $value): void
     {
-        return $this->model->query()->withTrashed()->where('id', $id)->first();
+        $this->params[$key] = $value;
     }
 
     /**
-     * @param int $id
-     * @return mixed
+     * @return Collection
      */
-    public function findOnlyTrashedById(int $id): mixed
+    public function get(): Collection
     {
-        return $this->model->query()->onlyTrashed()->where('id', $id)->first();
+        return $this->newQuery()->get();
+    }
+
+    /**
+     * @param int $perPage
+     * @param array $columns
+     * @param string $pageName
+     * @param int|null $page
+     * @return LengthAwarePaginator
+     */
+    public function paginate(int $perPage = 15, array $columns = ['*'], string $pageName = 'page', ?int $page = null): LengthAwarePaginator
+    {
+        return $this->newQuery()->paginate($perPage, $columns, $pageName, $page);
+    }
+
+    /**
+     * @param mixed $value
+     * @param string|null $column
+     * @return JsonResource
+     */
+    public function first(mixed $value, ?string $column = 'id'): JsonResource
+    {
+        $qb = $this->newQuery();
+
+        return is_array($value)
+            ? new JsonResource($qb->where($value)->first())
+            : new JsonResource($qb->where($column, '=', $value)->first());
+    }
+
+    /**
+     * @param array $fillable
+     * @param string $orderField
+     * @param string $orderType
+     * @return Collection
+     */
+    public function where(array $fillable, string $orderField = 'id', string $orderType = 'asc'): Collection
+    {
+        return $this->newQuery()->where($fillable)
+            ->orderBy($orderField, $orderType)
+            ->get();
     }
 
     /**
@@ -87,10 +134,7 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function updateById(int $id, array $data): void
     {
-        $model = $this->findFirst($id);
-        $model->update($data);
-
-        $model->refresh();
+        $this->newQuery()->find($id)->update($data);
     }
 
     /**
@@ -99,7 +143,7 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function deleteById(int $id): void
     {
-        $this->findFirst($id)->delete();
+        $this->model::destroy($id);
     }
 
     /**
@@ -108,15 +152,6 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function restoreById(int $id): void
     {
-        $this->findOnlyTrashedById($id)->restore();
-    }
-
-    /**
-     * @param int $id
-     * @return void
-     */
-    public function permanentlyDeleteById(int $id): void
-    {
-        $this->findWithTrashedById($id)->forceDelete();
+        $this->model->onlyTrashed()->find($id)->restore();
     }
 }

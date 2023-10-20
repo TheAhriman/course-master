@@ -24,14 +24,14 @@ class CategoryController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $categories = $this->categoryService->getAll(15);
+        $categories = $this->categoryService->paginate();
 
         return view('admin_panel.categories.index',compact('categories'));
     }
 
     public function indexTrashed(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $categories = $this->categoryService->getAllTrashed(15);
+        $categories = $this->categoryService->paginateTrashed();
 
         return view('admin_panel.categories.index_trashed',compact('categories'));
     }
@@ -62,14 +62,14 @@ class CategoryController extends Controller
      */
     public function show(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $category = $this->categoryService->getById($id);
+        $category = $this->categoryService->findFirstById($id);
 
         return view('admin_panel.categories.show',compact('category'));
     }
 
     public function showTrashed(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $category = $this->categoryService->getByIdTrashed($id);
+        $category = $this->categoryService->findFirstByIdTrashed($id);
 
         return view('admin_panel.categories.show_trashed',compact('category'));
     }
@@ -77,9 +77,9 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $category = $this->categoryService->getById($id);
+        $category = $this->categoryService->findFirstById($id);
         $categories = $this->categoryService->getAll();
 
         return view('admin_panel.categories.edit',compact(['category','categories']));
@@ -88,7 +88,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCategoryRequest $request, string $id)
+    public function update(StoreCategoryRequest $request, string $id): RedirectResponse
     {
         $data = $request->validated();
         $this->categoryService->updateById($id, $data);
@@ -99,14 +99,14 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         $this->categoryService->deleteById($id);
 
         return redirect()->route('admin.categories.index');
     }
 
-    public function restore(string $id)
+    public function restore(string $id): RedirectResponse
     {
         $this->categoryService->restoreById($id);
 

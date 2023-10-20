@@ -4,74 +4,68 @@ namespace App\Repositories\Interfaces;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Collection;
 
+/**
+ * @method onlyTrashed(string $string)
+ * @method latest(string $string)
+ */
 interface BaseRepositoryInterface
 {
     /**
-     * @return mixed
+     * @return Collection
      */
-    public function getAll() : mixed;
+    public function get(): Collection;
 
     /**
-     * @param int|null $limit
-     * @return ResourceCollection
+     * @param int $perPage
+     * @param array $columns
+     * @param string $pageName
+     * @param int|null $page
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getAllTrashed(?int $limit = null): mixed;
+    public function paginate(int $perPage = 15, array $columns = ['*'], string $pageName = 'page', ?int $page = null): LengthAwarePaginator;
 
     /**
-     * @param string $value
-     * @param array|null $option
-     * @param array|null $columns
-     * @param string|null $condition
-     * @return mixed
+     * @param mixed $value
+     * @param string|null $column
+     * @return JsonResource
      */
-    public function findFirst(string $value, ?array $option = [],
-        ?array $columns = ['*'], ?string $condition = 'id'): mixed;
+    public function first(mixed $value, ?string $column = 'id'): JsonResource;
 
     /**
-     * @param int $id
-     * @return mixed
+     * @param array $fillable
+     * @param string $orderField
+     * @param string $orderType
+     * @return Collection
      */
-    public function findWithTrashedById(int $id) : mixed;
-
-    /**
-     * @param int $id
-     * @return mixed
-     */
-    public function findOnlyTrashedById(int $id) : mixed;
+    public function where(array $fillable, string $orderField = 'id', string $orderType = 'desc'): Collection;
 
     /**
      * @param array $data
      * @return void
      */
-    public function create(array $data) : void;
+    public function create(array $data): void;
 
     /**
      * @param int $id
      * @param array $data
      * @return void
      */
-    public function updateById(int $id, array $data) : void;
+    public function updateById(int $id, array $data): void;
 
     /**
      * @param int $id
      * @return void
      */
-    public function deleteById(int $id) : void;
+    public function deleteById(int $id): void;
 
     /**
      * @param int $id
      * @return void
      */
-    public function restoreById(int $id) : void;
-
-    /**
-     * @param int $id
-     * @return void
-     */
-    public function permanentlyDeleteById(int $id) : void;
+    public function restoreById(int $id): void;
 }

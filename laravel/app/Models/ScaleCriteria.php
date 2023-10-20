@@ -13,6 +13,8 @@ class ScaleCriteria extends Model
 
     protected $table = "scale_criterias";
 
+    protected $guarded = false;
+
     public function examination(): BelongsTo
     {
         return $this->belongsTo(Examination::class,'examination_id','id');

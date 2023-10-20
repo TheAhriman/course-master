@@ -16,14 +16,14 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = $this->roleService->getAll(15);
+        $roles = $this->roleService->paginate();
 
         return view('admin_panel.roles.index',compact('roles'));
     }
 
     public function indexTrashed()
     {
-        $roles = $this->roleService->getAllTrashed(15);
+        $roles = $this->roleService->paginateTrashed(15);
 
         return view('admin_panel.roles.index_trashed',compact('roles'));
     }
@@ -52,14 +52,14 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
-        $role = $this->roleService->getById($id);
+        $role = $this->roleService->findFirstById($id);
 
         return view('admin_panel.roles.show', compact('role'));
     }
 
     public function showTrashed(string $id)
     {
-        $role = $this->roleService->getByIdTrashed($id);
+        $role = $this->roleService->findFirstByIdTrashed($id);
 
         return view('admin_panel.roles.show_trashed',compact('role'));
     }
@@ -68,7 +68,7 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        $role = $this->roleService->getById($id);
+        $role = $this->roleService->findFirstById($id);
 
         return view('admin_panel.roles.edit',compact('role'));
     }

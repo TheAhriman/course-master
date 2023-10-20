@@ -6,7 +6,7 @@
         <div class="mb-3">
             <label for="title" class="form-label">Name</label>
             <input type="text" name="title" class="form-control" id="title"
-                   value="{{$course->id}}">
+                   value="{{$course->title}}">
 
             @error('title')
             <p class="text-danger">{{ $message }}</p>

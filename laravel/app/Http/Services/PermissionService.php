@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Repositories\Interfaces\PermissionRepositoryInterface;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PermissionService extends BaseService
 {

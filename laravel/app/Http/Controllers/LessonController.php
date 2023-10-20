@@ -18,14 +18,14 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = $this->lessonService->getAll(15);
+        $lessons = $this->lessonService->paginate();
 
         return view('admin_panel.lessons.index',compact('lessons'));
     }
 
     public function indexTrashed()
     {
-        $lessons = $this->lessonService->getAllTrashed(15);
+        $lessons = $this->lessonService->paginateTrashed(15);
 
         return view('admin_panel.lessons.index_trashed',compact('lessons'));
     }
@@ -56,14 +56,14 @@ class LessonController extends Controller
      */
     public function show(string $id)
     {
-        $lesson = $this->lessonService->getById($id);
+        $lesson = $this->lessonService->findFirstById($id);
 
         return view('admin_panel.lessons.show',compact('lesson'));
     }
 
     public function showTrashed(string $id)
     {
-        $lesson = $this->lessonService->getByIdTrashed($id);
+        $lesson = $this->lessonService->findFirstByIdTrashed($id);
 
         return view('admin_panel.lessons.show_trashed',compact('lesson'));
     }
@@ -72,7 +72,7 @@ class LessonController extends Controller
      */
     public function edit(string $id)
     {
-        $lesson = $this->lessonService->getById($id);
+        $lesson = $this->lessonService->findFirstById($id);
         $courses = $this->courseService->getAll();
 
         return view('admin_panel.lessons.edit',compact(['lesson','courses']));

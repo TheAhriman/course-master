@@ -18,14 +18,14 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = $this->permissionService->getAll(15);
+        $permissions = $this->permissionService->paginate();
 
         return view('admin_panel.permissions.index',compact('permissions'));
     }
 
     public function indexTrashed()
     {
-        $permissions = $this->permissionService->getAllTrashed(15);
+        $permissions = $this->permissionService->paginateTrashed();
 
         return view('admin_panel.permissions.index_trashed',compact('permissions'));
     }
@@ -55,14 +55,14 @@ class PermissionController extends Controller
      */
     public function show(string $id)
     {
-        $permission = $this->permissionService->getById($id);
+        $permission = $this->permissionService->findFirstById($id);
 
         return view('admin_panel.permissions.show',compact('permission'));
     }
 
     public function showTrashed(string $id)
     {
-        $permission = $this->permissionService->getByIdTrashed($id);
+        $permission = $this->permissionService->findFirstByIdTrashed($id);
 
         return view('admin_panel.permissions.show_trashed',compact('permission'));
     }
@@ -73,7 +73,7 @@ class PermissionController extends Controller
     public function edit(string $id)
     {
         $roles = $this->roleService->getAll();
-        $permission = $this->permissionService->getById($id);
+        $permission = $this->permissionService->findFirstById($id);
 
         return view('admin_panel.permissions.edit',compact(['permission','roles']));
     }

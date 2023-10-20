@@ -2,13 +2,21 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Http\Resources\CourseResource;
+use App\Models\Course;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 interface CourseRepositoryInterface extends BaseRepositoryInterface
 {
+    /**
+     * @param JsonResource $course
+     * @param array $categoriesIds
+     * @return void
+     */
+    public function syncCourseAndCategories(JsonResource $course, array $categoriesIds) : void;
 
-    public function syncCourseAndCategories(CourseResource $course, array $categoriesIds) : void;
-
-    public function findLastCourse(): CourseResource;
-
+    /**
+     * @return JsonResource
+     */
+    public function findLastCourse(): JsonResource;
 }

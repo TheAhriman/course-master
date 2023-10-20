@@ -23,14 +23,14 @@ class CourseController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $courses = $this->courseService->getAll(15);
+        $courses = $this->courseService->paginate();
 
         return view('admin_panel.courses.index',compact('courses'));
     }
 
     public function indexTrashed(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $courses = $this->courseService->getAllTrashed(15);
+        $courses = $this->courseService->paginateTrashed();
 
         return view('admin_panel.courses.index_trashed',compact('courses'));
     }
@@ -49,7 +49,7 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCourseRequest $request)
+    public function store(StoreCourseRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $this->courseService->createCourseAndCategories($data);
@@ -62,14 +62,14 @@ class CourseController extends Controller
      */
     public function show(Course $course): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $course = $this->courseService->getById($course->id);
+        $course = $this->courseService->findFirstById($course->id);
 
         return view('admin_panel.courses.show',compact('course'));
     }
 
     public function showTrashed(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $course = $this->courseService->getByIdTrashed($id);
+        $course = $this->courseService->findFirstByIdTrashed($id);
 
         return view('admin_panel.courses.show_trashed',compact('course'));
     }
@@ -80,7 +80,7 @@ class CourseController extends Controller
     public function edit(Course $course): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         //Пока не придумал как организовать экшен правильно, поэтому пока так:)
-        $course = $this->courseService->getById($course->id);
+        $course = $this->courseService->findFirstById($course->id);
         $categories = $this->categoryService->getAll();
         $users = User::all();
 

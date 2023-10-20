@@ -18,14 +18,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->userService->getAll(5);
+        $users = $this->userService->paginate();
 
         return view('admin_panel.users.index',compact('users'));
     }
 
     public function indexTrashed()
     {
-        $users = $this->userService->getAllTrashed(5);
+        $users = $this->userService->paginateTrashed();
 
         return view('admin_panel.users.index_trashed',compact('users'));
     }
@@ -56,14 +56,14 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = $this->userService->getById($id);
+        $user = $this->userService->findFirstById($id);
 
         return view('admin_panel.users.show',compact('user'));
     }
 
     public function showTrashed(string $id)
     {
-        $user = $this->userService->getByIdTrashed($id);
+        $user = $this->userService->findFirstByIdTrashed($id);
 
         return view('admin_panel.users.show_trashed',compact('user'));
     }
@@ -73,7 +73,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $roles = Role::all();
-        $user = $this->userService->getById($id);
+        $user = $this->userService->findFirstById($id);
 
         return view('admin_panel.users.edit',compact('roles','user'));
     }

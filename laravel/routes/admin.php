@@ -49,6 +49,16 @@ Route::get('/examinations_trashed',[\App\Http\Controllers\ExaminationController:
 Route::get('/examinations_trashed/{examination}',[\App\Http\Controllers\ExaminationController::class,'showTrashed'])->name('examinations.show_trashed');
 Route::get('/examinations_trashed/{examination}/restore',[\App\Http\Controllers\ExaminationController::class,'restore'])->name('examinations.restore');
 
+Route::resource('criterias',\App\Http\Controllers\ScaleCriteriaController::class);
+Route::get('/criterias_trashed',[\App\Http\Controllers\ScaleCriteriaController::class,'indexTrashed'])->name('criterias.index_trashed');
+Route::get('/criterias_trashed/{criteria}',[\App\Http\Controllers\ScaleCriteriaController::class,'showTrashed'])->name('criterias.show_trashed');
+Route::get('/criterias_trashed/{criteria}/restore',[\App\Http\Controllers\ScaleCriteriaController::class,'restore'])->name('criterias.restore');
+
+Route::resource('comments',\App\Http\Controllers\CommentController::class);
+Route::get('/comments_trashed',[\App\Http\Controllers\CommentController::class,'indexTrashed'])->name('comments.index_trashed');
+Route::get('/comments_trashed/{comment}',[\App\Http\Controllers\CommentController::class,'showTrashed'])->name('comments.show_trashed');
+Route::get('/comments_trashed/{comment}/restore',[\App\Http\Controllers\CommentController::class,'restore'])->name('comments.restore');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

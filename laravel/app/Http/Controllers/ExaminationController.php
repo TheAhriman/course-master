@@ -20,14 +20,14 @@ class ExaminationController extends Controller
      */
     public function index()
     {
-        $examinations = $this->examinationService->getAll(15);
+        $examinations = $this->examinationService->paginate();
 
         return view('admin_panel.examinations.index',compact('examinations'));
     }
 
     public function indexTrashed()
     {
-        $examinations = $this->examinationService->getAllTrashed(15);
+        $examinations = $this->examinationService->paginateTrashed(15);
 
         return view('admin_panel.examinations.index_trashed',compact('examinations'));
     }
@@ -58,14 +58,14 @@ class ExaminationController extends Controller
      */
     public function show(string $id)
     {
-        $examination = $this->examinationService->getById($id);
+        $examination = $this->examinationService->findFirstById($id);
 
         return view('admin_panel.examinations.show',compact('examination'));
     }
 
     public function showTrashed(string $id)
     {
-        $examination = $this->examinationService->getByIdTrashed($id);
+        $examination = $this->examinationService->findFirstByIdTrashed($id);
 
         return view('admin_panel.examinations.show_trashed',compact('examination'));
     }
@@ -76,7 +76,7 @@ class ExaminationController extends Controller
     public function edit(string $id)
     {
         $lessons = $this->lessonService->getAll();
-        $examination = $this->examinationService->getById($id);
+        $examination = $this->examinationService->findFirstById($id);
 
         return view('admin_panel.examinations.edit',compact(['lessons','examination']));
     }
