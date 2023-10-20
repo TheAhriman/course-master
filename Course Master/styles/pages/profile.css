@@ -55,55 +55,127 @@ html, body {
     font-size: 16px;
     line-height: 27px;
 }
+.profile{
+    width: calc(100% - 88px);
+    background: #fff;
+}
 
-.main-content{
+.profile-content{
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+}
+ 
+.profile-content-data{
+    width: 180px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    row-gap: 15px;
 }
-.content{
-    width: 100%;
-    max-width: 1200px;
-    padding: 50px 50px 50px 50px;
+.peron-img{
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.about-courses-content{
-    margin-bottom: 50px;
+.profile-list{
+    padding-bottom: 10px;
+    border-bottom: 0.1px solid #787A80;
+    width: 180px;
+    padding-top: 10px;
+    display: inline-block; 
 }
-.main-content-title{
+.profile-list li{
+    margin-bottom: 10px;
     font-family: 'Poppins', sans-serif;
-    font-size: 32px;
-    font-weight: bold;
-}
-.main-content-title-course .icon{
-    font-family: 'Poppins', sans-serif;
-    font-size: 32px;
-    font-weight: bold;
-}
-.main-content-title-course{
-    display: flex;
-    align-items: center;
-}
-.name-courses{
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
-  
-   
-}
-.name-courses a{
+    color: #707070;
     font-size: 16px;
-    font-family: 'Poppins', sans-serif;
-    color: #1E212C;
-  
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    
 }
-.name-courses a:hover{
-    text-decoration: underline;
+.profile-list .icon{
+    font-size: 21px;
+    font-family: 'Poppins', sans-serif;
+    color: #707070;
+}
+.profile-content .subscribe{
+  width: 100%;
+  background-color: #009579;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px ;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.courses{
+.about-person{
+    text-align: left;
+}
+.profile-content-info{
+    margin-left: 100px;
+    margin-top: 15px;
+}
+.name-autor{
+    font-size: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+.profile-content-info{
     display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.profile-content-info p{
+    margin-top: 10px;
+}
+.more-info{
+    width: 90%;
+    padding: 20px 20px 20px 20px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    color: #1E212C;
+}
+.cours-title{
+    margin-top: 10px;
+    font-size: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+.cours-search{
+    margin-top: 15px;
+    margin-left: 50px;
+    width: 80%;
+    height: 40px;
+    border-width: 0.1px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    color: #1E212C;
+}
+
+.cours-search:focus{
+    box-shadow: rgba(0, 0, 0, 0.7) 5px 5px 15px;
+}
+.autor-corses{
+    display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 15px;
+    margin-left: 50px;
+    width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    
 }
 .course{
     display: flex;
@@ -138,56 +210,4 @@ html, body {
    color: #1E212C;
    font-size: 14px;
    
-}
-.partners{
-    margin-top: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    column-gap: 60px;
-    row-gap: 30px;
-}
-.partner-logo-img{
-    max-width: 180px;
-    max-height: 50px;
-}
-.autor-block{
-    flex-wrap: wrap;
-    display: flex;
-    width: 100%;
-}
-.autor-block-content{
-    display: flex;
-    margin: 20px 20px 20px 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    width: 320px;
-    height: 100px;
-    border-radius: 6px;
-    padding: 20px 20px 20px 20px;
-    transition: all 0.3s ease;
-}
-.autor-block-content:hover{
-    box-shadow: rgba(40, 68, 41, 0.35) 0px 5px 15px;
-}
-.autor-block-title{
-   width: 360px; 
-   display: flex;
-   flex-direction: column;
-}
-.autor-block-img{
-    width: 60px;
-    height: 60px;
-    border-radius: 6px;
-}
-.autor-block-result{
-    display: flex;
-    column-gap: 5px;
-}
-.autor-block-result-content{
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    column-gap: 2px;
-    color: #707070;
-    margin-top: -15px;
 }
