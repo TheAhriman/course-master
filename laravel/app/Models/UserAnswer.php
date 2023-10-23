@@ -13,6 +13,8 @@ class UserAnswer extends Model
 
     protected $table = "user_answers";
 
+    protected $guarded= false;
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class,'user_id','id');

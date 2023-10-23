@@ -14,6 +14,8 @@ class QuestionGroup extends Model
 
     protected $table = "question_groups";
 
+    protected $guarded = false;
+
     public function examination(): BelongsTo
     {
         return $this->belongsTo(Examination::class,'examination_id','id');

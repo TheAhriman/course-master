@@ -14,6 +14,8 @@ class QuestionResponse extends Model
 
     protected $table = "question_responses";
 
+    protected $guarded = false;
+
     public function question(): BelongsTo
     {
         return $this->belongsTo(Question::class,'question_id','id');

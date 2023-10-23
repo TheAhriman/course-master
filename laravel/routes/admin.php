@@ -59,6 +59,31 @@ Route::get('/comments_trashed',[\App\Http\Controllers\CommentController::class,'
 Route::get('/comments_trashed/{comment}',[\App\Http\Controllers\CommentController::class,'showTrashed'])->name('comments.show_trashed');
 Route::get('/comments_trashed/{comment}/restore',[\App\Http\Controllers\CommentController::class,'restore'])->name('comments.restore');
 
+Route::resource('question_groups',\App\Http\Controllers\QuestionGroupController::class);
+Route::get('/question_groups_trashed',[\App\Http\Controllers\QuestionGroupController::class,'indexTrashed'])->name('question_groups.index_trashed');
+Route::get('/question_groups_trashed/{question_group}',[\App\Http\Controllers\QuestionGroupController::class,'showTrashed'])->name('question_groups.show_trashed');
+Route::get('/question_groups_trashed/{question_group}/restore',[\App\Http\Controllers\QuestionGroupController::class,'restore'])->name('question_groups.restore');
+
+Route::resource('questions',\App\Http\Controllers\QuestionController::class);
+Route::get('/questions_trashed',[\App\Http\Controllers\QuestionController::class,'indexTrashed'])->name('questions.index_trashed');
+Route::get('/questions_trashed/{question}',[\App\Http\Controllers\QuestionController::class,'showTrashed'])->name('questions.show_trashed');
+Route::get('/questions_trashed/{question}/restore',[\App\Http\Controllers\QuestionController::class,'restore'])->name('questions.restore');
+
+Route::resource('question_responses',\App\Http\Controllers\QuestionResponseController::class);
+Route::get('/question_responses_trashed',[\App\Http\Controllers\QuestionResponseController::class,'indexTrashed'])->name('question_responses.index_trashed');
+Route::get('/question_responses_trashed/{question_response}',[\App\Http\Controllers\QuestionResponseController::class,'showTrashed'])->name('question_responses.show_trashed');
+Route::get('/question_responses_trashed/{question_response}/restore',[\App\Http\Controllers\QuestionResponseController::class,'restore'])->name('question_responses.restore');
+
+Route::resource('user_answers',\App\Http\Controllers\UserAnswerController::class);
+Route::get('/user_answers_trashed',[\App\Http\Controllers\UserAnswerController::class,'indexTrashed'])->name('user_answers.index_trashed');
+Route::get('/user_answers_trashed/{user_answer}',[\App\Http\Controllers\UserAnswerController::class,'showTrashed'])->name('user_answers.show_trashed');
+Route::get('/user_answers_trashed/{user_answer}/restore',[\App\Http\Controllers\UserAnswerController::class,'restore'])->name('user_answers.restore');
+
+Route::resource('lesson_contents',\App\Http\Controllers\LessonContentController::class);
+Route::get('/lesson_contents_trashed',[\App\Http\Controllers\LessonContentController::class,'indexTrashed'])->name('lesson_contents.index_trashed');
+Route::get('/lesson_contents_trashed/{lesson_content}',[\App\Http\Controllers\LessonContentController::class,'showTrashed'])->name('lesson_contents.show_trashed');
+Route::get('/lesson_contents_trashed/{lesson_content}/restore',[\App\Http\Controllers\LessonContentController::class,'restore'])->name('lesson_contents.restore');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

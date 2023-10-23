@@ -26,6 +26,11 @@
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.examinations.index')}}">Тесты</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.criterias.index')}}">Критерии оценки</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.comments.index')}}">Комментарии</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.question_groups.index')}}">Группа вопросов</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.questions.index')}}">Вопросы</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.question_responses.index')}}">Ответы на вопросы</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.user_answers.index')}}">Ответы пользователей</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.lesson_contents.index')}}">Содержимое уроков</a>
         </div>
     </div>
     <!-- Page content wrapper-->

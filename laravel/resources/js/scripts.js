@@ -3,9 +3,9 @@
 * Copyright 2013-2023 Start Bootstrap
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
 */
-// 
+//
 // Scripts
-// 
+//
 
 window.addEventListener('DOMContentLoaded', event => {
 
@@ -24,3 +24,17 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+let select = document.getElementById('select0');
+let block = document.querySelectorAll('.block');
+let lastIndex = 0; // После каждой смены опции, сохраняем сюда индекс предыдущего блока
+
+select.addEventListener('change', function() {
+    block[lastIndex].hidden = "true";
+    block[lastIndex].value = ""; // Очистить значение ввода предыдущего блока
+    if(block[lastIndex].id == 'textarea')
+    let index = select.selectedIndex;
+    block[index].hidden = "false";
+    lastIndex = index;
+});
+
