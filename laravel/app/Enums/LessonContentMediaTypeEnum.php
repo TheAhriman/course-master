@@ -10,7 +10,7 @@ enum LessonContentMediaTypeEnum: string
 
     public function title(): string
     {
-        return match($this){
+        return match($this) {
             self::VIDEO => 'Видео',
             self::IMAGE => 'Изображение',
             self::TEXT => 'Текст'

@@ -9,7 +9,7 @@ enum ExaminationTypeEnum: int
 
     public function title(): string
     {
-        return match($this){
+        return match($this) {
             self::INPUT => 'Поле для ввода',
             self::RADIO => 'Один из списка'
         };

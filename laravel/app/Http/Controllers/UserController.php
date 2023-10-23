@@ -35,7 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
+        $roles = Role::query()->get();
 
         return view('admin_panel.users.create',compact('roles'));
     }
@@ -43,10 +43,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
-        $this->userService->create($data);
+        $this->userService->create($request->validated());
 
         return redirect()->route('admin.users.index');
     }
