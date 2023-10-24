@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lesson_contents', function (Blueprint $table) {
             $table->id();
-            $table->enum('media_type',[1,2,3]);
+            $table->enum('media_type', \App\Enums\LessonContentMediaTypeEnum::toArray());
             $table->text('value');
             $table->text('description')->nullable();
             $table->unsignedBigInteger('lesson_id');

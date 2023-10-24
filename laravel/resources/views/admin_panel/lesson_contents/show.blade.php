@@ -1,13 +1,15 @@
-@extends('layouts.admin_panel.questions')
+@extends('layouts.admin_panel.lesson_contents')
 @section('content')
-    <b>Вопрос:</b> {{ $question->question }}<br>
-    <b>К какой группе вопросов присоединено: </b> {{ $question->question_group->title }}<br>
-    <b>Тип вопроса: </b> {{ $question->type->title() }}<br>
-    <b>Порядковый номер вопроса в группе:</b> {{ $question->priority }}<br>
-    @if($question->required == 1)
-        <b>Вопрос обязателен</b>
+    <b>Тип:</b> {{ $lessonContent->media_type->title() }}<br>
+    <b>Содержимое: </b>
+    @if($lessonContent->media_type->value == "text")
+        {!! $lessonContent->value !!}<br>
     @else
-        <b>Вопрос не обязателен</b>
+        @if($lessonContent->media_type->value == "image")
+            <img src="{{\Illuminate\Support\Facades\Storage::url($lessonContent->value)}}" alt=""><br>
+        @else
+            <video src="{{\Illuminate\Support\Facades\Storage::url($lessonContent->value)}}"></video>
+        @endif
     @endif
 @endsection
 

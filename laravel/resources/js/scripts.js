@@ -25,16 +25,29 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-let select = document.getElementById('select0');
+let select = document.getElementById('selectzero');
 let block = document.querySelectorAll('.block');
 let lastIndex = 0; // После каждой смены опции, сохраняем сюда индекс предыдущего блока
+let description = document.getElementById('description')
 
 select.addEventListener('change', function() {
-    block[lastIndex].hidden = "true";
     block[lastIndex].value = ""; // Очистить значение ввода предыдущего блока
-    if(block[lastIndex].id == 'textarea')
+    if(block[lastIndex].id === 'textarea') {
+        description.style=""
+        block[lastIndex].value = ""; // Очистить значение ввода предыдущего блока
+        tinymce.activeEditor.hide();
+        block[lastIndex].value = ""; // Очистить значение ввода предыдущего блока
+    }
+    block[lastIndex].style.display = "none";
     let index = select.selectedIndex;
-    block[index].hidden = "false";
+    if(block[index].id === 'textarea') {
+        block[index].style=''
+        description.style.display="none"
+        tinymce.activeEditor.show();
+    } else {
+        block[index].style='flex'
+    }
+    block[index].value="";
     lastIndex = index;
 });
 
