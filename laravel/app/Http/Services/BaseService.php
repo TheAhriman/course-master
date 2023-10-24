@@ -85,9 +85,9 @@ class BaseService
      * @param array $data
      * @return void
      */
-    public function create(array $data): void
+    public function create(array $data): ?JsonResource
     {
-        $this->repository->create($data);
+        return $this->repository->create($data);
     }
 
     /**

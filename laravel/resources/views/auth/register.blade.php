@@ -6,26 +6,48 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/forms/style-form.css">
+    @vite('resources/css/style-form.css')
     <title>Form registration</title>
 </head>
 <body>
 <div class="container">
-    <div action="" class="login form">
+    <div class="login form">
         <h1>Регистрация</h1>
-        <form action="#">
-            <input type="email" placeholder="Введите свой email">
-            <input type="text" placeholder="Фамилия">
-            <input type="text" placeholder="Имя">
-            <input type="password" placeholder="Введите свой пароль">
-            <input type="password" placeholder="Повторите свой пароль">
-            <input type="button" class="button" value="Вход">
+        <form action="{{route('register_processing')}}" method="POST">
+            <input name="email" type="email" placeholder="Введите свой email" value="{{old('email')}}">
+            @error('email')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input name="name" type="text" placeholder="Имя" value="{{old('name')}}">
+            @error('name')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="role_id"
+                    id="role">
+                <option value="nothing" disabled selected style="display: none">Выберите роль</option>
+                @foreach($roles as $role)
+                    <option
+                            {{old('role_id') == $role->id ? ' selected' : ''}}
+                            value={{$role->id}}>{{$role->name}}</option>
+                @endforeach
+            </select>
+            @error('role_id')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input name="password"  type="password" placeholder="Введите свой пароль" value="{{old('password')}}">
+            @error('password')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input name="password_confirmation"  type="password" placeholder="Повторите свой пароль">
+            @error('password_confirmation')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input type="submit" class="button" value="Зарегистрироваться">
         </form>
         <div class="singup">
                 <span class="singup">Есть аккаунт?
-                    <a href="file:///C:/Users/user/Desktop/Course%20Master/pages/login-form.html#">Войдите</a>
+                    <a href="{{route('login')}}">Войдите</a>
                 </span>
-
         </div>
     </div>
 </div>

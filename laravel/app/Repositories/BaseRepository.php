@@ -118,13 +118,13 @@ class BaseRepository implements BaseRepositoryInterface
             ->get();
     }
 
-    /**
-     * @param array $data
-     * @return void
-     */
-    public function create(array $data): void
+	/**
+	 * @param array $data
+	 * @return JsonResource
+	 */
+    public function create(array $data): JsonResource
     {
-        $this->model->query()->create($data)->fresh();
+        return new JsonResource($this->model->query()->create($data)->fresh());
     }
 
     /**

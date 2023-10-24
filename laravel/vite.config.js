@@ -9,7 +9,8 @@ export default defineConfig({
             'resources/js/app.js',
             'resources/css/styles.css',
             'resources/css/app.css',
-            'resources/js/scripts.js'
+            'resources/js/scripts.js',
+            'resources/css/style-form.css'
         ]),
     ],
     resolve: {

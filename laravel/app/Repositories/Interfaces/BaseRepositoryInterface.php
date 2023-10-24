@@ -48,7 +48,7 @@ interface BaseRepositoryInterface
      * @param array $data
      * @return void
      */
-    public function create(array $data): void;
+    public function create(array $data): JsonResource;
 
     /**
      * @param int $id
