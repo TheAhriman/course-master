@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu&display=swap');
-*, *:before, *:after {
+
+*,
+*:before,
+*:after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-user-select: none;
@@ -7,7 +10,58 @@
     -ms-user-select: none;
     user-select: none;
 }
-html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+code,
+em,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+main,
+canvas,
+embed,
+footer,
+header,
+nav,
+section,
+video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -22,70 +76,94 @@ html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockq
     text-size-adjust: none;
     text-decoration: none;
 }
-footer, header, nav, section, main {
+
+footer,
+header,
+nav,
+section,
+main {
     display: block;
 }
+
 body {
     line-height: 1;
 }
-ol, ul {
+
+ol,
+ul {
     list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
     quotes: none;
 }
-blockquote:before, blockquote:after, q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: "";
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 input {
     -webkit-appearance: none;
     border-radius: 0;
 }
+
 * img {
-    max-width: 100%}
-html, body {
+    max-width: 100%
+}
+
+html,
+body {
     font-family: "Montserrat", sans-serif;
     height: 100%;
     font-weight: 400;
     font-size: 16px;
     line-height: 27px;
 }
-.profile{
+
+.profile {
     width: calc(100% - 88px);
     background: #fff;
 }
 
-.profile-content{
+.profile-content {
     padding-top: 50px;
     padding-left: 50px;
     padding-bottom: 50px;
     display: flex;
     flex-direction: row;
 }
- 
-.profile-content-data{
+
+.profile-content-data {
     width: 180px;
     display: flex;
     flex-direction: column;
     row-gap: 15px;
 }
-.peron-img{
+
+.peron-img {
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.profile-list{
+
+.profile-list {
     padding-bottom: 10px;
     border-bottom: 0.1px solid #787A80;
     width: 180px;
     padding-top: 10px;
-    display: inline-block; 
+    display: inline-block;
 }
-.profile-list li{
+
+.profile-list li {
     margin-bottom: 10px;
     font-family: 'Poppins', sans-serif;
     color: #707070;
@@ -93,47 +171,54 @@ html, body {
     display: flex;
     align-items: center;
     column-gap: 5px;
-    
+
 }
-.profile-list .icon{
+
+.profile-list .icon {
     font-size: 21px;
     font-family: 'Poppins', sans-serif;
     color: #707070;
 }
-.profile-content .subscribe{
-  width: 100%;
-  background-color: #009579;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 14px ;
-  color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+.profile-content .subscribe {
+    width: 100%;
+    background-color: #009579;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.about-person{
+.about-person {
     text-align: left;
 }
-.profile-content-info{
+
+.profile-content-info {
     margin-left: 100px;
     margin-top: 15px;
 }
-.name-autor{
+
+.name-autor {
     font-size: 32px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 }
-.profile-content-info{
+
+.profile-content-info {
     display: flex;
     flex-direction: column;
     align-items: start;
 }
-.profile-content-info p{
+
+.profile-content-info p {
     margin-top: 10px;
 }
-.more-info{
+
+.more-info {
     width: 90%;
     padding: 20px 20px 20px 20px;
     border: 1px solid #ddd;
@@ -141,17 +226,20 @@ html, body {
     border-radius: 6px;
     font-family: 'Poppins', sans-serif;
     color: #1E212C;
+    margin-left: 50px;
 }
-.cours-title{
+
+.cours-title {
     margin-top: 10px;
     font-size: 32px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 }
-.cours-search{
+
+.cours-search {
     margin-top: 15px;
     margin-left: 50px;
-    width: 80%;
+    width: 90%;
     height: 40px;
     border-width: 0.1px;
     border: 1px solid #ddd;
@@ -163,51 +251,59 @@ html, body {
     color: #1E212C;
 }
 
-.cours-search:focus{
+.cours-search:focus {
     box-shadow: rgba(0, 0, 0, 0.7) 5px 5px 15px;
 }
-.autor-corses{
+
+.autor-corses {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 15px;
     margin-left: 50px;
-    width: 80%;
+    width: 90%;
     border: 1px solid #ddd;
     border-radius: 6px;
-    
+
 }
-.course{
+
+.course {
     display: flex;
     margin: 20px 20px 20px 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    width: 320px;
+    width: 370px;
     height: 170px;
     border-radius: 6px;
     padding: 20px 20px 20px 20px;
     transition: all 0.3s ease;
 }
-.course:hover{
+
+.course:hover {
     box-shadow: rgba(40, 68, 41, 0.35) 0px 5px 15px;
+    transform: scale(1.2);
 }
-.title-course{
-   width: 360px; 
-   display: flex;
-   flex-direction: column;
+
+.title-course {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
 }
-.course-img{
+
+.course-img {
     width: 70px;
     height: 70px;
     border-radius: 6px;
 }
-.name-couse{
-   color: #1E212C;
-   font-size: 16px;
-   font-weight: bold;
+
+.name-couse {
+    color: #1E212C;
+    font-size: 16px;
+    font-weight: bold;
 }
-.name-autor-course{
-   margin-top: -25px;
-   color: #1E212C;
-   font-size: 14px;
-   
+
+.name-autor-course {
+    margin-top: -25px;
+    color: #1E212C;
+    font-size: 14px;
+
 }

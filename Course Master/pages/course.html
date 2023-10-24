@@ -12,7 +12,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../styles/header-footer/header.css">
     <link rel="stylesheet" href="../styles/pages/course.css">
-    <link rel="stylesheet" href="../styles/pages/wraper.css">
+    <link rel="stylesheet" href="../styles/pages/main-side-bar-menu.css">
     <link rel="stylesheet" href="../styles/header-footer/footer.css">
     <title>page-course</title>
 </head>
@@ -22,9 +22,9 @@
         <div class="header_container">
             <div class="header_nav_menu">
                 <a href="#" class="link_logo">Course<span class="linl_logo_span">Master</span></a>
-                <a href="#" class="header_link">Каталог</a>
-                <a href="#" class="header_link">Моё обучение</a>
-                <a href="#" class="header_link">Преподавание</a>
+                <a href="../pages/index.html" class="header_link">Главная</a>
+                <a href="#" class="header_link">Обучение</a>
+                <a href="file:///C:/Users/user/Desktop/Course%20Master/pages/page-all-courses.html" class="header_link">Мои курсы</a>
             </div>
             <div class="header_nav_buttons">
                 <input type="search" class="header_search" placeholder="Поиск...">
@@ -36,10 +36,8 @@
                     </div>
                 </div>
                 <div class="exite_links">
-                    <a href="file:///C:/Users/user/Desktop/Course%20Master/pages/login-form.html"
-                        class="exite_link">Войти</a>
-                    <a href="file:///C:/Users/user/Desktop/Course%20Master/pages/form-registration.html"
-                        class="exite_link">Регистрация</a>
+                    <a href="file:///C:/Users/user/Desktop/Course%20Master/pages/login-form.html" class="exite_link">Войти</a>
+                    <a href="file:///C:/Users/user/Desktop/Course%20Master/pages/form-registration.html" class="exite_link">Регистрация</a>
                 </div>
             </div>
         </div>
@@ -55,7 +53,7 @@
                         <span class="profession">Frontend</span>
                     </div>
                 </div>
-                <i class='bx bx-chevron-right toggle'></i>
+          
             </header>
             <div class="menu-bar">
                 <div class="menu">
@@ -228,14 +226,6 @@
                             <div class="block-coments-count">
                                 <span>Комментариев</span><span class="coments-count">1</span>
                             </div>
-                            <div class="dropdown-comment">
-                                <button onclick="myFunction()" class="dropbtn-coment">Самые популярные</button>
-                                <div id="myDropdown-coment" class="dropdown-content-coment">
-                                    <a href="#">Новые</a>
-                                    <a href="#">Старые</a>
-                                    <a href="#">Старые</a>
-                                </div>
-                            </div>
                         </div>
                         <div class="comments-insert">
                             <input type="text" placeholder="Введите комментарий" class="input-comment">
@@ -302,8 +292,10 @@
         <p class="autor">© Все права защищены <span class="autor_pictures">&#10084;</span>. Сделано с помощью Laravel
         </p>
     </footer>
-    <script src="../js/components/side-bar-menu.js"></script>
     <script src="../js/components/drop-down-language.js"></script>
+    <script src="../js/components/side-bar-menu.js"></script>
+    <script src="../js/components/drop-down-comments.js"></script>
+   
 </body>
 
 </html>

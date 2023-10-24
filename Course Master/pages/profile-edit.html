@@ -12,9 +12,9 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../styles/header-footer/header.css">
     <link rel="stylesheet" href="../styles/pages/main-side-bar-menu.css">
-    <link rel="stylesheet" href="../styles/pages/profile.css">
+    <link rel="stylesheet" href="../styles/pages/profile-edit.css">
     <link rel="stylesheet" href="../styles/header-footer/footer.css">
-    <title>Профиль</title>
+    <title>Редактирование профиля</title>
 </head>
 
 <body>
@@ -113,87 +113,34 @@
                 </div>
             </div>
         </nav>
-        <section class="profile">
-            <div class="profile-content">
-                <div class="profile-content-data">
-                    <img src="../pictures/images/photo.jpg" alt="#" class="peron-img">
-                    <ul class="profile-list">
-                        <li><i class='bx bxs-notepad icon'></i>Курсов<span>12</span></li>
-                        <li><i class='bx bx-award icon'></i>Сертификаты<span>8</span></li>
-                        <li><i class='bx bx-user-voice icon'></i>Подписчиков<span>121212</span></li>
-                        <li><i class='bx bxs-id-card icon'></i></span> User ID:<span>678494</span></li>
-                    </ul>
-                    <button class="subscribe">Подписаться</button>
-                    <p class="about-person">Создаю авторские онлайн курсы с 2016 года. Профессионально обучаю работе с
-                        графическими редакторами Adobe, преподаю дизайн и веб разработку.</p>
-
-                </div>
-                <div class="profile-content-info">
-                    <h1 class="name-autor">Евгений Козич</h1>
-                    <p>О себе</p>
-                    <div class="info">
-                        <div class="more-info">
-                            Привет! Меня зовут Женя! Не хочу хвастаться, но придется) Обучил более 15000 студентов по
-                            всему миру на своих авторских онлайн курсах. Более 4500 реальных отзывов со средней оценкой
-                            4,83 из 5.00! Я преподаю веб дизайн, веб разработку и необходимое ПО (Photoshop Illustrator,
-                            Figma). Мой опыт преподавания складывается из 5 лет репетиторства на фрилансе, а так- же
-                            преподавания через онлайн школы и курсы, на мировых площадках по дистанционному обучению.
-                            Студенты моих курсов, отмечают лучшие мои качества в том, как я преподаю материал без
-                            зубрежки, весело и интересно. 
+        <section class="main">
+            <div class="main-content">
+                <h1>Редактирование профиля</h1>
+                <div>
+                    <form action="#">
+                        <div class="form-edit-item">
+                            <label for="NameUser">Ваше имя*</label>
+                            <input type="text" id="NameUser">
                         </div>
-                    </div>
-                    <h1 class="cours-title">Курсы</h1>
-                    <input type="search" class="cours-search" placeholder="Название курса">
-                    <div class="autor-corses">
-                        <div class="course">
-                            <div class="title-course">
-                                <a href="file:///C:/Users/user/Desktop/Course%20Master/pages/page-course.html#" class="name-couse">Веб дизайн в Figma с нуля до результата! Основы UX/UI Web Design</a>
-                                <br>
-                                <a href="#" class="name-autor-course">Евгений Козич</a>
-                            </div>
-                            <img src="../pictures/images/photo.jpg" alt="" class="course-img">
+                        <div class="form-edit-item">
+                            <label for="SurNameUser">Фамилия*</label>
+                            <input type="text" id="SurNameUser">
                         </div>
-                        <div class="course">
-                            <div class="title-course">
-                                <a href="#" class="name-couse">Веб дизайн в Figma с нуля до результата! Основы UX/UI Web Design</a>
-                                <br>
-                                <a href="#" class="name-autor-course">Евгений Козич</a>
-                            </div>
-                            <img src="../pictures/images/photo.jpg" alt="" class="course-img">
+                        <div class="form-edit-item">
+                            <label for="biography">Краткая биография</label>
+                            <textarea name="" id="biography" cols="30" rows="10"></textarea>
                         </div>
-                        <div class="course">
-                            <div class="title-course">
-                                <a href="#" class="name-couse">Веб дизайн в Figma с нуля до результата! Основы UX/UI Web Design</a>
-                                <br>
-                                <a href="#" class="name-autor-course">Евгений Козич</a>
-                            </div>
-                            <img src="../pictures/images/photo.jpg" alt="" class="course-img">
+                        <div class="form-edit-item">
+                            <label for="AboutUser" >О себе</label>
+                            <textarea name="" id="AboutUser" cols="30" rows="10"></textarea>
                         </div>
-                        <div class="course">
-                            <div class="title-course">
-                                <a href="#" class="name-couse">Веб дизайн в Figma с нуля до результата! Основы UX/UI Web Design</a>
-                                <br>
-                                <a href="#" class="name-autor-course">Евгений Козич</a>
-                            </div>
-                            <img src="../pictures/images/photo.jpg" alt="" class="course-img">
+                        <div class="form-edit-item">
+                            <label for="NameUser">Фотография</label>
+                            <input id="imageInput" type="file" accept="image/*" onchange="previewImage()" />
+                            <img id="preview" src="#" alt="Фотография" class="img-profile">
                         </div>
-                        <div class="course">
-                            <div class="title-course">
-                                <a href="#" class="name-couse">Веб дизайн в Figma с нуля до результата! Основы UX/UI Web Design</a>
-                                <br>
-                                <a href="#" class="name-autor-course">Евгений Козич</a>
-                            </div>
-                            <img src="../pictures/images/photo.jpg" alt="" class="course-img">
-                        </div>
-                        <div class="course">
-                            <div class="title-course">
-                                <a href="#" class="name-couse">Веб дизайн в Figma с нуля до результата! Основы UX/UI Web Design</a>
-                                <br>
-                                <a href="#" class="name-autor-course">Евгений Козич</a>
-                            </div>
-                            <img src="../pictures/images/photo.jpg" alt="" class="course-img">
-                        </div>
-                    </div>
+                        <button type="submit">Сохранить</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -235,7 +182,7 @@
         <p class="autor">© Все права защищены <span class="autor_pictures">&#10084;</span>. Сделано с помощью Laravel
         </p>
     </footer>
-    <script src="../js/components/side-bar-menu.js"></script>
+    <script src="../js/components/img-dowland.js"></script>
     <script src="../js/components/drop-down-language.js"></script>
 </body>
 
