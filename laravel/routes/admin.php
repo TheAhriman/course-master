@@ -84,6 +84,4 @@ Route::get('/lesson_contents_trashed',[\App\Http\Controllers\LessonContentContro
 Route::get('/lesson_contents_trashed/{lesson_content}',[\App\Http\Controllers\LessonContentController::class,'showTrashed'])->name('lesson_contents.show_trashed');
 Route::get('/lesson_contents_trashed/{lesson_content}/restore',[\App\Http\Controllers\LessonContentController::class,'restore'])->name('lesson_contents.restore');
 
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
