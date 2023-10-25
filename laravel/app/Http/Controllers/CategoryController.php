@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Categories\StoreAndUpdateRequest;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Services\CategoryService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -18,37 +22,36 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $categories = $this->categoryService->getAll(30);
+        $categories = $this->categoryService->paginate();
 
-        return view('admin_panel.categories.index', compact('categories'));
+        return view('admin_panel.categories.index',compact('categories'));
     }
 
-    public function indexTrashed()
+    public function indexTrashed(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $categories = $this->categoryService->getAllTrashed(30);
+        $categories = $this->categoryService->paginateTrashed();
 
-        return view('admin_panel.categories.index_trashed', compact('categories'));
+        return view('admin_panel.categories.index_trashed',compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $categories = $this->categoryService->getAll();
 
-        return view('admin_panel.categories.create', compact('categories'));
+        return view('admin_panel.categories.create',compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAndUpdateRequest $request)
+    public function store(StoreCategoryRequest $request): RedirectResponse
     {
         $data = $request->validated();
-
         $this->categoryService->create($data);
 
         return redirect()->route('admin.categories.index');
@@ -57,50 +60,35 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $category = $this->categoryService->getById($id);
-        $parent = $category->parent;
-        $children = $category->children;
-        $data = [
-            'category' => $category,
-            'parent' => $parent,
-            'children' => $children
-        ];
+        $category = $this->categoryService->findFirstById($id);
 
-        return view('admin_panel.categories.show', compact('data'));
+        return view('admin_panel.categories.show',compact('category'));
     }
 
-    public function showTrashed(string $id)
+    public function showTrashed(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $category = $this->categoryService->getByIdTrashed($id);
-        $parent = $category->parent;
-        $children = $category->children;
-        $data = [
-            'category' => $category,
-            'parent' => $parent,
-            'children' => $children
-        ];
+        $category = $this->categoryService->findFirstByIdTrashed($id);
 
-        return view('admin_panel.categories.show_trashed', compact('data'));
+        return view('admin_panel.categories.show_trashed',compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $category = $this->categoryService->getById($id);
+        $category = $this->categoryService->findFirstById($id);
         $categories = $this->categoryService->getAll();
-        $categories->pull($category->id);
 
-        return view('admin_panel.categories.edit', compact(['category','categories']));
+        return view('admin_panel.categories.edit',compact(['category','categories']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreAndUpdateRequest $request, string $id)
+    public function update(StoreCategoryRequest $request, string $id): RedirectResponse
     {
         $data = $request->validated();
         $this->categoryService->updateById($id, $data);
@@ -111,14 +99,17 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, ?bool $permanent = null)
+    public function destroy(string $id): RedirectResponse
     {
-        if (is_null($permanent)){
-            $this->categoryService->deleteById($id);
-            return redirect()->route('admin.categories.index');
-        } else {
-            $this->categoryService->permanentlyDeleteById($id);
-            return redirect()->route('admin.categories.indexTrashed');
-        }
+        $this->categoryService->deleteById($id);
+
+        return redirect()->route('admin.categories.index');
+    }
+
+    public function restore(string $id): RedirectResponse
+    {
+        $this->categoryService->restoreById($id);
+
+        return redirect()->route('admin.categories.index');
     }
 }

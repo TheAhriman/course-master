@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Ramsey\Uuid\Type\Integer;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Permission>
+ * @extends Factory<Permission>
  */
 class PermissionFactory extends Factory
 {
@@ -20,7 +21,7 @@ class PermissionFactory extends Factory
     {
         return [
             'name' => fake()->text(10),
-            'role_id' => Role::get()->random(),
+            'role_id' => Role::query()->get()->random(),
         ];
     }
 }

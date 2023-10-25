@@ -2,7 +2,8 @@
 
 namespace App\Http\Services;
 
-
+use App\Http\Services\BaseService;
+use App\Repositories\CategoryRepository;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 

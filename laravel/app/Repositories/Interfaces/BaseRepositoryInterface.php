@@ -4,67 +4,68 @@ namespace App\Repositories\Interfaces;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Collection;
 
+/**
+ * @method onlyTrashed(string $string)
+ * @method latest(string $string)
+ */
 interface BaseRepositoryInterface
 {
-
-    public function getAll();
-
+    /**
+     * @return Collection
+     */
+    public function get(): Collection;
 
     /**
-     * @param int|null $limit
-     * @return LengthAwarePaginator|Builder[]|Collection
+     * @param int $perPage
+     * @param array $columns
+     * @param string $pageName
+     * @param int|null $page
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getAllTrashed(?int $limit = null): Collection|LengthAwarePaginator|array;
+    public function paginate(int $perPage = 15, array $columns = ['*'], string $pageName = 'page', ?int $page = null): LengthAwarePaginator;
 
     /**
-     * @param int $id
-     * @return Model|null
+     * @param mixed $value
+     * @param string|null $column
+     * @return JsonResource
      */
-    public function findById(int $id): ?Model;
+    public function first(mixed $value, ?string $column = 'id'): JsonResource;
 
     /**
-     * @param int $id
-     * @return Model|null
+     * @param array $fillable
+     * @param string $orderField
+     * @param string $orderType
+     * @return Collection
      */
-    public function findWithTrashedById(int $id) : ?Model;
-
-    /**
-     * @param int $id
-     * @return Model|null
-     */
-    public function findOnlyTrashedById(int $id) : ?Model;
+    public function where(array $fillable, string $orderField = 'id', string $orderType = 'desc'): Collection;
 
     /**
      * @param array $data
-     * @return Model|null
+     * @return void
      */
-    public function create(array $data) : ?Model;
+    public function create(array $data): JsonResource;
 
     /**
      * @param int $id
      * @param array $data
-     * @return Model|null
+     * @return void
      */
-    public function updateById(int $id, array $data) : ?Model;
+    public function updateById(int $id, array $data): void;
 
     /**
      * @param int $id
      * @return void
      */
-    public function deleteById(int $id) : void;
+    public function deleteById(int $id): void;
 
     /**
      * @param int $id
      * @return void
      */
-    public function restoreById(int $id) : void;
-
-    /**
-     * @param int $id
-     * @return void
-     */
-    public function permanentlyDeleteById(int $id) : void;
+    public function restoreById(int $id): void;
 }

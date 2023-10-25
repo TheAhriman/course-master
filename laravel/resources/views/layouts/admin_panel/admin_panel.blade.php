@@ -17,11 +17,20 @@
     <div class="border-end bg-white" id="sidebar-wrapper">
         <div class="sidebar-heading border-bottom bg-light">Admin panel</div>
         <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.posts.index')}}">Посты</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.categories.index')}}">Категории</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.tags.index')}}">Теги</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.courses.index')}}">Курсы</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.users.index')}}">Пользователи</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.roles.index')}}">Роли</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.permissions.index')}}">Разрешения</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.lessons.index')}}">Уроки</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.examinations.index')}}">Тесты</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.criterias.index')}}">Критерии оценки</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.comments.index')}}">Комментарии</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.question_groups.index')}}">Группа вопросов</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.questions.index')}}">Вопросы</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.question_responses.index')}}">Ответы на вопросы</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.user_answers.index')}}">Ответы пользователей</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{route('admin.lesson_contents.index')}}">Содержимое уроков</a>
         </div>
     </div>
     <!-- Page content wrapper-->
@@ -40,9 +49,11 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#!">Action</a>
-                                <a class="dropdown-item" href="#!">Another action</a>
+                                @auth('web')
+                                    <a class="dropdown-item" href="#!">Вы зашли</a>
+                                @endauth
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#!">Something else here</a>
+                                <a class="dropdown-item" href="{{route('logout')}}">Выйти</a>
                             </div>
                         </li>
                     </ul>

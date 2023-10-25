@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends Factory<Category>
  */
 class CategoryFactory extends Factory
 {
@@ -17,10 +18,9 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->realText(30),
+            'name' => fake()->name(15),
             'slug' => fake()->url(),
-            'description' => fake()->realText(45),
-            'parent_id'=> null
+            'description' => fake()->text(100)
         ];
     }
 }

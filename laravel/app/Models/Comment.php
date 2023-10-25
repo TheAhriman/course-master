@@ -4,19 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table="comments";
 
-    public function post()
+    protected $guarded = false;
+    public function lesson(): BelongsTo
     {
-        return $this->hasOne(Post::class,'id','post_id');
+        return $this->belongsTo(Lesson::class,'lesson_id','id');
     }
-    public function user()
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class,'id','user_id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }

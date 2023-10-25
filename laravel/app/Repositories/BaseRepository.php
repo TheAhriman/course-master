@@ -2,17 +2,22 @@
 
 namespace App\Repositories;
 
+use App\Enums\RepositoryParamEnum;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class BaseRepository implements BaseRepositoryInterface
 {
     /**
-     * BaseRepository constructor
-     *
+     * @var array
+     */
+    protected array $params = [];
+
+    /**
      * @param Model $model
      */
     public function __construct(protected Model $model)
@@ -20,74 +25,116 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param int|null $limit
-     * @return LengthAwarePaginator|Builder[]|Collection
+     * @param string $name
+     * @param array $arguments
+     * @return $this
      */
-    public function getAll(?int $limit = null): Collection|LengthAwarePaginator|array
+    public function __call(string $name, array $arguments)
     {
-            return is_null($limit)
-            ? $this->model->query()->get()
-            : $this->model->query()->paginate($limit);
+        if (($method = RepositoryParamEnum::tryFrom($name)) !== null) {
+            $this->setParam($method->value, ...$arguments);
+        }
+
+        return $this;
     }
 
     /**
-     * @param int|null $limit
-     * @return LengthAwarePaginator|Builder[]|Collection
+     * @return Builder
      */
-    public function getAllTrashed(?int $limit = null): Collection|LengthAwarePaginator|array
+    protected function newQuery(): Builder
     {
-        return is_null($limit)
-            ? $this->model->query()->onlyTrashed()->get()
-            : $this->model->query()->onlyTrashed()->paginate($limit);
+        return $this->applyQueryParams(
+            $this->model::query()
+        );
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    protected function applyQueryParams(Builder $query): Builder
+    {
+        foreach ($this->params as $param){
+            $query->{array_search($param,$this->params)}($param);
+        }
+
+        return $query;
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return void
+     */
+    protected function setParam(string $key, mixed $value): void
+    {
+        $this->params[$key] = $value;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function get(): Collection
+    {
+        return $this->newQuery()->get();
+    }
+
+    /**
+     * @param int $perPage
+     * @param array $columns
+     * @param string $pageName
+     * @param int|null $page
+     * @return LengthAwarePaginator
+     */
+    public function paginate(int $perPage = 15, array $columns = ['*'], string $pageName = 'page', ?int $page = null): LengthAwarePaginator
+    {
+        return $this->newQuery()->paginate($perPage, $columns, $pageName, $page);
+    }
+
+    /**
+     * @param mixed $value
+     * @param string|null $column
+     * @return JsonResource
+     */
+    public function first(mixed $value, ?string $column = 'id'): JsonResource
+    {
+        $qb = $this->newQuery();
+
+        return is_array($value)
+            ? new JsonResource($qb->where($value)->first())
+            : new JsonResource($qb->where($column, '=', $value)->first());
+    }
+
+    /**
+     * @param array $fillable
+     * @param string $orderField
+     * @param string $orderType
+     * @return Collection
+     */
+    public function where(array $fillable, string $orderField = 'id', string $orderType = 'asc'): Collection
+    {
+        return $this->newQuery()->where($fillable)
+            ->orderBy($orderField, $orderType)
+            ->get();
+    }
+
+	/**
+	 * @param array $data
+	 * @return JsonResource
+	 */
+    public function create(array $data): JsonResource
+    {
+        return new JsonResource($this->model->query()->create($data)->fresh());
     }
 
     /**
      * @param int $id
-     * @return Model|null
-     */
-    public function findById(int $id): ?Model
-    {
-        return $this->model->query()->where('id',$id)->first();
-    }
-
-    /**
-     * @param int $id
-     * @return Model|null
-     */
-    public function findWithTrashedById(int $id): ?Model
-    {
-        return $this->model->query()->withTrashed()->where('id', $id)->first();
-    }
-
-    /**
-     * @param int $id
-     * @return Model|null
-     */
-    public function findOnlyTrashedById(int $id): ?Model
-    {
-        return $this->model->query()->onlyTrashed()->where('id', $id)->first();
-    }
-
-    /**
      * @param array $data
-     * @return Model|null
+     * @return void
      */
-    public function create(array $data): ?Model
+    public function updateById(int $id, array $data): void
     {
-        return $this->model->query()->create($data)->fresh();
-    }
-
-    /**
-     * @param int $id
-     * @param array $data
-     * @return Model|null
-     */
-    public function updateById(int $id, array $data): ?Model
-    {
-        $model = $this->findById($id);
-        $model->update($data);
-
-        return $model->refresh();
+        $this->newQuery()->find($id)->update($data);
     }
 
     /**
@@ -96,7 +143,7 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function deleteById(int $id): void
     {
-        $this->findById($id)->delete();
+        $this->model::destroy($id);
     }
 
     /**
@@ -105,15 +152,6 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function restoreById(int $id): void
     {
-        $this->findOnlyTrashedById($id)->restore();
-    }
-
-    /**
-     * @param int $id
-     * @return void
-     */
-    public function permanentlyDeleteById(int $id): void
-    {
-        $this->findWithTrashedById($id)->forceDelete();
+        $this->model->onlyTrashed()->find($id)->restore();
     }
 }

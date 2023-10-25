@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('role_id');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->index('role_id','user_role_idx');
             $table->foreign('role_id','user_role_fk')->on('roles')->references('id');

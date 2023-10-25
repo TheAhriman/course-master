@@ -2,15 +2,13 @@
 
 namespace App\Http\Services;
 
-use App\Http\Services\Interfaces\BaseServiceInterface;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
-use http\Env\Request;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
-class BaseService implements BaseServiceInterface
+class BaseService
 {
     /**
      * @var BaseRepositoryInterface
@@ -26,47 +24,70 @@ class BaseService implements BaseServiceInterface
     }
 
     /**
-     * @param int $id
-     * @return Model
+     * @param $id
+     * @return JsonResource
      */
-    public function getById(int $id): Model
+    public function findFirstById($id): JsonResource
     {
-        return $this->repository->findById($id);
+        return $this->repository->first($id);
     }
 
     /**
-     * @param int $id
-     * @return Model
+     * @param $id
+     * @return JsonResource
      */
-    public function getByIdTrashed(int $id): Model
+    public function findFirstByIdTrashed($id) : JsonResource
     {
-        return $this->repository->findOnlyTrashedById($id);
-    }
-    /**
-     * @param int|null $limit
-     * @return Collection|LengthAwarePaginator|array
-     */
-    public function getAll(?int $limit = null): Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator|array
-    {
-        return $this->repository->getAll($limit);
+        return $this->repository->onlyTrashed('')->first($id);
     }
 
     /**
-     * @param int|null $limit
-     * @return Collection|LengthAwarePaginator|array
+     * @param int|null $perPage
+     * @param array|null $columns
+     * @param string|null $pageName
+     * @param int|null $page
+     * @return LengthAwarePaginator
      */
-    public function getAllTrashed(?int $limit = null): Collection|LengthAwarePaginator|array
+    public function paginate(?int $perPage = 15, ?array $columns = ['*'], ?string $pageName = 'page', ?int $page = null): LengthAwarePaginator
     {
-        return $this->repository->getAllTrashed($limit);
+        return $this->repository->paginate($perPage, $columns, $pageName, $page);
+    }
+
+    /**
+     * @param int|null $perPage
+     * @param array|null $columns
+     * @param string|null $pageName
+     * @param int|null $page
+     * @return LengthAwarePaginator
+     */
+    public function paginateTrashed(?int $perPage = 15, ?array $columns = ['*'], ?string $pageName = 'page', ?int $page = null): LengthAwarePaginator
+    {
+        return $this->repository->onlyTrashed('')->paginate($perPage, $columns, $pageName, $page);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getAll(): Collection
+    {
+        return $this->repository->get();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getAllTrashed(): Collection
+    {
+        return $this->repository->onlyTrashed('')->get();
     }
 
     /**
      * @param array $data
      * @return void
      */
-    public function create(array $data): void
+    public function create(array $data): ?JsonResource
     {
-        $this->repository->create($data);
+        return $this->repository->create($data);
     }
 
     /**
@@ -86,15 +107,6 @@ class BaseService implements BaseServiceInterface
     public function deleteById(int $id): void
     {
         $this->repository->deleteById($id);
-    }
-
-    /**
-     * @param int $id
-     * @return void
-     */
-    public function permanentlyDeleteById(int $id): void
-    {
-        $this->repository->permanentlyDeleteById($id);
     }
 
     /**
