@@ -29,6 +29,9 @@ class CategoryController extends Controller
         return view('admin_panel.categories.index',compact('categories'));
     }
 
+    /**
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
     public function indexTrashed(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $categories = $this->categoryService->paginateTrashed();
@@ -67,6 +70,10 @@ class CategoryController extends Controller
         return view('admin_panel.categories.show',compact('category'));
     }
 
+    /**
+     * @param string $id
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
     public function showTrashed(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $category = $this->categoryService->findFirstByIdTrashed($id);
@@ -106,6 +113,10 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id): RedirectResponse
     {
         $this->categoryService->restoreById($id);

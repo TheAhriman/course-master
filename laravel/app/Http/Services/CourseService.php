@@ -2,11 +2,8 @@
 
 namespace App\Http\Services;
 
-use App\Http\Services\BaseService;
-use App\Repositories\CategoryRepository;
-use App\Repositories\Interfaces\BaseRepositoryInterface;
-use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\CourseRepositoryInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CourseService extends BaseService
 {
@@ -18,6 +15,10 @@ class CourseService extends BaseService
         parent::__construct($repository);
     }
 
+    /**
+     * @param array $data
+     * @return void
+     */
     public function createCourseAndCategories(array $data): void
     {
         if (array_key_exists('category_id',$data)){
@@ -31,6 +32,11 @@ class CourseService extends BaseService
         }
     }
 
+    /**
+     * @param array $data
+     * @param string $id
+     * @return void
+     */
     public function updateCourseAndCategories(array $data, string $id): void
     {
         $categoriesIds = [];
@@ -41,5 +47,15 @@ class CourseService extends BaseService
         $course = $this->repository->first($id);
         $this->repository->syncCourseAndCategories($course, $categoriesIds);
         parent::updateById($id, $data);
+    }
+
+    public function paginateCreatorCourses(string $id): LengthAwarePaginator
+    {
+        return $this->repository->where(['user_id' => $id])->paginate();
+    }
+
+    public function paginateCreatorCoursesTrashed(string $id): LengthAwarePaginator
+    {
+        return $this->repository->onlyTrashed('')->where(['user_id' => $id])->paginate();
     }
 }

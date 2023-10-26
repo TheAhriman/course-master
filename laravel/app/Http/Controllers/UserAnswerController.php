@@ -3,14 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserAnswerRequest;
+use App\Http\Services\QuestionResponseService;
+use App\Http\Services\QuestionService;
 use App\Http\Services\UserAnswerService;
+use App\Http\Services\UserService;
 use App\Models\Question;
 use App\Models\QuestionResponse;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class UserAnswerController extends Controller
 {
-    public function __construct(private readonly UserAnswerService $userAnswerService)
+    /**
+     * @param UserAnswerService $userAnswerService
+     * @param QuestionService $questionService
+     * @param UserService $userService
+     * @param QuestionResponseService $questionResponseService
+     */
+    public function __construct(private readonly UserAnswerService $userAnswerService,
+        private readonly QuestionService $questionService,
+        private readonly UserService $userService,
+        private readonly QuestionResponseService $questionResponseService)
     {
     }
 
@@ -24,6 +40,9 @@ class UserAnswerController extends Controller
         return view('admin_panel.user_answers.index',compact('userAnswers'));
     }
 
+    /**
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
+     */
     public function indexTrashed()
     {
         $userAnswers = $this->userAnswerService->paginateTrashed();
@@ -36,9 +55,9 @@ class UserAnswerController extends Controller
      */
     public function create()
     {
-        $questions = Question::all();
-        $users = User::all();
-        $questionResponses = QuestionResponse::all();
+        $questions = $this->questionService->getAll();
+        $users = $this->userService->getAll();
+        $questionResponses = $this->questionResponseService->getAll();
 
         return view('admin_panel.user_answers.create',compact(['questions','questionResponses','users']));
     }
@@ -64,6 +83,10 @@ class UserAnswerController extends Controller
         return view('admin_panel.user_answers.show',compact('userAnswer'));
     }
 
+    /**
+     * @param string $id
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
+     */
     public function showTrashed(string $id)
     {
         $userAnswer = $this->userAnswerService->findFirstByIdTrashed($id);
@@ -77,9 +100,9 @@ class UserAnswerController extends Controller
     public function edit(string $id)
     {
         $userAnswer = $this->userAnswerService->findFirstById($id);
-        $questions = Question::all();
-        $users = User::all();
-        $questionResponses = QuestionResponse::all();
+        $questions = $this->questionService->getAll();
+        $users = $this->userService->getAll();
+        $questionResponses = $this->questionResponseService->getAll();
 
         return view('admin_panel.user_answers.edit',compact(['userAnswer','questions','questionResponses','users']));
     }
@@ -105,6 +128,10 @@ class UserAnswerController extends Controller
         return redirect()->route('admin.user_answers.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->userAnswerService->restoreById($id);

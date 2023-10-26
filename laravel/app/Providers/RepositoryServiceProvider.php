@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Http\Controllers\CommentController;
+use App\Repositories\AboutCourseRepository;
 use App\Repositories\BaseRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\CourseRepository;
 use App\Repositories\ExaminationRepository;
+use App\Repositories\Interfaces\AboutCourseRepositoryInterface;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\CommentRepositoryInterface;
@@ -57,6 +59,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(QuestionResponseRepositoryInterface::class,QuestionResponseRepository::class);
         $this->app->bind(UserAnswerRepositoryInterface::class,UserAnswerRepository::class);
         $this->app->bind(LessonContentRepositoryInterface::class,LessonContentRepository::class);
+        $this->app->bind(AboutCourseRepositoryInterface::class,AboutCourseRepository::class);
     }
 
     /**

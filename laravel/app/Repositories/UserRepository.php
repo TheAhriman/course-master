@@ -20,4 +20,11 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         parent::__construct($user);
     }
+
+    public function create(mixed $data): JsonResource
+    {
+        $user = parent::create($data);
+        $user->resource->assignRole($user->role->name);
+        return $user;
+    }
 }

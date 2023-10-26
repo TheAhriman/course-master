@@ -19,15 +19,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::factory(10)->create();
-        Permission::factory(10)->create();
-        $categories = Category::factory(10)->create();
-        User::factory(100)->create();
-        $courses = Course::factory(10)->create();
+        Role::query()->create(['name'=>"creator","guard_name"=>"web"]);
+        Role::query()->create(['name'=>"reader","guard_name"=>"web"]);
+        Role::query()->create(['name'=>"admin","guard_name"=>"web"]);
 
-        foreach ($courses as $course){
-            $categoriesIds = $categories->random(2)->pluck('id');
-            $course->categories()->attach($categoriesIds);
-        }
+        Category::factory(10)->create();
+        User::factory(100)->create();
+
     }
 }

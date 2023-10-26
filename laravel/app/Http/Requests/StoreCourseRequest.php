@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreCourseRequest extends FormRequest
 {
@@ -27,5 +28,12 @@ class StoreCourseRequest extends FormRequest
             'user_id' => 'integer | required',
             'category_id.*' => 'integer'
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        if(Auth::user()->hasRole('creator')) {
+            $this->merge(['user_id' => Auth::id()]);
+        }
     }
 }

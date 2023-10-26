@@ -3,13 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionGroupRequest;
+use App\Http\Services\ExaminationService;
 use App\Http\Services\QuestionGroupService;
 use App\Models\Examination;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class QuestionGroupController extends Controller
 {
-    public function __construct(private readonly QuestionGroupService $groupService)
+    /**
+     * @param QuestionGroupService $groupService
+     * @param ExaminationService $examinationService
+     */
+    public function __construct(private readonly QuestionGroupService $groupService, private readonly ExaminationService $examinationService)
     {
     }
 
@@ -23,6 +32,9 @@ class QuestionGroupController extends Controller
         return view('admin_panel.question_groups.index',compact('questionGroups'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function indexTrashed()
     {
         $questionGroups = $this->groupService->paginateTrashed();
@@ -35,7 +47,7 @@ class QuestionGroupController extends Controller
      */
     public function create()
     {
-        $examinations = Examination::all();
+        $examinations = $this->examinationService->getAll();
 
         return view('admin_panel.question_groups.create',compact('examinations'));
     }
@@ -61,6 +73,10 @@ class QuestionGroupController extends Controller
         return view('admin_panel.question_groups.show',compact('questionGroup'));
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function showTrashed(string $id)
     {
         $questionGroup = $this->groupService->findFirstByIdTrashed($id);
@@ -73,7 +89,7 @@ class QuestionGroupController extends Controller
      */
     public function edit(string $id)
     {
-        $examinations = Examination::all();
+        $examinations = $this->examinationService->getAll();
         $questionGroup = $this->groupService->findFirstById($id);
 
         return view('admin_panel.question_groups.edit',compact(['examinations','questionGroup']));
@@ -100,6 +116,10 @@ class QuestionGroupController extends Controller
         return redirect()->route('admin.question_groups.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->groupService->restoreById($id);

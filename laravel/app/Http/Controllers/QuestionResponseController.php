@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\StoreQuestionResponseRequest;
 use App\Http\Services\QuestionResponseService;
+use App\Http\Services\QuestionService;
 use App\Models\Question;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class QuestionResponseController extends Controller
 {
-    public function __construct(private readonly QuestionResponseService $questionResponseService)
+    /**
+     * @param QuestionResponseService $questionResponseService
+     * @param QuestionService $questionService
+     */
+    public function __construct(private readonly QuestionResponseService $questionResponseService, private readonly QuestionService $questionService)
     {
     }
 
@@ -24,6 +33,9 @@ class QuestionResponseController extends Controller
         return view('admin_panel.question_responses.index',compact('questionResponses'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function indexTrashed()
     {
         $questionResponses = $this->questionResponseService->paginateTrashed();
@@ -36,7 +48,7 @@ class QuestionResponseController extends Controller
      */
     public function create()
     {
-        $questions = Question::all();
+        $questions = $this->questionService->getAll();
 
         return view('admin_panel.question_responses.create',compact('questions'));
     }
@@ -62,6 +74,10 @@ class QuestionResponseController extends Controller
         return view('admin_panel.question_responses.show',compact('questionResponse'));
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function showTrashed(string $id)
     {
         $questionResponse = $this->questionResponseService->findFirstByIdTrashed($id);
@@ -75,7 +91,7 @@ class QuestionResponseController extends Controller
     public function edit(string $id)
     {
         $questionResponse = $this->questionResponseService->findFirstById($id);
-        $questions = Question::all();
+        $questions = $this->questionService->getAll();
 
         return view('admin_panel.question_responses.edit',compact(['questions','questionResponse']));
     }
@@ -101,6 +117,10 @@ class QuestionResponseController extends Controller
         return redirect()->route('admin.question_responses.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->questionResponseService->restoreById($id);

@@ -5,10 +5,10 @@ namespace App\Repositories;
 use App\Enums\RepositoryParamEnum;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 
 class BaseRepository implements BaseRepositoryInterface
 {
@@ -122,9 +122,9 @@ class BaseRepository implements BaseRepositoryInterface
 	 * @param array $data
 	 * @return JsonResource
 	 */
-    public function create(array $data): JsonResource
+    public function create(mixed $data): JsonResource
     {
-        return new JsonResource($this->model->query()->create($data)->fresh());
+        return new JsonResource($this->model->query()->create((array)$data)->fresh());
     }
 
     /**
@@ -132,9 +132,9 @@ class BaseRepository implements BaseRepositoryInterface
      * @param array $data
      * @return void
      */
-    public function updateById(int $id, array $data): void
+    public function updateById(int $id, mixed $data): void
     {
-        $this->newQuery()->find($id)->update($data);
+        $this->newQuery()->find($id)->update((array)$data);
     }
 
     /**

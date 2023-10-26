@@ -6,10 +6,18 @@ use App\Http\Requests\StoreScaleCriteriaRequest;
 use App\Http\Services\ExaminationService;
 use App\Http\Services\LessonService;
 use App\Http\Services\ScaleCriteriaService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ScaleCriteriaController extends Controller
 {
+    /**
+     * @param ScaleCriteriaService $criteriaService
+     * @param ExaminationService $examinationService
+     */
     public function __construct(private readonly ScaleCriteriaService $criteriaService,
         private readonly ExaminationService $examinationService)
     {
@@ -25,6 +33,9 @@ class ScaleCriteriaController extends Controller
         return view('admin_panel.criterias.index',compact('criterias'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function indexTrashed()
     {
         $criterias = $this->criteriaService->paginateTrashed();
@@ -38,7 +49,6 @@ class ScaleCriteriaController extends Controller
     public function create()
     {
         $examinations = $this->examinationService->getAll();
-
 
         return view('admin_panel.criterias.create',compact('examinations'));
     }
@@ -64,6 +74,10 @@ class ScaleCriteriaController extends Controller
         return view('admin_panel.criterias.show', compact('criteria'));
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function showTrashed(string $id)
     {
         $criteria = $this->criteriaService->findFirstByIdTrashed($id);
@@ -103,6 +117,10 @@ class ScaleCriteriaController extends Controller
         return redirect()->route('admin.criterias.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->criteriaService->restoreById($id);

@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
             $table->tinyText('title');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('about_course_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->index('user_id','course_user_idx');
+            $table->index('about_course_id','course_about_course_idx');
+
             $table->foreign('user_id','course_user_fk')->on('users')->references('id');
+            $table->foreign('about_course_id','course_about_course_fk')->on('about_courses')->references('id');
         });
     }
 

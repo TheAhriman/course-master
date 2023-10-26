@@ -8,9 +8,11 @@ use App\Http\Requests\StoreLessonContentRequest;
 use App\Http\Services\RoleService;
 use App\Http\Services\UserService;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -26,29 +28,32 @@ class AuthController extends Controller
 	{
 		$roles = $this->roleService->getAll();
 
-		return view('auth.register',compact('roles'));
+		return view('auth)lol.register',compact('roles'));
 	}
 
 	public function showLoginForm(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
 	{
-		return view('auth.login');
+		return view('auth)lol.login');
 	}
 
 	public function register(RegisterUserRequest $request): RedirectResponse
 	{
+
 		$data = $request->validated();
+
 		$user = $this->userService->create($data);
 
-		Auth::login($user->resource);
+        event(new Registered($user->resource));
+		Auth::login($user->resource,true);
 
-		return redirect()->route('admin');
+		return redirect()->route('home');
 	}
 
 	public function login(LoginUserRequest $request)
 	{
 		$data = $request->validated();
 		if(Auth::attempt($data)) {
-			return redirect()->route('admin');
+			return redirect()->route('home');
 		}
 		return redirect(route('login'))->withErrors(['email'=> "Пользователь не найден"]);
 	}
@@ -59,10 +64,27 @@ class AuthController extends Controller
 		Auth::logout();
 
 		$request->session()->invalidate();
-
 		$request->session()->regenerateToken();
 
-		return redirect('/');
+		return redirect()->route('home');
 	}
 
+    public function verifyEmail(EmailVerificationRequest $request)
+    {
+        $request->fulfill();
+
+        return redirect('')->route('home');
+    }
+
+    public function emailVerificationNotice()
+    {
+        return view('auth.verify');
+    }
+
+    public function resendVerificationMail(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('message', 'Verification link sent!');
+    }
 }

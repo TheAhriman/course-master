@@ -4,13 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Services\RoleService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    /**
+     * @param RoleService $roleService
+     */
     public function __construct(private readonly RoleService $roleService)
     {
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -21,6 +29,9 @@ class RoleController extends Controller
         return view('admin_panel.roles.index',compact('roles'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function indexTrashed()
     {
         $roles = $this->roleService->paginateTrashed(15);
@@ -57,12 +68,17 @@ class RoleController extends Controller
         return view('admin_panel.roles.show', compact('role'));
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function showTrashed(string $id)
     {
         $role = $this->roleService->findFirstByIdTrashed($id);
 
         return view('admin_panel.roles.show_trashed',compact('role'));
     }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -94,6 +110,10 @@ class RoleController extends Controller
         return redirect()->route('admin.roles.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->roleService->restoreById($id);

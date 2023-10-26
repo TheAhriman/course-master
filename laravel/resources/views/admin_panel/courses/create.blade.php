@@ -11,6 +11,7 @@
             <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
+        @role('admin')
         <div class="mb-3">
             <label for="user_id" class="form-label">Author</label>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="user_id"
@@ -22,6 +23,7 @@
                 @endforeach
             </select>
         </div>
+        @endrole
         <div>
             @foreach($categories as $category)
                 <label for="category">{{$category->name}}

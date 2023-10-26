@@ -5,10 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLessonRequest;
 use App\Http\Services\CourseService;
 use App\Http\Services\LessonService;
+use App\Models\Course;
+use App\Models\Lesson;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
+    /**
+     * @param LessonService $lessonService
+     * @param CourseService $courseService
+     */
     public function __construct(private readonly LessonService $lessonService, private readonly CourseService $courseService)
     {
     }
@@ -23,6 +33,9 @@ class LessonController extends Controller
         return view('admin_panel.lessons.index',compact('lessons'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function indexTrashed()
     {
         $lessons = $this->lessonService->paginateTrashed(15);
@@ -33,22 +46,22 @@ class LessonController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Course $course)
     {
         $courses = $this->courseService->getAll();
 
-        return view('admin_panel.lessons.create',compact('courses'));
+        return view('admin_panel.lessons.create',compact(['courses','course']));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLessonRequest $request)
+    public function store(StoreLessonRequest $request, Course $course)
     {
         $data = $request->validated();
         $this->lessonService->create($data);
 
-        return redirect()->route('admin.lessons.index');
+        return redirect()->route('admin.courses.show',compact('course'));
     }
 
     /**
@@ -61,12 +74,17 @@ class LessonController extends Controller
         return view('admin_panel.lessons.show',compact('lesson'));
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function showTrashed(string $id)
     {
         $lesson = $this->lessonService->findFirstByIdTrashed($id);
 
         return view('admin_panel.lessons.show_trashed',compact('lesson'));
     }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -81,12 +99,12 @@ class LessonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreLessonRequest $request, string $id)
+    public function update(StoreLessonRequest $request, Course $course, Lesson $lesson)
     {
         $data = $request->validated();
-        $this->lessonService->updateById($id, $data);
+        $this->lessonService->updateById($lesson->id, $data);
 
-        return redirect()->route('admin.lessons.index');
+        return redirect()->route('admin.courses.show',compact('course'));
     }
 
     /**
@@ -99,6 +117,10 @@ class LessonController extends Controller
         return redirect()->route('admin.lessons.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->lessonService->restoreById($id);

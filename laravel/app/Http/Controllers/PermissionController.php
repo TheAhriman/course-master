@@ -5,10 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePermissionsRequest;
 use App\Http\Services\PermissionService;
 use App\Http\Services\RoleService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
+    /**
+     * @param PermissionService $permissionService
+     * @param RoleService $roleService
+     */
     public function __construct(private readonly PermissionService $permissionService, private readonly RoleService $roleService)
     {
     }
@@ -23,6 +31,9 @@ class PermissionController extends Controller
         return view('admin_panel.permissions.index',compact('permissions'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function indexTrashed()
     {
         $permissions = $this->permissionService->paginateTrashed();
@@ -60,6 +71,10 @@ class PermissionController extends Controller
         return view('admin_panel.permissions.show',compact('permission'));
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function showTrashed(string $id)
     {
         $permission = $this->permissionService->findFirstByIdTrashed($id);
@@ -99,6 +114,10 @@ class PermissionController extends Controller
         return redirect()->route('admin.permissions.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->permissionService->restoreById($id);

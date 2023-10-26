@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Services\CategoryService;
 use App\Http\Services\CourseService;
+use App\Http\Services\UserService;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
@@ -12,25 +13,41 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    public function __construct(private readonly CategoryService $categoryService, private readonly CourseService $courseService)
+    /**
+     * @param CategoryService $categoryService
+     * @param CourseService $courseService
+     * @param UserService $userService
+     */
+    public function __construct(private readonly CategoryService $categoryService,
+        private readonly CourseService $courseService,
+        private readonly UserService $userService)
     {
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $courses = $this->courseService->paginate();
+        Auth::user()->hasRole('admin')
+            ? $courses = $this->courseService->paginate()
+            : $courses = $this->courseService->paginateCreatorCourses(Auth::id());
 
         return view('admin_panel.courses.index',compact('courses'));
     }
 
+    /**
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
     public function indexTrashed(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $courses = $this->courseService->paginateTrashed();
+        Auth::user()->hasRole('admin')
+            ? $courses = $this->courseService->paginateTrashed()
+            : $courses = $this->courseService->paginateCreatorCoursesTrashed(Auth::id());
 
         return view('admin_panel.courses.index_trashed',compact('courses'));
     }
@@ -41,7 +58,7 @@ class CourseController extends Controller
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $categories = $this->categoryService->getAll();
-        $users = User::all();
+        $users = $this->userService->getAll();
 
         return view('admin_panel.courses.create',compact(['categories','users']));
     }
@@ -60,16 +77,25 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Course $course): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function show(Course $course): \Illuminate\Contracts\Foundation\Application|Factory|View|Application|\Illuminate\Http\JsonResponse
     {
         $course = $this->courseService->findFirstById($course->id);
-
+            if (Auth::id() != $course->user_id && !Auth::user()->hasRole('admin')) {
+                abort(403,'Author does not match with course');
+            }
         return view('admin_panel.courses.show',compact('course'));
     }
 
+    /**
+     * @param string $id
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
     public function showTrashed(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $course = $this->courseService->findFirstByIdTrashed($id);
+        if ((Auth::id() != $course->user_id) && !Auth::user()->hasRole('admin')) {
+            abort(403,'Author does not match with course');
+        }
 
         return view('admin_panel.courses.show_trashed',compact('course'));
     }
@@ -79,10 +105,12 @@ class CourseController extends Controller
      */
     public function edit(Course $course): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        //Пока не придумал как организовать экшен правильно, поэтому пока так:)
         $course = $this->courseService->findFirstById($course->id);
+        if (Auth::id() != $course->user_id && !Auth::user()->hasRole('admin')) {
+            abort(403,'Author does not match with course');
+        }
         $categories = $this->categoryService->getAll();
-        $users = User::all();
+        $users = $this->userService->getAll();
 
         return view('admin_panel.courses.edit',compact(['course','categories','users']));
     }
@@ -108,6 +136,10 @@ class CourseController extends Controller
         return redirect()->route('admin.courses.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id): RedirectResponse
     {
         $this->courseService->restoreById($id);

@@ -4,13 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Services\RoleService;
 use App\Http\Services\UserService;
 use App\Models\Role;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function __construct(private readonly UserService $userService)
+    /**
+     * @param UserService $userService
+     * @param RoleService $roleService
+     */
+    public function __construct(private readonly UserService $userService, private readonly RoleService $roleService)
     {
     }
     /**
@@ -23,6 +32,9 @@ class UserController extends Controller
         return view('admin_panel.users.index',compact('users'));
     }
 
+    /**
+     * Display a listing of the deleted resource.
+     */
     public function indexTrashed()
     {
         $users = $this->userService->paginateTrashed();
@@ -35,7 +47,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::query()->get();
+        $roles = $this->roleService->getAll();
 
         return view('admin_panel.users.create',compact('roles'));
     }
@@ -43,7 +55,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         $this->userService->create($request->validated());
 
@@ -60,6 +72,10 @@ class UserController extends Controller
         return view('admin_panel.users.show',compact('user'));
     }
 
+    /**
+     * @param string $id
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
+     */
     public function showTrashed(string $id)
     {
         $user = $this->userService->findFirstByIdTrashed($id);
@@ -71,7 +87,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $roles = Role::all();
+        $roles = $this->roleService->getAll();
         $user = $this->userService->findFirstById($id);
 
         return view('admin_panel.users.edit',compact('roles','user'));
@@ -98,6 +114,10 @@ class UserController extends Controller
         return redirect()->route('admin.users.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->userService->restoreById($id);

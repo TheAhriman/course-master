@@ -85,7 +85,7 @@ class BaseService
      * @param array $data
      * @return void
      */
-    public function create(array $data): ?JsonResource
+    public function create(mixed $data): ?JsonResource
     {
         return $this->repository->create($data);
     }
@@ -95,7 +95,7 @@ class BaseService
      * @param array $data
      * @return void
      */
-    public function updateById(int $id, array $data): void
+    public function updateById(int $id, mixed $data): void
     {
         $this->repository->updateById($id, $data);
     }

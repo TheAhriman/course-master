@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLessonContentRequest;
 use App\Http\Services\LessonContentService;
+use App\Http\Services\LessonService;
 use App\Models\Lesson;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LessonContentController extends Controller
 {
-    public function __construct(private readonly LessonContentService $lessonContentService)
+    public function __construct(private readonly LessonContentService $lessonContentService, private readonly LessonService $lessonService)
     {
     }
 
@@ -23,6 +28,9 @@ class LessonContentController extends Controller
         return view('admin_panel.lesson_contents.index',compact('lessonContents'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function indexTrashed()
     {
         $lessonContents = $this->lessonContentService->paginateTrashed();
@@ -35,7 +43,7 @@ class LessonContentController extends Controller
      */
     public function create()
     {
-        $lessons = Lesson::all();
+        $lessons = $this->lessonService->getAll();
 
         return view('admin_panel.lesson_contents.create',compact('lessons'));
     }
@@ -61,6 +69,10 @@ class LessonContentController extends Controller
         return view('admin_panel.lesson_contents.show',compact('lessonContent'));
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function showTrashed(string $id)
     {
         $lessonContent = $this->lessonContentService->findFirstByIdTrashed($id);
@@ -74,7 +86,7 @@ class LessonContentController extends Controller
     public function edit(string $id)
     {
         $lessonContent = $this->lessonContentService->findFirstById($id);
-        $lessons = Lesson::all();
+        $lessons = $this->lessonService->getAll();
 
         return view('admin_panel.lesson_contents.edit',compact(['lessons','lessonContent']));
     }
@@ -100,6 +112,10 @@ class LessonContentController extends Controller
         return redirect()->route('admin.lesson_contents.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->lessonContentService->restoreById($id);

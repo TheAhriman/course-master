@@ -6,10 +6,18 @@ use App\Enums\ExaminationTypeEnum;
 use App\Http\Requests\StoreExaminationRequest;
 use App\Http\Services\ExaminationService;
 use App\Http\Services\LessonService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ExaminationController extends Controller
 {
+    /**
+     * @param ExaminationService $examinationService
+     * @param LessonService $lessonService
+     */
     public function __construct(private readonly ExaminationService $examinationService,
         private readonly LessonService $lessonService)
     {
@@ -25,6 +33,9 @@ class ExaminationController extends Controller
         return view('admin_panel.examinations.index',compact('examinations'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function indexTrashed()
     {
         $examinations = $this->examinationService->paginateTrashed(15);
@@ -63,6 +74,10 @@ class ExaminationController extends Controller
         return view('admin_panel.examinations.show',compact('examination'));
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
     public function showTrashed(string $id)
     {
         $examination = $this->examinationService->findFirstByIdTrashed($id);
@@ -102,6 +117,10 @@ class ExaminationController extends Controller
         return redirect()->route('admin.examinations.index');
     }
 
+    /**
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function restore(string $id)
     {
         $this->examinationService->restoreById($id);
