@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 150px;
+    margin-right: 12px;
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.title-page {
+    color: #001C27;
+    font-family: 'Mulish', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.header-links {
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+}
+
+.block-search {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+}
+
+.header-search {
+    width: 215px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--Gray-3, #828282);
+    outline: none;
+}
+
+.main-content {
+    margin-top: 50px;
+    display: flex;
+    margin-left: 150px;
+    margin-right: 12px;
+    width: calc(100%-126px);
+    height: 100%;
+}
+
+.category-list {
+    display: flex;
+    column-gap: 8px;
+    margin-top: 32px;
+}
+
+.category {
+    border-radius: 16px;
+    border: 1px solid #BDBDBD;
+    padding: 8px 16px;
+}
+
+.category a {
+    font-family: 'Mulish', sans-serif;
+    border-radius: 16px;
+    height: 32px;
+    color: #001C27;
+
+}
+
+.courses-container {
+    margin-top: 30px;
+    display: flex;
+    max-width: 1400px;
+    flex-wrap: wrap;
+    row-gap: 30px;
+}
+
+.card-course {
+    width: 300px;
+    border-radius: 4px;
+    background: #FFF;
+    box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 20px;
+}
+
+.top-content {
+    width: 300px;
+    height: 200px;
+    border-radius: 4px 4px 0px 0px;
+    background: #001C27;
+    position: relative;
+}
+
+.top-content-title {
+    margin-top: 32px;
+    display: inline-flex;
+    width: 160px;
+    height: 29px;
+    padding: 6px 9px 3px 8px;
+    border-radius: 2px;
+    background: rgba(13, 64, 89, 0.35);
+}
+
+.top-content-link {
+    color: #FFF;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.top-content-text {
+    margin-top: 5px;
+    width: 190px;
+    height: 45px;
+    border-radius: 2px;
+    background: rgba(45, 156, 219, 0.28);
+    display: inline-flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-content-text-link {
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.top-content-logo {
+    width: 134px;
+    height: 77px;
+    position: relative;
+}
+
+.top-content-logo {
+    position: absolute;
+    bottom: 0px;
+}
+
+.top-content-img {
+    position: absolute;
+    bottom: 0px;
+    left: 220px;
+}
+
+.bottom-content {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 83px;
+    padding-left: 16px;
+    padding-top: 9px;
+    padding-bottom: 14px;
+    padding-right: 16px;
+    row-gap: 5px;
+}
+
+.bottom-content-title {
+    width: 206px;
+    height: 38px;
+}
+
+.bottom-content-title-link {
+    color: #000;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.bottom-content-autor_block {
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
+}
+
+.bottom-content-autor-link {
+    margin-top: 4px;
+    color: #4F4F4F;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.bottom-content-date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-content-date-lesson {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    column-gap: 5px;
+    color: var(--Gray-2, #4F4F4F);
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.card-course-step {
+    width: 300px;
+    height: 236px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    background: #FFF;
+    box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 20px;
+    padding-top: 16px;
+    padding-left: 24px;
+    padding-bottom: 28px;
+    padding-right: 21px;
+    position: relative;
+}
+
+.card-course-step-title {
+    display: flex;
+    align-items: center;
+    column-gap: 70px;
+}
+
+.card-course-step-title-lessons {
+    display: flex;
+    column-gap: 5px;
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+}
+
+.card-course-slogans {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    row-gap: 8px;
+}
+
+.card-course-slogan {
+
+    width: 127px;
+    height: 17px;
+    color: #4F4F4F;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    float: left;
+}
+
+.card-course-step-slogan-step {
+    width: 271px;
+    color: #4F4F4F;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    text-align: left;
+}
+
+.card-course-step-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.card-course-step-autor-block {
+    margin-top: 65px;
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
+
+}
+
+.bottom-content-autor-link {
+    margin-top: 4px;
+    color: #4F4F4F;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.card-course-step-2 {
+    width: 300px;
+    height: 236px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    background: #FFF;
+    box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 20px;
+    padding-top: 16px;
+    padding-left: 24px;
+    padding-bottom: 28px;
+    padding-right: 21px;
+    position: relative;
+    background: #001C27;
+}
+
+.card-course-step-2 div,
+a {
+    color: #FFF;
+}
+
+.card-course-step-2 .bottom-content-autor-link {
+    color: #FFF;
+}
