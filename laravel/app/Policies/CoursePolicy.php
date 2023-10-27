@@ -8,11 +8,10 @@ use function PHPUnit\Framework\isTrue;
 
 class CoursePolicy
 {
-    public function before(User $user): bool
+    public function before(User $user): bool|null
     {
         return isTrue($user->role->name == 'admin')
-            ? $response = true
-            : $response = null;
+            ? true : null;
     }
 
     public function isAuthor(User $user, Course $course): bool

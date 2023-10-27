@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateCourseDTO;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Services\CategoryService;
 use App\Http\Services\CourseService;
@@ -69,8 +70,7 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request): RedirectResponse
     {
-        $data = $request->validated();
-        $this->courseService->createCourseAndCategories($data);
+        $this->courseService->createCourseAndCategories(new CreateCourseDTO(...$request->validated()));
 
         return redirect()->route('admin.courses.index');
     }
@@ -119,8 +119,7 @@ class CourseController extends Controller
     {
         $this->authorize('isAuthor', $course);
 
-        $data = $request->validated();
-        $this->courseService->updateCourseAndCategories($data, $course->id);
+        $this->courseService->updateCourseAndCategories(new CreateCourseDTO(...$request->validated()), $course->id);
 
         return redirect()->route('admin.courses.index');
     }

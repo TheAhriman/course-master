@@ -7,6 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
+use Spatie\LaravelData\Data;
 
 class BaseService
 {
@@ -82,20 +83,20 @@ class BaseService
     }
 
     /**
-     * @param array $data
-     * @return void
+     * @param Data $data
+     * @return JsonResource|null
      */
-    public function create(mixed $data): ?JsonResource
+    public function create(Data $data): ?JsonResource
     {
         return $this->repository->create($data);
     }
 
     /**
      * @param int $id
-     * @param array $data
+     * @param Data $data
      * @return void
      */
-    public function updateById(int $id, mixed $data): void
+    public function updateById(int $id, Data $data): void
     {
         $this->repository->updateById($id, $data);
     }

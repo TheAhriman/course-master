@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLessonContentRequest;
 use App\Http\Services\LessonContentService;
 use App\Http\Services\LessonService;
+use App\Jobs\StoreMediaForLessonContent;
 use App\Models\Lesson;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LessonContentController extends Controller
 {

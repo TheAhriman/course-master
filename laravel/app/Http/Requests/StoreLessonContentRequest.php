@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Jobs\StoreMediaForLessonContent;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreLessonContentRequest extends FormRequest
 {
@@ -25,7 +27,7 @@ class StoreLessonContentRequest extends FormRequest
         return [
             'media_type' => 'string | required',
             'value' => 'string | required | max:2048',
-            'description' => 'string | max:1000',
+            'description' => 'nullable | string | max:1000',
             'lesson_id' => 'integer | required'
         ];
     }
@@ -33,7 +35,8 @@ class StoreLessonContentRequest extends FormRequest
     public function prepareForValidation()
     {
         if($this->media_type != "text") {
-            $path = $this->file($this->media_type)->store('public');
+            $path = 'public/' . Str::random(40);
+            dispatch(new StoreMediaForLessonContent($this, $path));
             $this->merge(['value' => $path]);
         }
     }

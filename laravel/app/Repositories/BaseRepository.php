@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Spatie\LaravelData\Data;
 
 class BaseRepository implements BaseRepositoryInterface
 {
@@ -118,23 +119,23 @@ class BaseRepository implements BaseRepositoryInterface
             ->get();
     }
 
-	/**
-	 * @param array $data
-	 * @return JsonResource
-	 */
-    public function create(mixed $data): JsonResource
+    /**
+     * @param Data $data
+     * @return JsonResource
+     */
+    public function create(Data $data): JsonResource
     {
-        return new JsonResource($this->model->query()->create((array)$data)->fresh());
+        return new JsonResource($this->model->query()->create($data->toArray()));
     }
 
     /**
      * @param int $id
-     * @param array $data
+     * @param Data $data
      * @return void
      */
-    public function updateById(int $id, mixed $data): void
+    public function updateById(int $id, Data $data): void
     {
-        $this->newQuery()->find($id)->update((array)$data);
+        $this->newQuery()->find($id)->update(($data->toArray()));
     }
 
     /**

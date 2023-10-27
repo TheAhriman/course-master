@@ -59,8 +59,8 @@ class AboutCourseController extends Controller
      */
     public function store(StoreAboutCourseRequest $request, Course $course)
     {
-        $aboutСourse = $this->aboutCourseService->create(new CreateAboutCourseDTO(...$request->validated()));
-        $this->courseService->updateById($course->id,['about_course_id' => $about_course->id]);
+        $aboutCourse = $this->aboutCourseService->create(new CreateAboutCourseDTO(...$request->validated()));
+        $this->courseService->updateById($course->id,['about_course_id' => $aboutCourse->id]);
 
         return redirect()->route('admin.courses.show', $course->id);
     }

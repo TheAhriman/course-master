@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Repositories\Interfaces\CourseRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Spatie\LaravelData\Data;
 
 class CourseService extends BaseService
 {
@@ -16,13 +17,14 @@ class CourseService extends BaseService
     }
 
     /**
-     * @param array $data
+     * @param Data $data
      * @return void
      */
-    public function createCourseAndCategories(array $data): void
+    public function createCourseAndCategories(Data $data): void
     {
-        if (array_key_exists('category_id',$data)){
-            $categoriesIds = $data['category_id'];
+        $arrayData = $data->toArray();
+        if (array_key_exists('category_id',$arrayData)){
+            $categoriesIds = $arrayData['category_id'];
             unset($data['category_id']);
             $this->repository->create($data);
             $course = $this->repository->findLastCourse();
@@ -33,14 +35,14 @@ class CourseService extends BaseService
     }
 
     /**
-     * @param array $data
+     * @param Data $data
      * @param string $id
      * @return void
      */
-    public function updateCourseAndCategories(array $data, string $id): void
+    public function updateCourseAndCategories(Data $data, string $id): void
     {
         $categoriesIds = [];
-        if (array_key_exists('category_id',$data)){
+        if (array_key_exists('category_id',$data->toArray())){
             $categoriesIds = $data['category_id'];
             unset($data['category_id']);
         }

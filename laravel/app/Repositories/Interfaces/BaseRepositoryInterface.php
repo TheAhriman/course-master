@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
+use Spatie\LaravelData\Data;
 
 /**
  * @method onlyTrashed(string $string)
@@ -45,17 +46,17 @@ interface BaseRepositoryInterface
     public function where(array $fillable, string $orderField = 'id', string $orderType = 'desc'): Collection;
 
     /**
-     * @param array $data
+     * @param Data $data
      * @return JsonResource
      */
-    public function create(array $data): JsonResource;
+    public function create(Data $data): JsonResource;
 
     /**
      * @param int $id
      * @param array $data
      * @return void
      */
-    public function updateById(int $id, array $data): void;
+    public function updateById(int $id, Data $data): void;
 
     /**
      * @param int $id
