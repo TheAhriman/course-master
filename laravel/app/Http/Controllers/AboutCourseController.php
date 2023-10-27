@@ -31,7 +31,7 @@ class AboutCourseController extends Controller
     {
         $aboutCourses = $this->aboutCourseService->paginate();
 
-        return view('admin_panel.about_courses.index',compact('aboutCourses'));
+        return view('admin_panel.about_courses.index', compact('aboutCourses'));
     }
 
     /**
@@ -41,7 +41,7 @@ class AboutCourseController extends Controller
     {
         $aboutCourses = $this->aboutCourseService->paginate();
 
-        return view('admin_panel.about_courses.index_trashed',compact('aboutCourses'));
+        return view('admin_panel.about_courses.index_trashed', compact('aboutCourses'));
     }
 
     /**
@@ -51,7 +51,7 @@ class AboutCourseController extends Controller
     {
         $courses = $this->courseService->getAll();
 
-        return view('admin_panel.about_courses.create',compact(['courses','course']));
+        return view('admin_panel.about_courses.create', compact(['courses','course']));
     }
 
     /**
@@ -59,10 +59,10 @@ class AboutCourseController extends Controller
      */
     public function store(StoreAboutCourseRequest $request, Course $course)
     {
-        $about_course = $this->aboutCourseService->create(new CreateAboutCourseDTO(...$request->validated()));
+        $aboutСourse = $this->aboutCourseService->create(new CreateAboutCourseDTO(...$request->validated()));
         $this->courseService->updateById($course->id,['about_course_id' => $about_course->id]);
 
-        return redirect()->route('admin.courses.show',$course->id);
+        return redirect()->route('admin.courses.show', $course->id);
     }
 
     /**
@@ -72,14 +72,14 @@ class AboutCourseController extends Controller
     {
         $aboutCourse = $this->aboutCourseService->findFirstById($id);
 
-        return view('admin_panel.about_courses.show',compact('aboutCourse'));
+        return view('admin_panel.about_courses.show', compact('aboutCourse'));
     }
 
     public function showTrashed(string $id)
     {
         $aboutCourse = $this->aboutCourseService->findFirstByIdTrashed($id);
 
-        return view('admin_panel.about_courses.show_trashed',compact('aboutCourse'));
+        return view('admin_panel.about_courses.show_trashed', compact('aboutCourse'));
     }
 
     /**
@@ -89,7 +89,7 @@ class AboutCourseController extends Controller
     {
         $aboutCourse = $this->aboutCourseService->findFirstById($aboutCourse->id);
 
-        return view('admin_panel.about_courses.edit',compact(['aboutCourse','course']));
+        return view('admin_panel.about_courses.edit', compact(['aboutCourse','course']));
     }
 
     /**
@@ -99,7 +99,7 @@ class AboutCourseController extends Controller
     {
         $this->aboutCourseService->updateById($aboutCourse->id, new CreateAboutCourseDTO(...$request->validated()));
 
-        return redirect()->route('admin.courses.show',$course->id);
+        return redirect()->route('admin.courses.show', $course->id);
     }
 
     /**

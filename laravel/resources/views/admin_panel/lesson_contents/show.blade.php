@@ -6,9 +6,11 @@
         {!! $lessonContent->value !!}<br>
     @else
         @if($lessonContent->media_type->value == "image")
-            <img src="{{\Illuminate\Support\Facades\Storage::url($lessonContent->value)}}" alt=""><br>
+            <img src="{{asset(\Illuminate\Support\Facades\Storage::url($lessonContent->value))}}" alt=""><br>
         @else
-            <video src="{{\Illuminate\Support\Facades\Storage::url($lessonContent->value)}}"></video>
+            <video controls>
+                <source src="{{asset(\Illuminate\Support\Facades\Storage::url($lessonContent->value))}}" type="video/mp4">
+            </video>
         @endif
     @endif
 @endsection

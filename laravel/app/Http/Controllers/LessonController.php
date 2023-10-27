@@ -67,11 +67,11 @@ class LessonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Course $course)
     {
         $lesson = $this->lessonService->findFirstById($id);
 
-        return view('admin_panel.lessons.show',compact('lesson'));
+        return view('admin_panel.lessons.show',compact(['lesson','course']));
     }
 
     /**

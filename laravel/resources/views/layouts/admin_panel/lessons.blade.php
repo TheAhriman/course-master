@@ -1,9 +1,6 @@
 @extends('layouts/admin_panel.admin_panel')
 @section('navbar')
-    @component('components.link')
-        @slot('link'){{route('admin.lessons.create')}}@endslot
-        @slot('button')Create lesson @endslot
-    @endcomponent
+
     @component('components.link')
         @slot('link'){{route('admin.lessons.edit',$lesson->id)}}@endslot
         @slot('button')Edit @endslot

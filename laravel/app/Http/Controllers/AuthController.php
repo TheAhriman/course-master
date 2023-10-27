@@ -28,12 +28,12 @@ class AuthController extends Controller
 	{
 		$roles = $this->roleService->getAll();
 
-		return view('auth)lol.register',compact('roles'));
+		return view('auth.register',compact('roles'));
 	}
 
 	public function showLoginForm(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
 	{
-		return view('auth)lol.login');
+		return view('auth.login');
 	}
 
 	public function register(RegisterUserRequest $request): RedirectResponse
@@ -52,10 +52,10 @@ class AuthController extends Controller
 	public function login(LoginUserRequest $request)
 	{
 		$data = $request->validated();
-		if(Auth::attempt($data)) {
+		if(Auth::attempt($data))
 			return redirect()->route('home');
-		}
-		return redirect(route('login'))->withErrors(['email'=> "Пользователь не найден"]);
+
+		return redirect(route('login'))->withErrors(["email" => "Пользователь не найден"]);
 	}
 
 
@@ -73,12 +73,12 @@ class AuthController extends Controller
     {
         $request->fulfill();
 
-        return redirect('')->route('home');
+        return redirect()->route('home');
     }
 
     public function emailVerificationNotice()
     {
-        return view('auth.verify');
+        return view('auth0.verify');
     }
 
     public function resendVerificationMail(Request $request)

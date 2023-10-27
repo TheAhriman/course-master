@@ -7,12 +7,11 @@ use App\Http\Services\CategoryService;
 use App\Http\Services\CourseService;
 use App\Http\Services\UserService;
 use App\Models\Course;
-use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -33,7 +32,7 @@ class CourseController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        Auth::user()->hasRole('admin')
+        Auth::user()->can('viewAny', Course::class)
             ? $courses = $this->courseService->paginate()
             : $courses = $this->courseService->paginateCreatorCourses(Auth::id());
 
@@ -45,7 +44,7 @@ class CourseController extends Controller
      */
     public function indexTrashed(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        Auth::user()->hasRole('admin')
+        Auth::user()->can('viewAny', Course::class)
             ? $courses = $this->courseService->paginateTrashed()
             : $courses = $this->courseService->paginateCreatorCoursesTrashed(Auth::id());
 
@@ -57,6 +56,8 @@ class CourseController extends Controller
      */
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
+        $this->authorize('create',Course::class);
+
         $categories = $this->categoryService->getAll();
         $users = $this->userService->getAll();
 
@@ -77,12 +78,10 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Course $course): \Illuminate\Contracts\Foundation\Application|Factory|View|Application|\Illuminate\Http\JsonResponse
+    public function show(Course $course): \Illuminate\Contracts\Foundation\Application|Factory|View|Application|JsonResponse
     {
-        $course = $this->courseService->findFirstById($course->id);
-            if (Auth::id() != $course->user_id && !Auth::user()->hasRole('admin')) {
-                abort(403,'Author does not match with course');
-            }
+        $this->authorize('isAuthor', $course);
+
         return view('admin_panel.courses.show',compact('course'));
     }
 
@@ -92,10 +91,9 @@ class CourseController extends Controller
      */
     public function showTrashed(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
+        $this->authorize('isAuthor',$id);
+
         $course = $this->courseService->findFirstByIdTrashed($id);
-        if ((Auth::id() != $course->user_id) && !Auth::user()->hasRole('admin')) {
-            abort(403,'Author does not match with course');
-        }
 
         return view('admin_panel.courses.show_trashed',compact('course'));
     }
@@ -105,10 +103,9 @@ class CourseController extends Controller
      */
     public function edit(Course $course): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
+        $this->authorize('isAuthor', $course);
+
         $course = $this->courseService->findFirstById($course->id);
-        if (Auth::id() != $course->user_id && !Auth::user()->hasRole('admin')) {
-            abort(403,'Author does not match with course');
-        }
         $categories = $this->categoryService->getAll();
         $users = $this->userService->getAll();
 
@@ -118,10 +115,12 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCourseRequest $request, string $id): RedirectResponse
+    public function update(StoreCourseRequest $request, Course $course): RedirectResponse
     {
+        $this->authorize('isAuthor', $course);
+
         $data = $request->validated();
-        $this->courseService->updateCourseAndCategories($data, $id);
+        $this->courseService->updateCourseAndCategories($data, $course->id);
 
         return redirect()->route('admin.courses.index');
     }
@@ -131,6 +130,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course): RedirectResponse
     {
+        $this->authorize('isAuthor', $course);
+
         $this->courseService->deleteById($course->id);
 
         return redirect()->route('admin.courses.index');
@@ -142,6 +143,7 @@ class CourseController extends Controller
      */
     public function restore(string $id): RedirectResponse
     {
+        $this->authorize('isAuthor',$id);
         $this->courseService->restoreById($id);
 
         return redirect()->route('admin.courses.index');

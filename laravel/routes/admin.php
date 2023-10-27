@@ -1,5 +1,21 @@
 <?php
 
+use App\Http\Controllers\AboutCourseController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\LessonContentController;
+use App\Http\Controllers\LessonController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuestionGroupController;
+use App\Http\Controllers\QuestionResponseController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ScaleCriteriaController;
+use App\Http\Controllers\UserAnswerController;
+use App\Http\Controllers\UserController;
+use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,85 +31,171 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('role:admin|creator')->group(function() {
-    Route::get('/',function (){return view('layouts.admin_panel.admin_panel');})->name('admin');
+    Route::get('/',function () { return view('layouts.admin_panel.admin_panel'); })->name('admin');
 
-    Route::resource('categories',\App\Http\Controllers\CategoryController::class);
-    Route::get('/categories_trashed',[\App\Http\Controllers\CategoryController::class,'indexTrashed'])->name('categories.index_trashed');
-    Route::get('/categories_trashed/{category}',[\App\Http\Controllers\CategoryController::class,'showTrashed'])->name('categories.show_trashed');
-    Route::get('/categories_trashed/{category}/restore',[\App\Http\Controllers\CategoryController::class,'restore'])->name('categories.restore');
+    Route::resource('categories', CategoryController::class);
+    Route::prefix('categories_trashed')
+        ->name('categories.')
+        ->controller(CategoryController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{category}','showTrashed')->name('show_trashed');
+            Route::get('/{category}/restore','restore')->name('restore');
+        });
 
-    Route::resource('users',\App\Http\Controllers\UserController::class);
-    Route::get('/users_trashed',[\App\Http\Controllers\UserController::class,'indexTrashed'])->name('users.index_trashed');
-    Route::get('/users_trashed/{user}',[\App\Http\Controllers\UserController::class,'showTrashed'])->name('users.show_trashed');
-    Route::get('/users_trashed/{user}/restore',[\App\Http\Controllers\UserController::class,'restore'])->name('users.restore');
+    Route::resource('users', UserController::class);
+    Route::prefix('user_trashed')
+        ->name('users.')
+        ->controller(UserController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{user}','showTrashed')->name('show_trashed');
+            Route::get('/{user}/restore','restore')->name('restore');
+        });
 
-    Route::resource('roles',\App\Http\Controllers\RoleController::class);
-    Route::get('/roles_trashed',[\App\Http\Controllers\RoleController::class,'indexTrashed'])->name('roles.index_trashed');
-    Route::get('/roles_trashed/{role}',[\App\Http\Controllers\RoleController::class,'showTrashed'])->name('roles.show_trashed');
-    Route::get('/roles_trashed/{role}/restore',[\App\Http\Controllers\RoleController::class,'restore'])->name('roles.restore');
+    Route::resource('roles', RoleController::class);
+    Route::prefix('roles_trashed')
+        ->name('roles.')
+        ->controller(RoleController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{role}','showTrashed')->name('show_trashed');
+            Route::get('/{role}/restore','restore')->name('restore');
+        });
 
-    Route::resource('permissions',\App\Http\Controllers\PermissionController::class);
-    Route::get('/permissions_trashed',[\App\Http\Controllers\PermissionController::class,'indexTrashed'])->name('permissions.index_trashed');
-    Route::get('/permissions_trashed/{permission}',[\App\Http\Controllers\PermissionController::class,'showTrashed'])->name('permissions.show_trashed');
-    Route::get('/permissions_trashed/{permission}/restore',[\App\Http\Controllers\PermissionController::class,'restore'])->name('permissions.restore');
+    Route::resource('permissions', PermissionController::class);
+    Route::prefix('permissions_trashed')
+        ->name('permissions.')
+        ->controller(PermissionController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{permission}','showTrashed')->name('show_trashed');
+            Route::get('/{permission}/restore','restore')->name('restore');
+        });
 
+    Route::resource('examinations', ExaminationController::class);
+    Route::prefix('examinations_trashed')
+        ->name('examinations.')
+        ->controller(ExaminationController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{examination}','showTrashed')->name('show_trashed');
+            Route::get('/{examination}/restore','restore')->name('restore');
+        });
 
+    Route::resource('criterias', ScaleCriteriaController::class);
+    Route::prefix('criterias_trashed')
+        ->name('criterias.')
+        ->controller(ScaleCriteriaController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{criteria}','showTrashed')->name('show_trashed');
+            Route::get('/{criteria}/restore')->name('restore');
+        });
 
-    Route::resource('examinations',\App\Http\Controllers\ExaminationController::class);
-    Route::get('/examinations_trashed',[\App\Http\Controllers\ExaminationController::class,'indexTrashed'])->name('examinations.index_trashed');
-    Route::get('/examinations_trashed/{examination}',[\App\Http\Controllers\ExaminationController::class,'showTrashed'])->name('examinations.show_trashed');
-    Route::get('/examinations_trashed/{examination}/restore',[\App\Http\Controllers\ExaminationController::class,'restore'])->name('examinations.restore');
+    Route::resource('comments', CommentController::class);
+    Route::prefix('comments_trashed')
+        ->name('comments.')
+        ->controller(CommentController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{comment}','showTrashed')->name('show_trashed');
+            Route::get('/{comment}/restore','restore')->name('restore');
+        });
 
-    Route::resource('criterias',\App\Http\Controllers\ScaleCriteriaController::class);
-    Route::get('/criterias_trashed',[\App\Http\Controllers\ScaleCriteriaController::class,'indexTrashed'])->name('criterias.index_trashed');
-    Route::get('/criterias_trashed/{criteria}',[\App\Http\Controllers\ScaleCriteriaController::class,'showTrashed'])->name('criterias.show_trashed');
-    Route::get('/criterias_trashed/{criteria}/restore',[\App\Http\Controllers\ScaleCriteriaController::class,'restore'])->name('criterias.restore');
+    Route::resource('question_groups', QuestionGroupController::class);
+    Route::prefix('question_groups_trashed')
+        ->name('question_groups.')
+        ->controller(QuestionGroupController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{question_group}','showTrashed')->name('show_trashed');
+            Route::get('/{question_group}/restore','restore')->name('restore');
+        });
 
-    Route::resource('comments',\App\Http\Controllers\CommentController::class);
-    Route::get('/comments_trashed',[\App\Http\Controllers\CommentController::class,'indexTrashed'])->name('comments.index_trashed');
-    Route::get('/comments_trashed/{comment}',[\App\Http\Controllers\CommentController::class,'showTrashed'])->name('comments.show_trashed');
-    Route::get('/comments_trashed/{comment}/restore',[\App\Http\Controllers\CommentController::class,'restore'])->name('comments.restore');
+    Route::resource('questions', QuestionController::class);
+    Route::prefix('question_trashed')
+        ->name('questions.')
+        ->controller(QuestionController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{question}','showTrashed')->name('show_trashed');
+            Route::get('/{question}/restore','restore')->name('restore');
+        });
 
-    Route::resource('question_groups',\App\Http\Controllers\QuestionGroupController::class);
-    Route::get('/question_groups_trashed',[\App\Http\Controllers\QuestionGroupController::class,'indexTrashed'])->name('question_groups.index_trashed');
-    Route::get('/question_groups_trashed/{question_group}',[\App\Http\Controllers\QuestionGroupController::class,'showTrashed'])->name('question_groups.show_trashed');
-    Route::get('/question_groups_trashed/{question_group}/restore',[\App\Http\Controllers\QuestionGroupController::class,'restore'])->name('question_groups.restore');
+    Route::resource('question_responses', QuestionResponseController::class);
+    Route::prefix('question_responses_trashed')
+        ->name('question_responses.')
+        ->controller(QuestionResponseController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{question_response}','showTrashed')->name('show_trashed');
+            Route::get('/{question_response}/restore','restore')->name('restore');
+        });
 
-    Route::resource('questions',\App\Http\Controllers\QuestionController::class);
-    Route::get('/questions_trashed',[\App\Http\Controllers\QuestionController::class,'indexTrashed'])->name('questions.index_trashed');
-    Route::get('/questions_trashed/{question}',[\App\Http\Controllers\QuestionController::class,'showTrashed'])->name('questions.show_trashed');
-    Route::get('/questions_trashed/{question}/restore',[\App\Http\Controllers\QuestionController::class,'restore'])->name('questions.restore');
+    Route::resource('user_answers', UserAnswerController::class);
+    Route::prefix('user_answers_trashed')
+        ->name('user_answers.')
+        ->controller(UserAnswerController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{user_answer}','showTrashed')->name('show_trashed');
+            Route::get('/{user_answer}/restore','restore')->name('restore');
+        });
 
-    Route::resource('question_responses',\App\Http\Controllers\QuestionResponseController::class);
-    Route::get('/question_responses_trashed',[\App\Http\Controllers\QuestionResponseController::class,'indexTrashed'])->name('question_responses.index_trashed');
-    Route::get('/question_responses_trashed/{question_response}',[\App\Http\Controllers\QuestionResponseController::class,'showTrashed'])->name('question_responses.show_trashed');
-    Route::get('/question_responses_trashed/{question_response}/restore',[\App\Http\Controllers\QuestionResponseController::class,'restore'])->name('question_responses.restore');
+    Route::resource('lesson_contents', LessonContentController::class);
+    Route::prefix('lesson_contents_trashed')
+        ->name('lesson_contents.')
+        ->controller(LessonContentController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{lesson_content}','showTrashed')->name('show_trashed');
+            Route::get('/{lesson_content}/restore','restore')->name('restore');
+        });
 
-    Route::resource('user_answers',\App\Http\Controllers\UserAnswerController::class);
-    Route::get('/user_answers_trashed',[\App\Http\Controllers\UserAnswerController::class,'indexTrashed'])->name('user_answers.index_trashed');
-    Route::get('/user_answers_trashed/{user_answer}',[\App\Http\Controllers\UserAnswerController::class,'showTrashed'])->name('user_answers.show_trashed');
-    Route::get('/user_answers_trashed/{user_answer}/restore',[\App\Http\Controllers\UserAnswerController::class,'restore'])->name('user_answers.restore');
+    Route::resource('courses', CourseController::class);
+    Route::prefix('courses_trashed')
+        ->name('courses.')
+        ->controller(CourseController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed')->can('viewAny',[Course::class]);
+            Route::get('/{course}','showTrashed')->name('show_trashed');
+            Route::get('/{course}/restore','restore')->name('restore');
+        });
+    Route::prefix('courses/{course}')
+        ->group(function () {
+            Route::controller(AboutCourseController::class)
+                ->name('about_courses.')
+                ->group(function () {
+                    Route::prefix('about_courses')
+                        ->group(function () {
+                            Route::get('/create','create')->name('create');
+                            Route::post('/','store')->name('store');
+                        });
+                    Route::prefix('{about_course}')
+                        ->group(function () {
+                            Route::get('/edit','edit')->name('edit');
+                            Route::patch('/','update')->name('update');
+                        });
+                });
+            Route::prefix('lessons')
+                ->name('lessons.')
+                ->controller(LessonController::class)
+                ->group(function () {
+                    Route::get('/create','create')->name('create');
+                    Route::post('/','store')->name('store');
+                });
+        });
 
-    Route::resource('lesson_contents',\App\Http\Controllers\LessonContentController::class);
-    Route::get('/lesson_contents_trashed',[\App\Http\Controllers\LessonContentController::class,'indexTrashed'])->name('lesson_contents.index_trashed');
-    Route::get('/lesson_contents_trashed/{lesson_content}',[\App\Http\Controllers\LessonContentController::class,'showTrashed'])->name('lesson_contents.show_trashed');
-    Route::get('/lesson_contents_trashed/{lesson_content}/restore',[\App\Http\Controllers\LessonContentController::class,'restore'])->name('lesson_contents.restore');
-
-    Route::resource('courses',\App\Http\Controllers\CourseController::class);
-    Route::get('/courses_trashed',[\App\Http\Controllers\CourseController::class,'indexTrashed'])->name('courses.index_trashed');
-    Route::get('/courses_trashed/{course}',[\App\Http\Controllers\CourseController::class,'showTrashed'])->name('courses.show_trashed');
-    Route::get('/courses_trashed/{course}/restore',[\App\Http\Controllers\CourseController::class,'restore'])->name('courses.restore');
-    Route::get('/courses/{course}/about_courses/create',[\App\Http\Controllers\AboutCourseController::class,'create'])->name('about_courses.create');
-    Route::post('/courses/{course}/about_courses',[\App\Http\Controllers\AboutCourseController::class,'store'])->name('about_courses.store');
-    Route::get('/courses/{course}/{about_course}/edit',[\App\Http\Controllers\AboutCourseController::class,'edit'])->name('about_courses.edit');
-    Route::patch('/courses/{course}/{about_course}',[\App\Http\Controllers\AboutCourseController::class,'update'])->name('about_courses.update');
-    Route::get('/courses/{course}/lessons/create',[\App\Http\Controllers\LessonController::class,'create'])->name('lessons.create');
-    Route::post('/courses/{course}/lessons',[\App\Http\Controllers\LessonController::class,'store'])->name('lessons.store');
-
-    Route::resource('lessons',\App\Http\Controllers\LessonController::class)->except(['create','store']);
-    Route::get('/lessons_trashed',[\App\Http\Controllers\LessonController::class,'indexTrashed'])->name('lessons.index_trashed');
-    Route::get('/lessons_trashed/{lesson}',[\App\Http\Controllers\LessonController::class,'showTrashed'])->name('lessons.show_trashed');
-    Route::get('/lessons_trashed/{lesson}/restore',[\App\Http\Controllers\LessonController::class,'restore'])->name('lessons.restore');
+    Route::resource('lessons', LessonController::class)->except(['create','store']);
+    Route::prefix('lessons_trashed')
+        ->name('lessons.')
+        ->controller(LessonController::class)
+        ->group(function () {
+            Route::get('/','indexTrashed')->name('index_trashed');
+            Route::get('/{lesson}','showTrashed')->name('show_trashed');
+            Route::get('/{lesson}/restore','restore')->name('restore');
+        });
 });
 
 
