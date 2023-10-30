@@ -2,6 +2,8 @@
 
 namespace App\Http\Services;
 
+use App\DTO\CreateCourseDTO;
+use App\DTO\CreateCourseWithoutCategoriesDTO;
 use App\Repositories\Interfaces\CourseRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Spatie\LaravelData\Data;
@@ -25,12 +27,12 @@ class CourseService extends BaseService
         $arrayData = $data->toArray();
         if (array_key_exists('category_id',$arrayData)){
             $categoriesIds = $arrayData['category_id'];
-            unset($data['category_id']);
-            $this->repository->create($data);
+            unset($arrayData['category_id']);
+            $this->repository->create(new CreateCourseWithoutCategoriesDTO(...$arrayData));
             $course = $this->repository->findLastCourse();
             $this->repository->syncCourseAndCategories($course, $categoriesIds);
         } else {
-            $this->repository->create($data);
+            $this->repository->create(new CreateCourseWithoutCategoriesDTO(...$arrayData));
         }
     }
 

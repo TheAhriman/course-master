@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateQuestionDTO;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Services\QuestionGroupService;
 use App\Http\Services\QuestionService;
@@ -57,8 +58,7 @@ class QuestionController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-        $data = $request->validated();
-        $this->questionService->create($data);
+        $this->questionService->create(new CreateQuestionDTO(...$request->validated()));
 
         return redirect()->route('admin.questions.index');
     }
@@ -100,8 +100,7 @@ class QuestionController extends Controller
      */
     public function update(StoreQuestionRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->questionService->updateById($id, $data);
+        $this->questionService->updateById($id, new CreateQuestionDTO(...$request->validated()));
 
         return redirect()->route('admin.questions.index');
     }

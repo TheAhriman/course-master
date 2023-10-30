@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateUserDTO;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Services\RoleService;
@@ -57,7 +58,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $this->userService->create($request->validated());
+        $this->userService->create(new CreateUserDTO(...$request->validated()));
 
         return redirect()->route('admin.users.index');
     }
@@ -98,8 +99,7 @@ class UserController extends Controller
      */
     public function update(StoreUserRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->userService->updateById($id, $data);
+        $this->userService->updateById($id, new CreateUserDTO(...$request->validated()));
 
         return redirect()->route('admin.users.index');
     }

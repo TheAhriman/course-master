@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateLessonDTO;
 use App\Http\Requests\StoreLessonRequest;
 use App\Http\Services\CourseService;
 use App\Http\Services\LessonService;
@@ -38,7 +39,7 @@ class LessonController extends Controller
      */
     public function indexTrashed()
     {
-        $lessons = $this->lessonService->paginateTrashed(15);
+        $lessons = $this->lessonService->paginateTrashed();
 
         return view('admin_panel.lessons.index_trashed',compact('lessons'));
     }
@@ -58,8 +59,7 @@ class LessonController extends Controller
      */
     public function store(StoreLessonRequest $request, Course $course)
     {
-        $data = $request->validated();
-        $this->lessonService->create($data);
+        $this->lessonService->create(new CreateLessonDTO(...$request->validated()));
 
         return redirect()->route('admin.courses.show',compact('course'));
     }
@@ -101,8 +101,7 @@ class LessonController extends Controller
      */
     public function update(StoreLessonRequest $request, Course $course, Lesson $lesson)
     {
-        $data = $request->validated();
-        $this->lessonService->updateById($lesson->id, $data);
+        $this->lessonService->updateById($lesson->id, new CreateLessonDTO(...$request->validated()));
 
         return redirect()->route('admin.courses.show',compact('course'));
     }

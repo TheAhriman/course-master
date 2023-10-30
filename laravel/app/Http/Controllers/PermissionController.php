@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreatePermissionDTO;
 use App\Http\Requests\StorePermissionsRequest;
 use App\Http\Services\PermissionService;
 use App\Http\Services\RoleService;
@@ -55,8 +56,7 @@ class PermissionController extends Controller
      */
     public function store(StorePermissionsRequest $request)
     {
-        $data = $request->validated();
-        $this->permissionService->create($data);
+        $this->permissionService->create(new CreatePermissionDTO(...$request->validated()));
 
         return redirect()->route('admin.permissions.index');
     }
@@ -98,8 +98,7 @@ class PermissionController extends Controller
      */
     public function update(StorePermissionsRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->permissionService->updateById($id, $data);
+        $this->permissionService->updateById($id, new CreatePermissionDTO(...$request->validated()));
 
         return redirect()->route('admin.permissions.index');
     }

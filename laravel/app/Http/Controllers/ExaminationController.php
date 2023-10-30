@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateExaminationDTO;
 use App\Enums\ExaminationTypeEnum;
 use App\Http\Requests\StoreExaminationRequest;
 use App\Http\Services\ExaminationService;
@@ -58,8 +59,7 @@ class ExaminationController extends Controller
      */
     public function store(StoreExaminationRequest $request)
     {
-        $data = $request->validated();
-        $this->examinationService->create($data);
+        $this->examinationService->create(new CreateExaminationDTO(...$request->validated()));
 
         return redirect()->route('admin.examinations.index');
     }
@@ -101,8 +101,7 @@ class ExaminationController extends Controller
      */
     public function update(StoreExaminationRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->examinationService->updateById($id, $data);
+        $this->examinationService->updateById($id, new CreateExaminationDTO(...$request->validated()));
 
         return redirect()->route('admin.examinations.index');
     }

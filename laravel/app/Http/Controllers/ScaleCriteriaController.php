@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateScaleCriteriaDTO;
 use App\Http\Requests\StoreScaleCriteriaRequest;
 use App\Http\Services\ExaminationService;
 use App\Http\Services\LessonService;
@@ -58,8 +59,7 @@ class ScaleCriteriaController extends Controller
      */
     public function store(StoreScaleCriteriaRequest $request)
     {
-        $data = $request->validated();
-        $this->criteriaService->create($data);
+        $this->criteriaService->create(new CreateScaleCriteriaDTO(...$request->validated()));
 
         return redirect()->route('admin.criterias.index');
     }
@@ -101,8 +101,7 @@ class ScaleCriteriaController extends Controller
      */
     public function update(StoreScaleCriteriaRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->criteriaService->updateById($id, $data);
+        $this->criteriaService->updateById($id, new CreateScaleCriteriaDTO(...$request->validated()));
 
         return redirect()->route('admin.criterias.index');
     }

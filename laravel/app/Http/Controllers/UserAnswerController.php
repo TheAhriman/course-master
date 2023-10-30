@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateUserAnswerDTO;
 use App\Http\Requests\StoreUserAnswerRequest;
 use App\Http\Services\QuestionResponseService;
 use App\Http\Services\QuestionService;
@@ -67,8 +68,7 @@ class UserAnswerController extends Controller
      */
     public function store(StoreUserAnswerRequest $request)
     {
-        $data = $request->validated();
-        $this->userAnswerService->create($data);
+        $this->userAnswerService->create(new CreateUserAnswerDTO(...$request->validated()));
 
         return redirect()->route('admin.user_answers.index');
     }
@@ -112,8 +112,7 @@ class UserAnswerController extends Controller
      */
     public function update(StoreUserAnswerRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->userAnswerService->updateById($id, $data);
+        $this->userAnswerService->updateById($id, new CreateUserAnswerDTO(...$request->validated()));
 
         return redirect()->route('admin.user_answers.index');
     }

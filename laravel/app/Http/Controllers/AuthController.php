@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateUserDTO;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\RegisterUserRequest;
 use App\Http\Requests\StoreLessonContentRequest;
@@ -38,10 +39,7 @@ class AuthController extends Controller
 
 	public function register(RegisterUserRequest $request): RedirectResponse
 	{
-
-		$data = $request->validated();
-
-		$user = $this->userService->create($data);
+        $user = $this->userService->create(new CreateUserDTO(...$request->validated()));
 
         event(new Registered($user->resource));
 		Auth::login($user->resource,true);

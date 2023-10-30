@@ -6,12 +6,13 @@ use Spatie\DataTransferObject\Attributes\MapFrom;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
 
-class CreateCourseDTO extends Data
+class CreateUserAnswerDTO extends Data
 {
     public function __construct(
-        public string $title,
+        public string $value,
         public int $user_id,
-        public ?array $category_id = null
+        public int $question_id,
+        public int $question_response_id
     )
     {
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateCategoryDTO;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Services\CategoryService;
 use Illuminate\Contracts\View\Factory;
@@ -54,8 +55,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request): RedirectResponse
     {
-        $data = $request->validated();
-        $this->categoryService->create($data);
+        $this->categoryService->create(new CreateCategoryDTO(...$request->validated()));
 
         return redirect()->route('admin.categories.index');
     }
@@ -97,8 +97,7 @@ class CategoryController extends Controller
      */
     public function update(StoreCategoryRequest $request, string $id): RedirectResponse
     {
-        $data = $request->validated();
-        $this->categoryService->updateById($id, $data);
+        $this->categoryService->updateById($id, new CreateCategoryDTO(...$request->validated()));
 
         return redirect()->route('admin.categories.index');
     }

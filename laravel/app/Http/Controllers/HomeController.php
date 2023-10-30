@@ -12,10 +12,9 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return Renderable
+     * @return void
      */
     public function index()
     {
-        return view('index');
     }
 }

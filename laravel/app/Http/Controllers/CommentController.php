@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateCommentDTO;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Services\CommentService;
 use App\Http\Services\LessonService;
@@ -49,8 +50,7 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        $data = $request->validated();
-        $this->commentService->create($data);
+        $this->commentService->create(new CreateCommentDTO(...$request->validated()));
 
         return redirect()->route('admin.comments.index');
     }
@@ -89,8 +89,7 @@ class CommentController extends Controller
      */
     public function update(StoreCommentRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->commentService->updateById($id, $data);
+        $this->commentService->updateById($id, new CreateCommentDTO(...$request->validated()));
 
         return redirect()->route('admin.comments.index');
     }

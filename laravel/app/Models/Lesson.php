@@ -35,4 +35,9 @@ class Lesson extends Model
     {
         return $this->belongsTo(Course::class,'course_id','id');
     }
+
+    public function user_progresses(): HasMany
+    {
+        return $this->hasMany(UserProgress::class,'lesson_id','id');
+    }
 }

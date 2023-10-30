@@ -33,6 +33,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('role:admin|creator')->group(function() {
     Route::get('/',function () { return view('layouts.admin_panel.admin_panel'); })->name('admin');
 
+    Route::get('/user_progresses',[\App\Http\Controllers\UserProgressController::class,'index'])->name('user_progresses.index');
+    Route::get('/user_progresses/{user_progress}',[\App\Http\Controllers\UserProgressController::class,'confirmLessonFinished'])->name('user_progresses.confirm');
+
     Route::resource('categories', CategoryController::class);
     Route::prefix('categories_trashed')
         ->name('categories.')

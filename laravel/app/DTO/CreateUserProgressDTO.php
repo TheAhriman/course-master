@@ -2,16 +2,16 @@
 
 namespace App\DTO;
 
-use Spatie\DataTransferObject\Attributes\MapFrom;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
 
-class CreateCourseDTO extends Data
+class CreateUserProgressDTO extends Data
 {
     public function __construct(
-        public string $title,
         public int $user_id,
-        public ?array $category_id = null
+        public int $course_id,
+        public int $lesson_id,
+        public bool $finished
     )
     {
     }

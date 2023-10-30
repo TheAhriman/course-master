@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('email')
-    ->name('email.')
+    ->name('verification.')
     ->controller(AuthController::class)
     ->middleware('auth')
     ->group(function () {
@@ -40,4 +40,5 @@ Route::middleware('guest')
 Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/',function () {return view('layouts.app'); });
-Route::get('/course',[CourseViewController::class,'show']);
+Route::get('lessons/{lesson}',[CourseViewController::class,'show'])->name('lessons.show');
+Route::post('lessons/{lesson}/finished',[CourseViewController::class,'setLessonFinished'])->name('lessons.finished');

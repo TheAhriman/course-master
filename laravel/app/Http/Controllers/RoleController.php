@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateRoleDTO;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Services\RoleService;
 use Illuminate\Contracts\View\Factory;
@@ -52,8 +53,7 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        $data = $request->validated();
-        $this->roleService->create($data);
+        $this->roleService->create(new CreateRoleDTO(...$request->validated()));
 
         return redirect()->route('admin.roles.index');
     }
@@ -94,8 +94,7 @@ class RoleController extends Controller
      */
     public function update(StoreRoleRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->roleService->updateById($id, $data);
+        $this->roleService->updateById($id, new CreateRoleDTO(...$request->validated()));
 
         return redirect()->route('admin.roles.index');
     }

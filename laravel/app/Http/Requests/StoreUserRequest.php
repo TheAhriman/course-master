@@ -28,8 +28,6 @@ class StoreUserRequest extends FormRequest
             'email' => 'email | required',
             'password' => 'string  | required | max:50',
             'role_id' => 'integer | required',
-            'email_verified_at' => '',
-            'remember_token' => ''
         ];
     }
 

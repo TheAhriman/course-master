@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateLessonContentDTO;
 use App\Http\Requests\StoreLessonContentRequest;
 use App\Http\Services\LessonContentService;
 use App\Http\Services\LessonService;
@@ -55,8 +56,7 @@ class LessonContentController extends Controller
      */
     public function store(StoreLessonContentRequest $request)
     {
-        $data = $request->validated();
-        $this->lessonContentService->create($data);
+        $this->lessonContentService->create(new CreateLessonContentDTO(...$request->validated()));
 
         return redirect()->route('admin.lesson_contents.index');
     }
@@ -98,8 +98,7 @@ class LessonContentController extends Controller
      */
     public function update(StoreLessonContentRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->lessonContentService->updateById($id, $data);
+        $this->lessonContentService->updateById($id, new CreateLessonContentDTO(...$request->validated()));
 
         return redirect()->route('admin.lesson_contents.index');
     }

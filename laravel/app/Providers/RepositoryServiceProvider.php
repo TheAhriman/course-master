@@ -24,6 +24,7 @@ use App\Repositories\Interfaces\QuestionResponseRepositoryInterface;
 use App\Repositories\Interfaces\RoleRepositoryInterface;
 use App\Repositories\Interfaces\ScaleCriteriaRepositoryInterface;
 use App\Repositories\Interfaces\UserAnswerRepositoryInterface;
+use App\Repositories\Interfaces\UserProgressRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\LessonContentRepository;
 use App\Repositories\LessonRepository;
@@ -34,6 +35,7 @@ use App\Repositories\QuestionResponseRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\ScaleCriteriaRepository;
 use App\Repositories\UserAnswerRepository;
+use App\Repositories\UserProgressRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -60,6 +62,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserAnswerRepositoryInterface::class,UserAnswerRepository::class);
         $this->app->bind(LessonContentRepositoryInterface::class,LessonContentRepository::class);
         $this->app->bind(AboutCourseRepositoryInterface::class,AboutCourseRepository::class);
+        $this->app->bind(UserProgressRepositoryInterface::class, UserProgressRepository::class);
     }
 
     /**
