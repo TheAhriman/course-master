@@ -61,7 +61,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1280px;
     padding-top: 24px;
     padding-left: 29px;
     padding-right: 29px;
@@ -75,6 +74,9 @@
 .courses-string {
     display: flex;
     column-gap: 17px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .new-courses-title {

@@ -154,3 +154,10 @@
     border-radius: 8px;
     border: none;
 }
+
+.block-img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 30px;
+}
