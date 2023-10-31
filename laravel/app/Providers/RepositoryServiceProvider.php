@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\CommentController;
 use App\Repositories\AboutCourseRepository;
 use App\Repositories\BaseRepository;
 use App\Repositories\CategoryRepository;

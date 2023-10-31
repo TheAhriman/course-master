@@ -13,7 +13,7 @@ class LessonPolicy
     {
         if ($user->hasRole('admin')) return true;
 
-        $userProgress = UserProgress::query()->where('user_id','=',$user->id)->where('course_id','=',$lesson->course->id)->first();
+        $userProgress = UserProgress::query()->where('user_id','=',$user->id)->where('course_id','=',$lesson->course_id)->first();
 
         if ($userProgress == null || $userProgress->lesson_id < $lesson->id) return false;
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\DTO\CreateAboutCourseDTO;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAboutCourseRequest;
 use App\Http\Services\AboutCourseService;
 use App\Http\Services\CourseService;
@@ -12,7 +13,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class AboutCourseController extends Controller
 {

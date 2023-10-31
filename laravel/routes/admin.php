@@ -1,22 +1,21 @@
 <?php
 
-use App\Http\Controllers\AboutCourseController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\ExaminationController;
-use App\Http\Controllers\LessonContentController;
-use App\Http\Controllers\LessonController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\QuestionGroupController;
-use App\Http\Controllers\QuestionResponseController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\ScaleCriteriaController;
-use App\Http\Controllers\UserAnswerController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\AboutCourseController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\ExaminationController;
+use App\Http\Controllers\Admin\LessonContentController;
+use App\Http\Controllers\Admin\LessonController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\Admin\QuestionGroupController;
+use App\Http\Controllers\Admin\QuestionResponseController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ScaleCriteriaController;
+use App\Http\Controllers\Admin\UserAnswerController;
+use App\Http\Controllers\Admin\UserController;
 use App\Models\Course;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +32,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('role:admin|creator')->group(function() {
     Route::get('/',function () { return view('layouts.admin_panel.admin_panel'); })->name('admin');
 
-    Route::get('/user_progresses',[\App\Http\Controllers\UserProgressController::class,'index'])->name('user_progresses.index');
-    Route::get('/user_progresses/{user_progress}',[\App\Http\Controllers\UserProgressController::class,'confirmLessonFinished'])->name('user_progresses.confirm');
+    Route::get('/user_progresses',[\App\Http\Controllers\Admin\UserProgressController::class,'index'])->name('user_progresses.index');
+    Route::get('/user_progresses/{user_progress}',[\App\Http\Controllers\Admin\UserProgressController::class,'confirmLessonFinished'])->name('user_progresses.confirm');
 
     Route::resource('categories', CategoryController::class);
     Route::prefix('categories_trashed')

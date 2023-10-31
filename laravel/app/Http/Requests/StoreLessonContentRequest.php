@@ -35,8 +35,7 @@ class StoreLessonContentRequest extends FormRequest
     public function prepareForValidation()
     {
         if($this->media_type != "text") {
-            $path = 'public/' . Str::random(40);
-            dispatch(new StoreMediaForLessonContent($this, $path));
+            $path = $this->file($this->media_type)->store('public');
             $this->merge(['value' => $path]);
         }
     }

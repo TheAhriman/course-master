@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 150px;
+    margin-right: 12px;
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.title-page {
+    color: #001C27;
+    font-family: 'Mulish', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.header-links {
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+}
+
+.block-search {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+}
+
+.header-search {
+    width: 215px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--Gray-3, #828282);
+    outline: none;
+}
+
+.main-content {
+  
+    display: flex;
+    margin-left: 150px;
+    margin-right: 12px;
+    width: calc(100%-126px);
+    height: 100%;
+}
+
+.category-list {
+    display: flex;
+    column-gap: 8px;
+    margin-top: 32px;
+}
+
+.category {
+    border-radius: 16px;
+    border: 1px solid #BDBDBD;
+    padding: 8px 16px;
+}
+
+.category a {
+    font-family: 'Mulish', sans-serif;
+    border-radius: 16px;
+    height: 32px;
+    color: #001C27;
+
+}
+
+.courses-container {
+    margin-top: 30px;
+    display: flex;
+    max-width: 1400px;
+    flex-wrap: wrap;
+    row-gap: 30px;
+}

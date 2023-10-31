@@ -62,4 +62,9 @@ class CourseService extends BaseService
     {
         return $this->repository->onlyTrashed('')->where(['user_id' => $id])->paginate();
     }
+
+    public function getAllWithAuthorCategoriesAndLessons()
+    {
+        return $this->repository->with(['lessons','user','categories'])->paginate();
+    }
 }

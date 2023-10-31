@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 150px;
+    margin-right: 12px;
+    background-color: white;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.title-page {
+    color: #001C27;
+    font-family: 'Mulish', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.header-links {
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+}
+
+.block-search {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+}
+
+.header-search {
+    width: 215px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #828282;
+    outline: none;
+}
+
+.main-content {
+    margin-top: 20px;
+    display: flex;
+    margin-left: 150px;
+    margin-right: 12px;
+    width: calc(100%-126px);
+    height: 100%;
+}
+
+.main-content-container {
+    width: 100%;
+    display: flex;
+    column-gap: 30px;
+    flex-wrap: wrap;
+}
+
+.progess-block h1 {
+    color: #333;
+    font-family: 'Mulish', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.progess-block-content {
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+}
+.back-img{
+
+}
+.progress {
+    position: absolute;
+    height: 8px;
+    border-radius: 40px;
+    top: 180px;
+    left: 20px;
+    width: 650px;
+    background-color: #9747FF;
+}
+
+.character {
+    position: absolute;
+    top: 120px;
+    left: 630px;
+}
+
+.victory-block {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    top: 110px;
+    right: 20px;
+    row-gap: 5px;
+}
+
+.victory-block-text {
+    color: #1C1B1F;
+    text-align: center;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.status h1 {
+    margin-top: 20px;
+    color: #333;
+    font-family: 'Mulish', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.status-container {
+    display: flex;
+    justify-content: center;
+    max-width: 920px;
+    max-height: 121px;
+    border-radius: 8px;
+    margin-top: 20px;
+    background: #FFF;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25), 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+    padding-top: 33px;
+    padding-left: 78px;
+    padding-right: 77px;
+    padding-bottom: 33px;
+}
+
+.status-block {
+    display: flex;
+    margin-left: 30px;
+    flex-direction: column;
+    border-right: 1px solid #D9D9D9;
+    padding-right: 20px;
+}
+
+.status-block-img {
+    max-width: 28px;
+}
+
+.status-block-count span {
+    color: #1C1B1F;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.enrolled-courses {
+    display: flex;
+    flex-direction: column;
+    max-width: 920px;
+}
+
+.enrolled-courses-container {
+    margin-top: 20px;
+}
+
+.enrolled-courses-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.enrolled-courses-header h1 {
+    color: #333;
+    font-family: 'Mulish', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.course-catalog-link {
+    color: #FFF;
+    font-size: 14px;
+    font-family: 'Mulish', sans-serif;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    padding: 6px;
+    border-radius: 4px;
+    background: #2D9CDB;
+    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.enrolled-cours {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid #E0E0E0;
+}
+
+.enrolled-cours-title {
+    display: flex;
+    align-items: center;
+    column-gap: 40px;
+}
+
+.enrolled-cours-logo {
+    max-width: 64px;
+    border-radius: 8px;
+    padding: 18px;
+    background: rgba(198, 217, 251, 1);
+}
+
+.enrolled-cours-buttons-progress {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+}
+
+.enrolled-cours-progress {
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.enrolled-cours-progress-title {
+    color: #4F4F4F;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.enrolled-cours-progress-bar {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.enrolled-cours-progress-text {
+    color: #383838;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.enrolled-cours-progress progress {
+    width: 161px;
+    height: 10px;
+}
+
+.enrolled-cours-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.enrolled-cours-buttons-progress-menu-book {
+    display: flex;
+    padding: 10px;
+    column-gap: 4px;
+    border-radius: 100px;
+    border: 1px solid #F3F3F3;
+    
+}
+
+.enrolled-cours-buttons-progress-contract-edit {
+    display: flex;
+    padding: 10px;
+    column-gap: 4px;
+    border-radius: 100px;
+    border: 1px solid #F3F3F3;
+   
+}
+.enrolled-cours-progress-bar-win{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    padding: 4px;
+    background: rgba(225, 243, 255, 1);
+    width: 120px;
+    font-size: 12px;;
+}
+.enrolled-cours-buttons-more {
+    margin-left: 20px;
+}
+
+.featured-block {
+    margin-left: 10px;
+}
+
+.featured-block h1 {
+    color: #333;
+    font-family: 'Mulish', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.status-container-items {
+    max-width: 850px;
+}
+
+.featured-block {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.featured-block-items {
+    margin-top: 10px;
+    margin-left: -20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 20px;
+    column-gap: 20px;
+
+}
+
+.link-compled{
+    color: #FFF;
+    background:#2D9CDB;
+    padding: 8px 8px;
+    border-radius: 50px;
+}
+
+
+#dropdownContent {
+    display: none;
+    position: absolute;
+    left: 110px;
+  }
+  
+  #dropdownContent li a{
+    background-color: #001C27;
+    padding: 20px 40px;
+    cursor: pointer;
+    color: #FFF;
+    display: flex;
+    column-gap: 5px;
+    font-size: 18px;
+  }
+  
+  #dropdownContent li a:hover {
+    background-color: #2D9CDB;
+  }
+  

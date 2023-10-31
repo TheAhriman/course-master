@@ -7,16 +7,19 @@ export default defineConfig({
     plugins: [
         laravel([
             'resources/js/app.js',
-            'resources/css/styles.css',
-            'resources/css/app.css',
+            'resources/js/bootstrap.js',
+            'resources/js/js.js',
             'resources/js/scripts.js',
-            'resources/css/style-form.css',
-            'resources/css/footer.css',
-            'resources/css/header.css',
-            'resources/css/index.css',
-            'resources/css/main-side-bar-menu.css',
-            'resources/js/drop-down-language.js',
-            'resources/css/about-course.css'
+            'resources/css/app.css',
+            'resources/css/card-course-style.css',
+            'resources/css/course-details.css',
+            'resources/css/courses.css',
+            'resources/css/my-course-progress.css',
+            'resources/css/my-courses.css',
+            'resources/css/side-bar-menu.css',
+            'resources/css/styles.css',
+            'resources/css/zero-down.css',
+            'resources/css/course-catalog.css',
         ]),
     ],
     resolve: {

@@ -2,128 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\CreateLessonDTO;
-use App\Http\Requests\StoreLessonRequest;
-use App\Http\Services\CourseService;
+use App\DTO\CreateUserProgressDTO;
+use App\Http\Services\LessonContentService;
 use App\Http\Services\LessonService;
-use App\Models\Course;
+use App\Http\Services\UserProgressService;
 use App\Models\Lesson;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
-    /**
-     * @param LessonService $lessonService
-     * @param CourseService $courseService
-     */
-    public function __construct(private readonly LessonService $lessonService, private readonly CourseService $courseService)
+    public function __construct(private readonly LessonService $lessonService,
+        private readonly UserProgressService $progressService,
+        private readonly LessonContentService $lessonContentService
+    )
     {
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function show(Lesson $lesson)
     {
-        $lessons = $this->lessonService->paginate();
+        $this->authorize('show', $lesson);
+        $lesson = $this->lessonService->findFirstById($lesson->id);
+        $lessonContent = $this->lessonContentService->getContentForLesson($lesson->id);
 
-        return view('admin_panel.lessons.index',compact('lessons'));
+        return view('lessons.show',compact(['lesson','lessonContent']));
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
-     */
-    public function indexTrashed()
+    public function setLessonFinished(Lesson $lesson)
     {
-        $lessons = $this->lessonService->paginateTrashed();
+        $this->progressService->create(new CreateUserProgressDTO(Auth::id(), $lesson->course->user_id, $lesson->id, true));
 
-        return view('admin_panel.lessons.index_trashed',compact('lessons'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Course $course)
-    {
-        $courses = $this->courseService->getAll();
-
-        return view('admin_panel.lessons.create',compact(['courses','course']));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreLessonRequest $request, Course $course)
-    {
-        $this->lessonService->create(new CreateLessonDTO(...$request->validated()));
-
-        return redirect()->route('admin.courses.show',compact('course'));
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id, Course $course)
-    {
-        $lesson = $this->lessonService->findFirstById($id);
-
-        return view('admin_panel.lessons.show',compact(['lesson','course']));
-    }
-
-    /**
-     * @param string $id
-     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
-     */
-    public function showTrashed(string $id)
-    {
-        $lesson = $this->lessonService->findFirstByIdTrashed($id);
-
-        return view('admin_panel.lessons.show_trashed',compact('lesson'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $lesson = $this->lessonService->findFirstById($id);
-        $courses = $this->courseService->getAll();
-
-        return view('admin_panel.lessons.edit',compact(['lesson','courses']));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(StoreLessonRequest $request, Course $course, Lesson $lesson)
-    {
-        $this->lessonService->updateById($lesson->id, new CreateLessonDTO(...$request->validated()));
-
-        return redirect()->route('admin.courses.show',compact('course'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $this->lessonService->deleteById($id);
-
-        return redirect()->route('admin.lessons.index');
-    }
-
-    /**
-     * @param string $id
-     * @return RedirectResponse
-     */
-    public function restore(string $id)
-    {
-        $this->lessonService->restoreById($id);
-
-        return redirect()->route('admin.lessons.index');
+        return redirect()->route('lessons.show',$lesson);
     }
 }

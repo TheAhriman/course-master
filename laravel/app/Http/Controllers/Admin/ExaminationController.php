@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\DTO\CreateExaminationDTO;
-use App\Enums\ExaminationTypeEnum;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreExaminationRequest;
 use App\Http\Services\ExaminationService;
 use App\Http\Services\LessonService;
@@ -11,7 +11,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class ExaminationController extends Controller
 {

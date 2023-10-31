@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CourseViewController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LessonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,8 +37,9 @@ Route::middleware('guest')
         Route::post('/login_processing','login')->name('login_processing');
     });
 
+Route::get('/courses',[CourseController::class,'index'])->name('courses.index');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/',function () {return view('layouts.app'); });
-Route::get('lessons/{lesson}',[CourseViewController::class,'show'])->name('lessons.show');
-Route::post('lessons/{lesson}/finished',[CourseViewController::class,'setLessonFinished'])->name('lessons.finished');
+Route::get('lessons/{lesson}',[LessonController::class,'show'])->name('lessons.show');
+Route::post('lessons/{lesson}/finished',[CourseController::class,'setLessonFinished'])->name('lessons.finished');

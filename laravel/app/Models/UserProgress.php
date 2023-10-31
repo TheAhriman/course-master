@@ -15,7 +15,7 @@ class UserProgress extends Model
     protected $fillable = [
         'user_id',
         'lesson_id',
-        'course_id',
+        'author_id',
         'finished'
     ];
 

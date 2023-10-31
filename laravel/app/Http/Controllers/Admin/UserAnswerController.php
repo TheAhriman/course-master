@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\DTO\CreateUserAnswerDTO;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserAnswerRequest;
 use App\Http\Services\QuestionResponseService;
 use App\Http\Services\QuestionService;
 use App\Http\Services\UserAnswerService;
 use App\Http\Services\UserService;
-use App\Models\Question;
-use App\Models\QuestionResponse;
-use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;

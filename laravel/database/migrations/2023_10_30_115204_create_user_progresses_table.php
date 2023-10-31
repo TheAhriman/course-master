@@ -15,14 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('lesson_id');
-            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('author_id');
             $table->boolean('finished');
             $table->timestamps();
             $table->softDeletes();
 
             $table->index('user_id','user_progresses_users_idx');
             $table->index('lesson_id','user_progresses_lessons_idx');
-            $table->index('course_id','user_progresses_courses_idx');
 
             $table->foreign('user_id','user_progresses_users_fk')
                 ->on('users')
@@ -30,8 +29,8 @@ return new class extends Migration
             $table->foreign('lesson_id','user_progresses_lessons_fk')
                 ->on('lessons')
                 ->references('id');
-            $table->foreign('course_id','user_progresses_courses_fk')
-                ->on('courses')
+            $table->foreign('author_id','user_progresses_authors_fk')
+                ->on('users')
                 ->references('id');
         });
     }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\DTO\CreateCommentDTO;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Services\CommentService;
 use App\Http\Services\LessonService;
 use App\Http\Services\UserService;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {

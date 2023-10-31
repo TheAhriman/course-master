@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\DTO\CreateQuestionResponseDTO;
-use App\Http\Requests\StoreQuestionRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreQuestionResponseRequest;
 use App\Http\Services\QuestionResponseService;
 use App\Http\Services\QuestionService;
-use App\Models\Question;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class QuestionResponseController extends Controller
 {
