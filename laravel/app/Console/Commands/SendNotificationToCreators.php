@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Http\Services\UserProgressService;
 use App\Http\Services\UserService;
-use App\Jobs\StoreMediaForLessonContent;
 use App\Mail\ConfirmLessonsNotification;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
@@ -29,7 +28,7 @@ class SendNotificationToCreators extends Command implements Isolatable
     /**
      * Execute the console command.
      */
-    public function handle(UserService $userService, UserProgressService $progressService)
+    public function handle(UserService $userService, UserProgressService $progressService): void
     {
         foreach($userService->getAllCreators() as $creator) {
             if ($progressService->checkFinishedLessons($creator))

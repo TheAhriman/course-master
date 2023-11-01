@@ -2,15 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Http\Resources\CategoryResource;
-use App\Http\Resources\CourseCollection;
-use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use App\Repositories\Interfaces\CourseRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
-use PhpParser\Builder;
+
 
 class CourseRepository extends BaseRepository implements CourseRepositoryInterface
 {

@@ -2,7 +2,6 @@
 
 namespace App\Http\Services;
 
-use App\DTO\CreateCourseDTO;
 use App\DTO\CreateCourseWithoutCategoriesDTO;
 use App\Repositories\Interfaces\CourseRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;

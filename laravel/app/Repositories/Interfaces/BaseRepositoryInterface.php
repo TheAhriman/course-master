@@ -3,10 +3,7 @@
 namespace App\Repositories\Interfaces;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Data;
 
@@ -53,11 +50,11 @@ interface BaseRepositoryInterface
      */
     public function create(Data $data): JsonResource;
 
-    /**
-     * @param int $id
-     * @param array $data
-     * @return void
-     */
+	/**
+	 * @param int $id
+	 * @param Data $data
+	 * @return void
+	 */
     public function updateById(int $id, Data $data): void;
 
     /**

@@ -38,7 +38,7 @@ class ExaminationController extends Controller
      */
     public function indexTrashed()
     {
-        $examinations = $this->examinationService->paginateTrashed(15);
+        $examinations = $this->examinationService->paginateTrashed();
 
         return view('admin_panel.examinations.index_trashed',compact('examinations'));
     }

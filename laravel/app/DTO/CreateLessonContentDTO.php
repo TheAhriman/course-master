@@ -3,8 +3,6 @@
 namespace App\DTO;
 
 use App\Enums\LessonContentMediaTypeEnum;
-use Spatie\DataTransferObject\Attributes\MapFrom;
-use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\EnumCast;
 use Spatie\LaravelData\Data;

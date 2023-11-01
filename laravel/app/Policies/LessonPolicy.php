@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Http\Services\UserProgressService;
 use App\Models\Lesson;
 use App\Models\User;
 use App\Models\UserProgress;

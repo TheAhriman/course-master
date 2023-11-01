@@ -4,7 +4,6 @@ namespace App\Http\Services;
 
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Data;

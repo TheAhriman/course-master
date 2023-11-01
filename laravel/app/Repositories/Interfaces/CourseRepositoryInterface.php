@@ -2,8 +2,6 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Models\Course;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 interface CourseRepositoryInterface extends BaseRepositoryInterface

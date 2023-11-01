@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\CreateUserProgressDTO;
 use App\Http\Services\CourseService;
-use App\Http\Services\LessonService;
-use App\Http\Services\UserProgressService;
-use App\Models\Lesson;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {

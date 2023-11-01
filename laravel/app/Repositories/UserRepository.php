@@ -2,14 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Http\Resources\UserCollection;
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Support\Js;
+use Spatie\LaravelData\Data;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
@@ -21,7 +17,11 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         parent::__construct($user);
     }
 
-    public function create(mixed $data): JsonResource
+	/**
+	 * @param Data $data
+	 * @return JsonResource
+	 */
+    public function create(Data $data): JsonResource
     {
         $user = parent::create($data);
         $user->resource->assignRole($user->role->name);

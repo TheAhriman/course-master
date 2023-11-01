@@ -2,7 +2,6 @@
 
 namespace App\DTO;
 
-use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
 
 class UpdateUserProgressDTO extends Data

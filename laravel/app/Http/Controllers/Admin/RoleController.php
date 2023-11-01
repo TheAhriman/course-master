@@ -35,7 +35,7 @@ class RoleController extends Controller
      */
     public function indexTrashed()
     {
-        $roles = $this->roleService->paginateTrashed(15);
+        $roles = $this->roleService->paginateTrashed();
 
         return view('admin_panel.roles.index_trashed',compact('roles'));
     }
