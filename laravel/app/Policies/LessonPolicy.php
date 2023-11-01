@@ -62,13 +62,21 @@ class LessonPolicy
 	 * @param Lesson $lesson
 	 * @return bool
 	 */
-	public function notLastLessonOnCourse(User $user, Lesson $lesson): bool
+	public function notLastLesson(User $user, Lesson $lesson): bool
 	{
 		return !$this->lessonService->checkLast(
 				lessons: $this->lessonService->getLessonsFromCourseWithPriority($lesson->course_id),
 				lesson:  $lesson
 		);
 	}
+
+    public function lastLesson(User $user, Lesson $lesson): bool
+    {
+        return $this->lessonService->checkLast(
+            lessons: $this->lessonService->getLessonsFromCourseWithPriority($lesson->course_id),
+            lesson:  $lesson
+        );
+    }
 
 	/**
 	 * @param User $user
