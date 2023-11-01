@@ -13,7 +13,12 @@ class UserAnswer extends Model
 
     protected $table = "user_answers";
 
-    protected $guarded= false;
+    protected $fillable = [
+		'value',
+		'user_id',
+		'question_id',
+		'question_response_id'
+	];
 
     public function user(): BelongsTo
     {

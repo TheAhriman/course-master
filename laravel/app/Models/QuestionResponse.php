@@ -14,7 +14,12 @@ class QuestionResponse extends Model
 
     protected $table = "question_responses";
 
-    protected $guarded = false;
+    protected $fillable = [
+		'answer',
+		'correct',
+		'enabled',
+		'question_id'
+	];
 
     public function question(): BelongsTo
     {

@@ -14,7 +14,10 @@ class Permission extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = "permissions";
-    protected $guarded = false;
+    protected $fillable = [
+		'name',
+		'guard_name'
+	];
 
     public function role() : BelongsTo
     {

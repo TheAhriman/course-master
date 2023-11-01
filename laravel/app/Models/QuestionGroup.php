@@ -14,7 +14,11 @@ class QuestionGroup extends Model
 
     protected $table = "question_groups";
 
-    protected $guarded = false;
+    protected $fillable = [
+		'title',
+		'priority',
+		'examination_id'
+	];
 
     public function examination(): BelongsTo
     {

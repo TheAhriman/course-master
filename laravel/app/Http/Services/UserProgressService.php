@@ -28,6 +28,11 @@ class UserProgressService extends BaseService
         return $this->repository->where(['finished' => true, 'author_id' => Auth::id()])->paginate();
     }
 
+	/**
+	 * @param UserProgress $userProgress
+	 * @param Collection $lessons
+	 * @return void
+	 */
     public function updateToNextLesson(UserProgress $userProgress, Collection $lessons): void
     {
         $lessons = $lessons->getIterator();
@@ -39,6 +44,10 @@ class UserProgressService extends BaseService
         parent::updateById($userProgress->id, new UpdateUserProgressDTO($lessons->current()->id, false));
     }
 
+	/**
+	 * @param User $user
+	 * @return bool
+	 */
     public function checkFinishedLessons(User $user): bool
     {
         return $this->repository->where(['author_id' => $user->id, 'finished' => true])->count();

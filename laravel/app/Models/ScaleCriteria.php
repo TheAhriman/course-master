@@ -13,7 +13,11 @@ class ScaleCriteria extends Model
 
     protected $table = "scale_criterias";
 
-    protected $guarded = false;
+    protected $fillable = [
+		'title',
+		'text',
+		'examination_id'
+	];
 
     public function examination(): BelongsTo
     {

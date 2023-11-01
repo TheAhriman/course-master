@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use Illuminate\Support\Collection;
 
 class UserService extends BaseService
 {
@@ -14,7 +15,10 @@ class UserService extends BaseService
         parent::__construct($repository);
     }
 
-    public function getAllCreators()
+	/**
+	 * @return Collection
+	 */
+    public function getAllCreators(): Collection
     {
         return $this->repository->where(['role_id' => 1]);
     }

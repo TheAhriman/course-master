@@ -14,7 +14,13 @@ class Category extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'categories';
-    protected $guarded = false;
+
+	protected $fillable = [
+		'name',
+		'slug',
+		'description',
+		'parent_id'
+	];
 
     public function courses(): BelongsToMany
     {

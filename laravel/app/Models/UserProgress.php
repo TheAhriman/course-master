@@ -16,7 +16,8 @@ class UserProgress extends Model
         'user_id',
         'lesson_id',
         'author_id',
-        'finished'
+        'finished',
+        'course_id'
     ];
 
     /**

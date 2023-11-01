@@ -14,7 +14,12 @@ class LessonContent extends Model
 
     protected $table = "lesson_contents";
 
-    protected $guarded = false;
+    protected $fillable = [
+		'media_type',
+		'value',
+		'description',
+		'lesson_id'
+	];
 
     protected $casts = [
         'media_type' => LessonContentMediaTypeEnum::class

@@ -21,6 +21,7 @@ class StoreMediaForLessonContent implements ShouldQueue
     protected StoreLessonContentRequest $request;
 
     protected string $path;
+
     /**
      * Create a new job instance.
      */

@@ -16,10 +16,17 @@ class Question extends Model
 
     protected $table = "questions";
 
+	protected $fillable = [
+		'question',
+		'type',
+		'priority',
+		'required',
+		'question_group_id'
+	];
+
     protected $casts = [
         'type' => QuestionTypeEnum::class
     ];
-    protected $guarded = false;
 
     public function question_group(): BelongsTo
     {

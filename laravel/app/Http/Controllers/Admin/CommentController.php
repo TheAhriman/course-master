@@ -11,9 +11,9 @@ use App\Http\Services\UserService;
 
 class CommentController extends Controller
 {
-    public function __construct(private CommentService $commentService,
-        private UserService $userService,
-        private LessonService $lessonService)
+    public function __construct(private readonly CommentService $commentService,
+        private readonly UserService $userService,
+        private readonly LessonService $lessonService)
     {
     }
 

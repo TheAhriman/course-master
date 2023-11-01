@@ -53,17 +53,28 @@ class CourseService extends BaseService
         parent::updateById($id, $data);
     }
 
+	/**
+	 * @param string $id
+	 * @return LengthAwarePaginator
+	 */
     public function paginateCreatorCourses(string $id): LengthAwarePaginator
     {
         return $this->repository->where(['user_id' => $id])->paginate();
     }
 
+	/**
+	 * @param string $id
+	 * @return LengthAwarePaginator
+	 */
     public function paginateCreatorCoursesTrashed(string $id): LengthAwarePaginator
     {
         return $this->repository->onlyTrashed('')->where(['user_id' => $id])->paginate();
     }
 
-    public function getAllWithAuthorCategoriesAndLessons()
+	/**
+	 * @return LengthAwarePaginator
+	 */
+    public function getAllWithAuthorCategoriesAndLessons(): LengthAwarePaginator
     {
         return $this->repository->with(['lessons','user','categories'])->paginate();
     }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AboutCourse extends Model
@@ -14,5 +15,14 @@ class AboutCourse extends Model
 
     protected $table = "about_courses";
 
-    protected $guarded = false;
+    protected $fillable = [
+		'value',
+		'audience',
+		'requirements'
+	];
+
+	public function courses(): HasMany
+	{
+		return $this->hasMany(Course::class,'about_course_id','id');
+	}
 }

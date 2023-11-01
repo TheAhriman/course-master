@@ -15,7 +15,11 @@ class Course extends Model
 
     protected $table = "courses";
 
-    protected $guarded = false;
+    protected $fillable = [
+		'title',
+		'user_id',
+		'about_course_id'
+	];
 
     public function lessons(): HasMany
     {

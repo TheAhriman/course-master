@@ -19,7 +19,11 @@ class Examination extends Model
         'type' => ExaminationTypeEnum::class
     ];
 
-    protected $guarded = false;
+    protected $fillable = [
+		'title',
+		'type',
+		'lesson_id'
+	];
 
     public function lesson(): BelongsTo
     {
