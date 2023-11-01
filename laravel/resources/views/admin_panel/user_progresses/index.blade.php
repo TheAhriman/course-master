@@ -10,3 +10,9 @@
 
     {{ $data->links() }}
 @endsection
+@section('navbar')
+    @component('components.link')
+        @slot('link'){{route('admin.user_progresses.create')}}@endslot
+        @slot('button')Add user to course @endslot
+    @endcomponent
+@endsection

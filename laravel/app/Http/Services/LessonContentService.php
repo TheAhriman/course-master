@@ -21,6 +21,6 @@ class LessonContentService extends BaseService
      */
     public function getContentForLesson(string $id): Collection
     {
-        return $this->repository->where(['lesson_id' => $id]);
+        return $this->repository->where(['lesson_id' => $id],'priority');
     }
 }

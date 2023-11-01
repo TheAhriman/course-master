@@ -133,7 +133,8 @@
 .actions-block{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding-bottom: 30px;
 }
 
 .button-main-container-back{
@@ -146,6 +147,16 @@
     border: none;
 }
 .button-main-container-next{
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    color: #FFF;
+    background:  #2D9CDB;
+    padding: 12px 48px;
+    border-radius: 8px;
+    border: none;
+}
+
+.button-main-container-end{
     font-family: 'Mulish', sans-serif;
     font-size: 14px;
     color: #FFF;

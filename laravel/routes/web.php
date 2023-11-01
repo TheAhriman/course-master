@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserProgressController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
@@ -41,5 +42,13 @@ Route::get('/courses',[CourseController::class,'index'])->name('courses.index');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/',function () {return view('layouts.app'); });
-Route::get('lessons/{lesson}',[LessonController::class,'show'])->name('lessons.show');
-Route::post('lessons/{lesson}/finished',[CourseController::class,'setLessonFinished'])->name('lessons.finished');
+
+Route::prefix('lessons/{lesson}')
+	->name('lessons.')
+	->controller(LessonController::class)
+	->group(function () {
+		Route::get('/','show')->name('show')->middleware('can:show,lesson');
+		Route::patch('/finished','setLessonFinished')->name('finished')->middleware('can:confirm,lesson');
+	});
+
+Route::get('/admin/user_progresses/create',[UserProgressController::class,'create'])->name('admin.user_progresses.create');

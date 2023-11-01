@@ -20,6 +20,7 @@ export default defineConfig({
             'resources/css/styles.css',
             'resources/css/zero-down.css',
             'resources/css/course-catalog.css',
+            'resources/css/style-form.css'
         ]),
     ],
     resolve: {

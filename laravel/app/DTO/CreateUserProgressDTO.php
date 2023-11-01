@@ -10,7 +10,8 @@ class CreateUserProgressDTO extends Data
         public int $user_id,
         public int $author_id,
         public int $lesson_id,
-        public bool $finished
+        public int $course_id,
+        public ?bool $finished = false
     )
     {
     }

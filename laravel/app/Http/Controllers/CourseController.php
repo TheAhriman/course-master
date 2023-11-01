@@ -21,7 +21,7 @@ class CourseController extends Controller
 	 */
     public function index(): \Illuminate\Contracts\Foundation\Application|Factory|View|Application
     {
-        $data = $this->courseService->getAllWithAuthorCategoriesAndLessons();
+        $data = $this->courseService->paginateAllWithAuthorCategoriesAndLessons();
 
         return view('courses.index',compact('data'));
     }

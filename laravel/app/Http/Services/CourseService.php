@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\DTO\CreateCourseWithoutCategoriesDTO;
 use App\Repositories\Interfaces\CourseRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Spatie\LaravelData\Data;
 
 class CourseService extends BaseService
@@ -73,8 +74,13 @@ class CourseService extends BaseService
 	/**
 	 * @return LengthAwarePaginator
 	 */
-    public function getAllWithAuthorCategoriesAndLessons(): LengthAwarePaginator
+    public function paginateAllWithAuthorCategoriesAndLessons(): LengthAwarePaginator
     {
         return $this->repository->with(['lessons','user','categories'])->paginate();
+    }
+
+    public function getAllByAuthor(string $id): Collection
+    {
+        return $this->repository->where(['user_id' => $id]);
     }
 }

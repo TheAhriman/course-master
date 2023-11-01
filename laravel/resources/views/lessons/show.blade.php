@@ -162,8 +162,17 @@
 
             @endforeach
                 <div class="actions-block">
-                    <button type="#" class="button-main-container-back">Back</button>
-                    <button type="#" class="button-main-container-next">NEXT</button>
+                    @if(array_key_exists('previousLesson',$data))
+                        <a href="{{route('lessons.show',$data['previousLesson'])}}" class="button-main-container-back">BACK</a>
+                    @endif
+                    @if(\Illuminate\Support\Facades\Auth::user()->can('confirm',$lesson->resource) &&
+                        \Illuminate\Support\Facades\Auth::user()->can('notLastLessonOnCourse',$lesson->resource))
+                        <form id="confirm-lesson" action="{{route('lessons.finished', $lesson)}}" method="post">@csrf @method('PATCH')</form>
+                        <a onclick="document.getElementById('confirm-lesson').submit();" type="submit" class="button-main-container-end">COMPLETE LESSON</a>
+                    @endif
+                    @if(array_key_exists('nextLesson',$data))
+                            <a href="{{route('lessons.show',$data['nextLesson'])}}" class="button-main-container-next">NEXT</a>
+                    @endif
                 </div>
             </div>
         </div>
