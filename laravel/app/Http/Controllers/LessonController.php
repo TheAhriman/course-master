@@ -57,11 +57,9 @@ class LessonController extends Controller
     {
         $userProgress = $this->progressService->firstByUserIdAndCourseId(Auth::id(), $lesson->course_id);
         $this->progressService->updateById($userProgress->id, new SetFinishedUserProgressDTO(1));
-//        $this->progressService->updateToNextLesson(
-//            userProgress: $this->progressService->firstByUserIdAndCourseId(Auth::id(), $lesson->course_id)->resource,
-//            lessons: $this->lessonService->getLessonsFromCourseWithPriority($lesson->course_id));
-        //$this->progressService->create(new CreateUserProgressDTO(Auth::id(), $lesson->course->user_id, $lesson->id, true));
 
         return redirect()->route('lessons.show',$lesson);
     }
+
+    
 }

@@ -165,10 +165,18 @@
                     @if(array_key_exists('previousLesson',$data))
                         <a href="{{route('lessons.show',$data['previousLesson'])}}" class="button-main-container-back">BACK</a>
                     @endif
-                    @if(\Illuminate\Support\Facades\Auth::user()->can('confirm',$lesson->resource) &&
-                        \Illuminate\Support\Facades\Auth::user()->can('notLastLessonOnCourse',$lesson->resource))
-                        <form id="confirm-lesson" action="{{route('lessons.finished', $lesson)}}" method="post">@csrf @method('PATCH')</form>
-                        <a onclick="document.getElementById('confirm-lesson').submit();" type="submit" class="button-main-container-end">COMPLETE LESSON</a>
+                    @if(\Illuminate\Support\Facades\Auth::user()->can('confirm',$lesson->resource))
+                        @can('notLastLesson',$lesson->resource)
+                                <form id="confirm-lesson" action="{{route('lessons.finished', $lesson)}}" method="post">@csrf @method('PATCH')</form>
+                                <a onclick="document.getElementById('confirm-lesson').submit();" type="submit" class="button-main-container-end">COMPLETE LESSON</a>
+                        @endcan
+                        @can('lastLesson', $lesson->resource)
+                            <form id="finish-course" action="{{route('finished_courses.store')}}" method="post">@csrf
+                                <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
+                                <input type="hidden" name="course_id" value="{{$lesson->course_id}}">
+                            </form>
+                            <a onclick="document.getElementById('finish-course').submit();" type="submit" class="button-main-container-end">FINISH COURSE</a>
+                        @endcan
                     @endif
                     @if(array_key_exists('nextLesson',$data))
                             <a href="{{route('lessons.show',$data['nextLesson'])}}" class="button-main-container-next">NEXT</a>

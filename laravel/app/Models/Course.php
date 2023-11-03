@@ -46,4 +46,9 @@ class Course extends Model
     {
         return $this->hasMany(UserProgress::class,'course_id','id');
     }
+
+    public function finished_courses(): HasMany
+    {
+        return $this->hasMany(Course::class,'course_id','id');
+    }
 }

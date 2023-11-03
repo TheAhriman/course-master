@@ -64,4 +64,9 @@ class UserProgressService extends BaseService
 	{
 		return $this->repository->firstByUserIdAndCourseId($user_id, $course_id);
 	}
+
+    public function firstByUserIdAndExaminationId(string $user_id, string $examination_id): JsonResource
+    {
+        return $this->repository->firstByUserIdAndExaminationId($user_id, $examination_id);
+    }
 }

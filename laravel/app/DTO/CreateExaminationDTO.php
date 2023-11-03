@@ -11,8 +11,6 @@ class CreateExaminationDTO extends Data
 {
     public function __construct(
         public string $title,
-        #[WithCast(EnumCast::class, type: ExaminationTypeEnum::class)]
-        public ExaminationTypeEnum $type,
         public int $lesson_id,
     )
     {

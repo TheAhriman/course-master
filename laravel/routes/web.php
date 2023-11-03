@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\UserProgressController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\FinishedCourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use Illuminate\Support\Facades\Route;
@@ -46,9 +48,12 @@ Route::get('/',function () {return view('layouts.app'); });
 Route::prefix('lessons/{lesson}')
 	->name('lessons.')
 	->controller(LessonController::class)
+    ->middleware('notExamining')
 	->group(function () {
 		Route::get('/','show')->name('show')->middleware('can:show,lesson');
 		Route::patch('/finished','setLessonFinished')->name('finished')->middleware('can:confirm,lesson');
 	});
 
 Route::get('/admin/user_progresses/create',[UserProgressController::class,'create'])->name('admin.user_progresses.create');
+Route::post('/finished_courses/store',[FinishedCourseController::class,'store'])->name('finished_courses.store');
+Route::get('examinations/{examination}',[ExaminationController::class,'show'])->name('examinations.show')->middleware('can:takeExamination,examination');

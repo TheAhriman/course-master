@@ -31,7 +31,7 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="enabled" class="form-label">Correct</label>
+            <label for="enabled" class="form-label">Enabled</label>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="enabled"
                     id="enabled">
                 <option value="1">Yes</option>

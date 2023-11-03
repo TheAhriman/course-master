@@ -12,7 +12,7 @@ class CreateQuestionDTO extends Data
     public function __construct(
         public string $question,
         #[WithCast(EnumCast::class, QuestionTypeEnum::class)]
-        public QuestionTypeEnum $type,
+        public string $type,
         public int $priority,
         public bool $required,
         public int $question_group_id

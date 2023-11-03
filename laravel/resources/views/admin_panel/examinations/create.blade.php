@@ -12,17 +12,6 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="type" class="form-label">Type</label>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type"
-                    id="type">
-                @foreach(\App\Enums\ExaminationTypeEnum::cases() as $case)
-                    <option
-                            {{old('type') == $case->value ? ' selected' : ''}}
-                            value={{$case->value}}>{{$case->name}}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-3">
             <label for="lesson_id" class="form-label">Lesson</label>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="lesson_id"
                     id="lesson_id">

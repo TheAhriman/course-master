@@ -25,4 +25,14 @@ class UserProgressRepository extends BaseRepository implements UserProgressRepos
 	{
 		return new JsonResource($this->where(['user_id' => $user_id, 'course_id' => $course_id])->first());
 	}
+
+    /**
+     * @param string $user_id
+     * @param string $examination_id
+     * @return JsonResource
+     */
+    public function firstByUserIdAndExaminationId(string $user_id, string $examination_id): JsonResource
+    {
+        return new JsonResource($this->where(['user_id' => $user_id, 'examination_id' => $examination_id])->first());
+    }
 }

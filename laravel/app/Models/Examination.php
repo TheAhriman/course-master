@@ -15,13 +15,8 @@ class Examination extends Model
 
     protected $table = "examinations";
 
-    protected $casts = [
-        'type' => ExaminationTypeEnum::class
-    ];
-
     protected $fillable = [
 		'title',
-		'type',
 		'lesson_id'
 	];
 

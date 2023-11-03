@@ -51,8 +51,7 @@ class LessonPolicy
 	public function viewLesson(User $user, Lesson $lesson): bool
 	{
 		$userProgress = $this->progressService->firstByUserIdAndCourseId($user->id, $lesson->course_id);;
-
-		if ($userProgress == null || $userProgress->lesson->priority < $lesson->priority) return false;
+		if ($userProgress->resource == null || $userProgress->lesson->priority < $lesson->priority) return false;
 
 		return true;
 	}
