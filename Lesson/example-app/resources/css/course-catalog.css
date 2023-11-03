@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 150px;
+    margin-right: 20px;
+    background-color: white;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+.burger-button{
+    display: none;
+}
+.title-page {
+    color: #001C27;
+    font-family: 'Mulish', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.header-links {
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+}
+
+.block-search {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+}
+.search-content{
+    width: 100%;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-family: Mulish,sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #828282;
+    outline: none;
+    display: none;
+
+}
+.header-search {
+    width: 215px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color:  #828282;
+    outline: none;
+}
+
+.main-content {
+    display: flex;
+    margin-left: 150px;
+    margin-right: 12px;
+    height: 100%;
+}
+
+.category-list {
+    display: flex;
+    column-gap: 8px;
+    margin-top: 32px;
+}
+
+.category {
+    border-radius: 16px;
+    border: 1px solid #BDBDBD;
+    padding: 8px 16px;
+}
+
+.category a {
+    font-family: 'Mulish', sans-serif;
+    border-radius: 16px;
+    height: 32px;
+    color: #001C27;
+
+}
+
+.courses-container {
+    margin-top: 30px;
+    display: flex;
+    max-width: 1400px;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    justify-content: center;
+}
+
+@media (max-width: 1024px){
+    .header-container h1{
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+    }
+    .header-container{
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .step-side-bar-menu{
+        display: none;
+    }
+    .header{
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    }
+    .header-container{
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 20px;
+        align-items: center;
+        display: flex;
+    }
+    .main-content{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 20px 20px 20px 20px;
+    }
+    .my-courses-container{
+        align-items: center;
+        justify-content: center;
+    }
+    .burger-button{
+        display: block;
+    }
+    .main-title{
+        display: flex;
+        column-gap: 20px;
+    }
+    .setting{
+        display: none;
+    }
+}
+
+@media (max-width: 768px){
+    .header-search{
+        display: none;
+    }
+    .block-video-container {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+        flex-direction: column;
+    }
+    .search-content{
+        display: block;
+    }
+    .category-list{
+        display: none;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .header-search{
+        display: none;
+    }
+    .setting{
+        display: none;
+    }
+    .header{
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    }
+    .header-container{
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 20px;
+        align-items: center;
+        display: flex;
+    }
+    .header-container h1{
+        font-size: 20px;
+        color: #000;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        font-family: 'Mulish', sans-serif;
+    }
+    .main-content{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 20px 20px 20px 20px;
+    }
+    .my-courses-container{
+        align-items: center;
+        justify-content: center;
+    }
+    .burger-button{
+        display: block;
+    }
+    .main-title{
+        display: flex;
+        column-gap: 20px;
+        align-items: center
+    }
+    .step-side-bar-menu{
+        display: none;
+    }
+}

@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 150px;
+    margin-right: 12px;
+    background-color: white;
+    padding-bottom: 10px;
+    margin-top: 20px;
+
+}
+.burger-button{
+    display: none;
+}
+
+.title-page {
+    color: #001C27;
+    font-family: 'Mulish', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.header-links {
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+}
+
+.block-search {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+}
+
+.header-search {
+    width: 215px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color:  #828282;
+    outline: none;
+}
+
+.main-content {
+    margin-top: 20px;
+    display: flex;
+    margin-left: 150px;
+    margin-right: 12px;
+    height: 100%;
+    margin-right: 20px;
+}
+
+.main-content-container {
+    width: 100%;
+}
+
+.new-courses {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 24px;
+    padding-left: 29px;
+    padding-right: 29px;
+    padding-bottom: 21px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    background: #D4F2FB;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.courses-string {
+    display: flex;
+    column-gap: 17px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-courses-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-courses-title p {
+    color: #4F4F4F;
+    font-family: 'Mulish', sans-serif;
+    font-weight: bold;
+}
+
+.all-courses-link {
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+
+}
+
+.block-course {
+    margin-top: 10px;
+    width: 292px;
+    height: 170px;
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    padding-top: 14px;
+    position: relative;
+}
+
+.first-text {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    width: 111px;
+    height: 30px;
+    border-radius: 0px 2px 2px 0px;
+    background: rgba(0, 28, 39, 0.90);
+}
+
+.first-text p {
+    color: #2D9CDB;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.second-text {
+    width: 120px;
+    height: 60px;
+
+}
+
+.second-text p {
+    color: #4F4F4F;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: normal;
+    padding-left: 5px;
+}
+
+.block-course-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.my-courses {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.my-courses-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sec-title-course{
+    margin-top:5px ;
+    color: #4F4F4F;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px
+}
+.my-courses-title-filter span {
+    color: #000;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+}
+
+.my-courses-filter {
+    color: #000;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+}
+.my-courses-title-filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.create-course {
+    padding: 6px 16px;
+    border-radius: 4px;
+    background: #2D9CDB;
+    font-family: 'Mulish', sans-serif;
+    color: #FFF;
+    font-size: 16px
+}
+
+.my-courses-container {
+    display: flex;
+    column-gap: 30px;
+    row-gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-bottom: 30px
+}
+
+.my-course {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.my-course-top {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 200px;
+    background: #E0E0E0;
+}
+
+.my-course-bottom {
+    width: 100%;
+    height: 62px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.my-course-bottom p {
+    font-family: 'Mulish', sans-serif;
+    color: #141A2F;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.my-course-bottom-text{
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
+.my-course-bottom-text span{
+    font-family: 'Mulish', sans-serif;
+    color: #828282;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (max-width: 1024px){
+    .burger-button{
+        display: block;
+    }
+    .header{
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    }
+    .header-container{
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 20px;
+        align-items: center;
+        display: flex;
+    }
+    .header-container h1{
+        font-size: 20px;
+        color: #000;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        font-family: 'Mulish', sans-serif;
+    }
+    .main-content{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 20px 20px 20px 20px;
+    }
+    .my-courses-container{
+        align-items: center;
+        justify-content: center;
+    }
+    .burger-button{
+        display: block;
+    }
+    .main-title{
+        display: flex;
+        column-gap: 20px;
+    }
+}
+
+@media (max-width: 768px){
+    .header-container{
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 20px;
+        align-items: center;
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .my-courses-container{
+        align-items: center;
+        justify-content: center;
+    }
+    .main-title{
+        display: flex;
+        column-gap: 20px;
+    }
+    .header-search{
+        display: none;
+    }
+
+}
+
+

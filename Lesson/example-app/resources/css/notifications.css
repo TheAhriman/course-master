@@ -1,0 +1,230 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 148px;
+    margin-right: 12px;
+    background-color: white;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+.burger-button{
+    display: none;
+}
+.title-page {
+    color: #001C27;
+    font-family: 'Mulish', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.header-links {
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+}
+
+.block-search {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+}
+
+.header-search {
+    width: 215px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color:  #828282;
+    outline: none;
+}
+
+.main-content {
+    margin-top: 20px;
+    display: flex;
+    margin-left: 150px;
+    margin-right: 12px;
+    height: 100%;
+    margin-right: 20px;
+}
+
+.main-content-container {
+    width: 100%;
+}
+.search-notifications{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    column-gap: 20px;
+}
+.search-notifications input{
+    width: 100%;
+    max-width: 959px;
+    height: 20px;
+    padding: 16px 24px;
+    border-radius: 40px;
+    border: 1px solid  #E0E0E0;
+    font-size: 18px ;
+    font-family: 'Mulish', sans-serif;
+    outline: none;
+
+}
+.button-search-notifications{
+    border-radius: 40px;
+    padding: 5px 32px;
+    border: 1px solid  #001C27;
+    background:  #001C27;
+    font-size: 18px;
+    color: #FFFFFF;
+    font-family: 'Mulish', sans-serif;
+}
+.categoty-block{
+    display: flex;
+    column-gap: 15px;
+    margin-top: 10px;
+}
+.categoty-block a{
+    color:  #333;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 16px;
+    border: 1px solid #BDBDBD;
+}
+
+.incoming-notifications{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 38px;
+}
+.incoming-notification{
+    display: flex;
+    padding-bottom: 15px;
+    margin-top: 10px;
+    border-bottom: 1px solid #BDBDBD;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.notification-title{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+.notification-img{
+    border-radius: 50%;
+    max-width: 38px;
+}
+.author-notification-content{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+.notification-author-name{
+    color:  #333;
+    font-family: 'Mulish', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.notification-author-content{
+    display: flex;
+    column-gap: 5px;
+}
+.notification-author-content span{
+    color:  #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.notification-content{
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 1024px){
+    .notification-author-name{
+        font-size: 21px;
+    }
+    .burger-button{
+        display: block;
+    }
+    .main-title{
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+    }
+    .header-container{
+        margin-left: 10px;
+    }
+    .title-page{
+        font-size: 24px;
+    }
+    .main-content{
+        margin-left: 10px;
+    }
+    .search-notifications input {
+        font-size: 16px;
+    }
+    .button-search-notifications {
+       font-size: 16px;
+        padding: 6px 30px;
+    }
+}
+
+@media (max-width: 768px){
+    .title-page {
+        font-size: 21px;
+    }
+    .setting{
+        display: none;
+    }
+    .notification-author-name {
+        font-size: 18px;
+    }
+    .search-notifications input {
+        font-size: 14px;
+        padding: 14px 22px;
+    }
+    .button-search-notifications {
+        font-size: 14px;
+        padding: 6px 28px;
+    }
+    .notification-author-content span{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px){
+    .header-search{
+        display: none;
+    }
+    .search-notifications input {
+        font-size: 12px;
+        padding: 12px 20px;
+    }
+    .button-search-notifications {
+        font-size: 12px;
+        padding: 4px 28px;
+    }
+    .categoty-block{
+        display: flex;
+        justify-content: space-around;
+    }
+    .notification-author-name {
+        font-size: 16px;
+    }
+    .notification-author-content span{
+        font-size: 14px;
+    }
+}
