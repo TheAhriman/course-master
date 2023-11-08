@@ -28,6 +28,8 @@ use App\Repositories\Interfaces\UserAnswerRepositoryInterface;
 use App\Repositories\Interfaces\UserExaminationsProgressRepositoryInterface;
 use App\Repositories\Interfaces\UserProgressRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\UserTakenCourseRepositoryInterface;
+use App\Repositories\Interfaces\UserTakenExaminationRepositoryInterface;
 use App\Repositories\LessonContentRepository;
 use App\Repositories\LessonRepository;
 use App\Repositories\PermissionRepository;
@@ -40,6 +42,8 @@ use App\Repositories\UserAnswerRepository;
 use App\Repositories\UserExaminationsProgressRepository;
 use App\Repositories\UserProgressRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\UserTakenCourseRepository;
+use App\Repositories\UserTakenExaminationRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -68,6 +72,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserProgressRepositoryInterface::class, UserProgressRepository::class);
         $this->app->bind(FinishedCourseRepositoryInterface::class, FinishedCourseRepository::class);
         $this->app->bind(UserExaminationsProgressRepositoryInterface::class, UserExaminationsProgressRepository::class);
+        $this->app->bind(UserTakenCourseRepositoryInterface::class,UserTakenCourseRepository::class);
+        $this->app->bind(UserTakenExaminationRepositoryInterface::class, UserTakenExaminationRepository::class);
     }
 
     /**

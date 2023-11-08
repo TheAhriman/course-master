@@ -171,9 +171,7 @@
                                 <a onclick="document.getElementById('confirm-lesson').submit();" type="submit" class="button-main-container-end">COMPLETE LESSON</a>
                         @endcan
                         @can('lastLesson', $lesson->resource)
-                            <form id="finish-course" action="{{route('finished_courses.store')}}" method="post">@csrf
-                                <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
-                                <input type="hidden" name="course_id" value="{{$lesson->course_id}}">
+                            <form id="finish-course" action="{{route('lessons.finish_course',$lesson)}}" method="post">@csrf @method('PATCH')
                             </form>
                             <a onclick="document.getElementById('finish-course').submit();" type="submit" class="button-main-container-end">FINISH COURSE</a>
                         @endcan

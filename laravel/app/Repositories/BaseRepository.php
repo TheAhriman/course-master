@@ -56,7 +56,8 @@ class BaseRepository implements BaseRepositoryInterface
     protected function applyQueryParams(Builder $query): Builder
     {
         foreach ($this->params as $param){
-            $query->{array_search($param,$this->params)}($param);
+            $query->{array_search($param,$this->params)}(...$param);
+
         }
 
         return $query;

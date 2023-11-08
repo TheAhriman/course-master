@@ -34,4 +34,9 @@ class Examination extends Model
     {
         return $this->hasMany(ScaleCriteria::class,'examination_id','id');
     }
+
+    public function user_examinations(): HasMany
+    {
+        return $this->hasMany(UserTakenExamination::class,'examination_id','id');
+    }
 }

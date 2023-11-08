@@ -34,6 +34,11 @@ class UserProgressController extends Controller
 
     public function confirmLessonFinished(UserProgress $userProgress)
     {
+        if($userProgress->lesson->examinations != null)
+
+
+
+
         $this->progressService->updateToNextLesson($userProgress,
             $this->lessonService->getLessonsFromCourseWithPriority($userProgress->lesson->course_id));
 

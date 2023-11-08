@@ -117,4 +117,5 @@ class BaseService
     {
         $this->repository->restoreById($id);
     }
+
 }

@@ -29,4 +29,9 @@ class QuestionGroup extends Model
     {
         return $this->hasMany(Question::class,'question_group_id','id');
     }
+
+    public function user_examinations(): HasMany
+    {
+        return $this->hasMany(UserTakenExamination::class,'question_group_id','id');
+    }
 }

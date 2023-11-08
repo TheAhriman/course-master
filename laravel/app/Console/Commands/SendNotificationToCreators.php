@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Services\CourseService;
 use App\Http\Services\UserProgressService;
 use App\Http\Services\UserService;
+use App\Http\Services\UserTakenCourseService;
 use App\Mail\ConfirmLessonsNotification;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
@@ -28,11 +30,14 @@ class SendNotificationToCreators extends Command implements Isolatable
     /**
      * Execute the console command.
      */
-    public function handle(UserService $userService, UserProgressService $progressService): void
+    public function handle(UserService $userService, CourseService $courseService, UserTakenCourseService $takenCourseService): void
     {
         foreach($userService->getAllCreators() as $creator) {
-            if ($progressService->checkFinishedLessons($creator))
-                Mail::to($creator)->send(new ConfirmLessonsNotification($creator));
+            foreach($courseService->getAllByAuthor($creator->id) as $course)
+                if($takenCourseService->findWaiting($course->id)->count() != 0){
+                    Mail::to($creator)->send(new ConfirmLessonsNotification($creator));
+                    break;
+                }
         }
     }
 }

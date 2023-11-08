@@ -11,4 +11,5 @@ enum RepositoryParamEnum: string
     case ONLY_TRASHED = 'onlyTrashed';
     case TO_BASE = 'toBase';
     case LATEST = 'latest';
+    case WHERE_IN = 'whereIn';
 }

@@ -4,18 +4,19 @@ namespace App\Policies;
 
 use App\Http\Services\LessonService;
 use App\Http\Services\UserProgressService;
+use App\Http\Services\UserTakenCourseService;
 use App\Models\Lesson;
 use App\Models\User;
 
 class LessonPolicy
 {
-	/**
-	 * @param LessonService $lessonService
-	 * @param UserProgressService $progressService
-	 */
+    /**
+     * @param LessonService $lessonService
+     * @param UserTakenCourseService $takenCourseService
+     */
 	public function __construct(
-			private readonly LessonService $lessonService,
-			private readonly UserProgressService $progressService
+        private readonly LessonService $lessonService,
+        private readonly UserTakenCourseService $takenCourseService
 	)
 	{
 	}
@@ -24,12 +25,19 @@ class LessonPolicy
 	 * @param User $user
 	 * @return bool|null
 	 */
-	public function before(User $user): bool|null
+	public function before(User $user,string $lesson): bool|null
 	{
 		if ($user->role->name == 'admin')
 			return true;
 		return null;
 	}
+
+    public function notFinishedCourse(User $user, Lesson $lesson): bool
+    {
+        if($this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id)->status == 'finished')
+            return false;
+        return true;
+    }
 
 	/**
 	 * @param User $user
@@ -38,6 +46,9 @@ class LessonPolicy
 	 */
     public function show(User $user, Lesson $lesson): bool
     {
+        if(!$this->notFinishedCourse($user,$lesson))
+            return false;
+
         if ($user->role->name == 'creator' && $user->id == $lesson->course->user_id) return true;
 
         return $this->viewLesson($user, $lesson);
@@ -50,8 +61,9 @@ class LessonPolicy
 	 */
 	public function viewLesson(User $user, Lesson $lesson): bool
 	{
-		$userProgress = $this->progressService->firstByUserIdAndCourseId($user->id, $lesson->course_id);;
-		if ($userProgress->resource == null || $userProgress->lesson->priority < $lesson->priority) return false;
+        $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id);
+
+		if ($takenCourse->resource == null || $takenCourse->lesson->priority < $lesson->priority) return false;
 
 		return true;
 	}
@@ -84,9 +96,9 @@ class LessonPolicy
 	 */
 	public function viewNextLesson(User $user, Lesson $lesson): bool
 	{
-		$userProgress = $this->progressService->firstByUserIdAndCourseId($user->id, $lesson->course_id);
+        $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id);
 
-		if ($userProgress->lesson->priority > $lesson->priority) return true;
+		if ($takenCourse->lesson->priority > $lesson->priority) return true;
 
 		return false;
 	}
@@ -108,8 +120,8 @@ class LessonPolicy
      */
 	public function confirm(User $user, Lesson $lesson): bool
 	{
-		$userProgress = $this->progressService->firstByUserIdAndCourseId($user->id, $lesson->course_id);
+        $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id);
 
-		return ($userProgress->lesson->priority == $lesson->priority && $userProgress->finished == 0);
+		return ($takenCourse->lesson->priority == $lesson->priority && $takenCourse->status != 'waiting');
 	}
 }

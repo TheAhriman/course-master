@@ -20,7 +20,10 @@ export default defineConfig({
             'resources/css/styles.css',
             'resources/css/zero-down.css',
             'resources/css/course-catalog.css',
-            'resources/css/style-form.css'
+            'resources/css/style-form.css',
+            'resources/css/course-index.css',
+            'resources/js/code.jquery.com_jquery-3.7.1.min.js',
+            'resources/js/coments.js'
         ]),
     ],
     resolve: {

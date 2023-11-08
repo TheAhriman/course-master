@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ScaleCriteriaController;
 use App\Http\Controllers\Admin\UserAnswerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserProgressController;
+use App\Http\Controllers\Admin\UserTakenCourseController;
 use App\Models\Course;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,10 @@ Route::middleware('role:admin|creator')->group(function() {
     Route::get('/',function () { return view('layouts.admin_panel.admin_panel'); })->name('admin');
 
 
+    Route::get('/user_taken_courses',[UserTakenCourseController::class,'index'])->name('user_taken_courses.index');
+    Route::get('/user_taken_courses/{user_taken_course}/confirm',[UserTakenCourseController::class,'confirmLesson'])->name('user_taken_courses.confirm');
+
+    Route::get('/user_progresses/create',[UserProgressController::class,'create'])->name('admin.user_progresses.create');
 
 
     Route::prefix('user_progresses')

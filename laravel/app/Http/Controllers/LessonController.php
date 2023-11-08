@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\CreateUserProgressDTO;
-use App\DTO\SetFinishedUserProgressDTO;
-use App\DTO\UpdateUserProgressDTO;
+use App\DTO\UserTakenExamination\CreateUserTakenExaminationDTO;
 use App\Http\Services\LessonContentService;
 use App\Http\Services\LessonService;
-use App\Http\Services\UserProgressService;
+use App\Http\Services\UserTakenCourseService;
+use App\Http\Services\UserTakenExaminationService;
 use App\Models\Lesson;
-use Dflydev\DotAccessData\Data;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -18,14 +16,15 @@ use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
-	/**
-	 * @param LessonService $lessonService
-	 * @param UserProgressService $progressService
-	 * @param LessonContentService $lessonContentService
-	 */
+    /**
+     * @param LessonService $lessonService
+     * @param LessonContentService $lessonContentService
+     * @param UserTakenCourseService $takenCourseService
+     */
     public function __construct(private readonly LessonService $lessonService,
-        private readonly UserProgressService $progressService,
-        private readonly LessonContentService $lessonContentService
+        private readonly LessonContentService $lessonContentService,
+        private readonly UserTakenCourseService $takenCourseService,
+        private readonly UserTakenExaminationService $takenExaminationService
     )
     {
     }
@@ -55,11 +54,26 @@ class LessonController extends Controller
 	 */
     public function setLessonFinished(Lesson $lesson): RedirectResponse
     {
-        $userProgress = $this->progressService->firstByUserIdAndCourseId(Auth::id(), $lesson->course_id);
-        $this->progressService->updateById($userProgress->id, new SetFinishedUserProgressDTO(1));
-
+        if($this->checkExaminationsInLesson($lesson)){
+            $this->takenExaminationService->create(new CreateUserTakenExaminationDTO(Auth::id(),$lesson->examinations[0]->id,$lesson->examinations[0]->question_groups[0]->id));
+            $this->takenCourseService->setTestingStatus($this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, Auth::id())->resource);
+        } else {
+            $this->takenCourseService->setLessonFinished(
+                takenCourse: $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, Auth::id())->resource);
+        }
         return redirect()->route('lessons.show',$lesson);
     }
 
-    
+    public function checkExaminationsInLesson(Lesson $lesson)
+    {
+        return $lesson->examinations[0] != null;
+    }
+
+    public function finishCourse(Lesson $lesson)
+    {
+        $this->takenCourseService->setCourseFinished(
+            takenCourse: $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, Auth::id())->resource);
+
+        return redirect()->route('courses.index');
+    }
 }

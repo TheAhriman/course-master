@@ -165,7 +165,7 @@
                         <div class="bottom-content">
                             <div class="bottom-content-title">
                                 <!-- В роуте заглушка, не бейте пожалуйста :) -->
-                                <a href="{{route('lessons.show',1)}}" class="bottom-content-title-link">{{$course->title}}</a>
+                                <a href="{{route('courses.show',1)}}" class="bottom-content-title-link">{{$course->title}}</a>
                             </div>
                             <div class="bottom-content-date">
                                 <div class="bottom-content-autor_block">

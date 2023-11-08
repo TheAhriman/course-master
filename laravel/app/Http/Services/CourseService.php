@@ -45,8 +45,8 @@ class CourseService extends BaseService
     {
         $categoriesIds = [];
         if (array_key_exists('category_id',$data->toArray())){
-            $categoriesIds = $data['category_id'];
-            unset($data['category_id']);
+            $categoriesIds = $data->category_id;
+            $data = new CreateCourseWithoutCategoriesDTO($data->title, $data->user_id);
         }
         $course = $this->repository->first($id);
         $this->repository->syncCourseAndCategories($course, $categoriesIds);

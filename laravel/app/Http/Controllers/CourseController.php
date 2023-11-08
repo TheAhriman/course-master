@@ -25,4 +25,9 @@ class CourseController extends Controller
 
         return view('courses.index',compact('data'));
     }
+
+    public function show()
+    {
+        return view('courses.show');
+    }
 }

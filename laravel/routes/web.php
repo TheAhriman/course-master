@@ -41,6 +41,7 @@ Route::middleware('guest')
     });
 
 Route::get('/courses',[CourseController::class,'index'])->name('courses.index');
+Route::get('/courses/{course}',[CourseController::class,'show'])->name('courses.show');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/',function () {return view('layouts.app'); });
@@ -52,8 +53,9 @@ Route::prefix('lessons/{lesson}')
 	->group(function () {
 		Route::get('/','show')->name('show')->middleware('can:show,lesson');
 		Route::patch('/finished','setLessonFinished')->name('finished')->middleware('can:confirm,lesson');
+        Route::patch('/finish_course','finishCourse')->name('finish_course');
 	});
 
-Route::get('/admin/user_progresses/create',[UserProgressController::class,'create'])->name('admin.user_progresses.create');
+
 Route::post('/finished_courses/store',[FinishedCourseController::class,'store'])->name('finished_courses.store');
 Route::get('examinations/{examination}',[ExaminationController::class,'show'])->name('examinations.show')->middleware('can:takeExamination,examination');

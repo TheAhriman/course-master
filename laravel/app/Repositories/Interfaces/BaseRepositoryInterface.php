@@ -12,6 +12,7 @@ use Spatie\LaravelData\Data;
  * @method latest(string $string)
  * @method toBase(string $string)
  * @method with(string[] $array)
+ * @method whereIn(array $array)
  */
 interface BaseRepositoryInterface
 {
