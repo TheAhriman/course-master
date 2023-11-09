@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('priority');
             $table->boolean('required');
             $table->unsignedBigInteger('question_group_id');
+            $table->integer('score');
             $table->timestamps();
             $table->softDeletes();
 

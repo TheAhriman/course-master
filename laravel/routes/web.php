@@ -7,6 +7,8 @@ use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\FinishedCourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\QuestionGroupController;
+use App\Http\Controllers\UserAnswerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,5 +59,8 @@ Route::prefix('lessons/{lesson}')
 	});
 
 
+Route::post('/user_answers',[UserAnswerController::class,'store'])->name('user_answers.store');
+Route::get('/examinations/{examination}/start',[ExaminationController::class,'startTest'])->name('examinations.start');
+Route::get('/question_groups/{question_group}',[QuestionGroupController::class,'show'])->name('question_groups.show');
 Route::post('/finished_courses/store',[FinishedCourseController::class,'store'])->name('finished_courses.store');
-Route::get('examinations/{examination}',[ExaminationController::class,'show'])->name('examinations.show')->middleware('can:takeExamination,examination');
+Route::get('/examinations/{examination}',[ExaminationController::class,'show'])->name('examinations.show')->middleware('can:takeExamination,examination');

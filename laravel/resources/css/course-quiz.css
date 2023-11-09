@@ -1,0 +1,256 @@
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 150px;
+    margin-right: 12px;
+    background-color: white;
+    padding-bottom: 10px;
+}
+.burger-button{
+    display: none;
+}
+.title-page {
+    color: #001C27;
+    font-family: 'Mulish', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.nav-links{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+
+}
+.nav-links a, span{
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.header-links {
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+}
+
+.block-search {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+}
+
+.header-search {
+    width: 215px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color:  #828282;
+    outline: none;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    margin-top: 18px;
+    position: relative;
+    margin-left: 150px;
+    padding-bottom: 10px;
+    height: 100%;
+}
+
+.text-container-title {
+    color:  #333;
+    font-family: 'Mulish', sans-serif;
+    font-size: 24px;
+}
+.text-container p{
+    line-height: normal;
+    margin-top: 20px;
+    hyphens: auto;
+}
+.actions-block{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 30px;
+}
+
+.button-main-container-back{
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    color: #FFF;
+    background:  #2D9CDB;
+    padding: 12px 48px;
+    border-radius: 8px;
+    border: none;
+}
+.button-main-container-next{
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    color: #FFF;
+    background:  #2D9CDB;
+    padding: 12px 48px;
+    border-radius: 8px;
+    border: none;
+}
+
+
+
+.button-main-container-end{
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    color: #FFF;
+    background:  #2D9CDB;
+    padding: 12px 48px;
+    border-radius: 8px;
+    border: none;
+}
+.block-img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 30px;
+}
+.block-img img {
+    max-width: 400px;
+}
+.block-video-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    flex-direction: column;
+}
+
+
+
+@media (max-width: 1024px){
+    .header-container h1{
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+    }
+    .nav-links{
+        display: none;
+    }
+    .header-container{
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .step-side-bar-menu{
+        display: none;
+    }
+    .header{
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    }
+    .header-container{
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 20px;
+        align-items: center;
+        display: flex;
+    }
+    .main-content{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 20px 20px 20px 20px;
+    }
+    .my-courses-container{
+        align-items: center;
+        justify-content: center;
+    }
+    .burger-button{
+        display: block;
+    }
+    .main-title{
+        display: flex;
+        column-gap: 20px;
+    }
+    .setting{
+        display: none;
+    }
+}
+
+@media (max-width: 768px){
+    .header-search{
+        display: none;
+    }
+    .block-video-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+        flex-direction: column;
+    }
+    .block-img img {
+        max-width: 298px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .header-search{
+        display: none;
+    }
+    .setting{
+        display: none;
+    }
+    .header{
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    }
+    .header-container{
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 20px;
+        align-items: center;
+        display: flex;
+    }
+    .header-container h1{
+        font-size: 16px;
+        color: #000;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        font-family: 'Mulish', sans-serif;
+    }
+    .main-content{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 20px 20px 20px 20px;
+    }
+    .my-courses-container{
+        align-items: center;
+        justify-content: center;
+    }
+    .burger-button{
+        display: block;
+    }
+    .main-title{
+        display: flex;
+        column-gap: 20px;
+        align-items: center
+    }
+    .step-side-bar-menu{
+        display: none;
+    }
+    .actions-block{
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+
+    }
+}

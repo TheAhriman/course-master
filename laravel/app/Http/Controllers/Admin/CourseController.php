@@ -92,8 +92,6 @@ class CourseController extends Controller
      */
     public function showTrashed(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $this->authorize('isAuthor',$id);
-
         $course = $this->courseService->findFirstByIdTrashed($id);
 
         return view('admin_panel.courses.show_trashed',compact('course'));
@@ -143,7 +141,6 @@ class CourseController extends Controller
      */
     public function restore(string $id): RedirectResponse
     {
-        $this->authorize('isAuthor',$id);
         $this->courseService->restoreById($id);
 
         return redirect()->route('admin.courses.index');

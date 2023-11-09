@@ -76,11 +76,16 @@ class CourseService extends BaseService
 	 */
     public function paginateAllWithAuthorCategoriesAndLessons(): LengthAwarePaginator
     {
-        return $this->repository->with(['lessons','user','categories'])->paginate();
+        return $this->getAllWithAuthorCategoriesAndLessons()->paginate();
     }
 
     public function getAllByAuthor(string $id): Collection
     {
         return $this->repository->where(['user_id' => $id]);
+    }
+
+    public function getAllWithAuthorCategoriesAndLessons(): Collection
+    {
+        return $this->repository->with(['lessons','user','categories'])->get();
     }
 }

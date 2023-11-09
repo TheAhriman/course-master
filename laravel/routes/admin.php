@@ -176,7 +176,7 @@ Route::middleware('role:admin|creator')->group(function() {
         ->name('courses.')
         ->controller(CourseController::class)
         ->group(function () {
-            Route::get('/','indexTrashed')->name('index_trashed')->can('viewAny',[Course::class]);
+            Route::get('/','indexTrashed')->name('index_trashed');
             Route::get('/{course}','showTrashed')->name('show_trashed');
             Route::get('/{course}/restore','restore')->name('restore');
         });

@@ -149,12 +149,12 @@
             @foreach($data as $course)
                     <div class="card-course">
                         <div class="top-content">
-                            <div class="top-content-title">
-                                <a href="#" class="top-content-link">{{$course->categories[0]->name}}</a>
-                            </div>
-                            <div class="top-content-text">
-                                <a href="#" class="top-content-text-link">{{$course->categories[1]->name}}</a>
-                            </div>
+{{--                            <div class="top-content-title">--}}
+{{--                                <a href="#" class="top-content-link">{{$course->categories[0]->name}}</a>--}}
+{{--                            </div>--}}
+{{--                            <div class="top-content-text">--}}
+{{--                                <a href="#" class="top-content-text-link">{{$course->categories[1]->name}}</a>--}}
+{{--                            </div>--}}
                             <div class="top-content-logo">
                                 <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
                             </div>
@@ -173,7 +173,7 @@
                                     <a href="#" class="bottom-content-autor-link">{{$course->user->name}}</a>
                                 </div>
                                 <div class="bottom-content-date-lesson">
-                                    <span>{{$course->lessons->count()}}</span><span>lessons</span><span>&#183;</span><span>7</span><span>quiz</span>
+                                    <span>{{$course->lessons->count()}}</span><span>lessons</span><span>&#183;</span><span>{{$course->examinations_count}}</span><span>quiz</span>
                                 </div>
                             </div>
                         </div>

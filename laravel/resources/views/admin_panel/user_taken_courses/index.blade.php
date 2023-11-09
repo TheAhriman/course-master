@@ -1,7 +1,6 @@
 @extends('layouts.admin_panel.admin_panel')
 @section('content')
     @foreach($data as $progress)
-        @dump($progress)
         <form id="confirm-lesson" action="{{route('admin.user_taken_courses.confirm',$progress->id)}}" method="POST" class="d-none">
             @csrf
             @method('PATCH')

@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Models\Lesson;
 use App\Repositories\Interfaces\LessonRepositoryInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class LessonService extends BaseService
@@ -51,4 +52,19 @@ class LessonService extends BaseService
 	{
 		return $this->repository->first($lesson->priority+1, 'priority');
 	}
+
+    public function countExaminationsAndPaginate(Collection $courses): LengthAwarePaginator
+    {
+        foreach ($courses as $course){
+            $k = 0;
+            $lessons = $this->repository->with('examinations')->where(['course_id' => $course->id]);
+            foreach ($lessons as $lesson){
+                if ($lesson->examinations) {
+                    $k++;
+                }
+            }
+            $course->setAttribute('examinations_count', $k);
+        }
+        return $courses->paginate();
+    }
 }

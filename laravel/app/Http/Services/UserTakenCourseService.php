@@ -69,7 +69,7 @@ class UserTakenCourseService extends BaseService
      * @param UserTakenCourse $takenCourse
      * @return void
      */
-    public function setLessonFinished(UserTakenCourse $takenCourse): void
+    public function setWaitingStatus(UserTakenCourse $takenCourse): void
     {
         parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO('waiting'));
     }

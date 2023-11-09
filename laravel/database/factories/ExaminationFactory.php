@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Course;
-use App\Models\User;
+use App\Models\Examination;
+use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Course>
+ * @extends Factory<Examination>
  */
-class CourseFactory extends Factory
+class ExaminationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +19,9 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->colorName(),
-            'user_id' => 101
+            'title' => fake()->title(),
+            'lesson_id' => Lesson::get()->random(),
+            'min_score' => 50
         ];
     }
 }

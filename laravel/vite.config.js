@@ -22,8 +22,12 @@ export default defineConfig({
             'resources/css/course-catalog.css',
             'resources/css/style-form.css',
             'resources/css/course-index.css',
+            'resources/css/course-quiz.css',
+            'resources/css/course-quiz-form.css',
             'resources/js/code.jquery.com_jquery-3.7.1.min.js',
-            'resources/js/coments.js'
+            'resources/js/coments.js',
+            'resources/js/burger-button.js',
+            'resources/js/drop-down-exite.js'
         ]),
     ],
     resolve: {
