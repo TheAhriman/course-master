@@ -109,7 +109,7 @@
                         </g>
                     </svg>
                 </a>
-                <a href="#">
+                <a href="{{route('courses-chats')}}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                         <mask id="mask0_201_1099" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28"
                               height="28">

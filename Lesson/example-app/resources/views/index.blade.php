@@ -15,6 +15,8 @@
             <a href="#" class="link_logo">WOLP</a>
             <a href="{{route('courses-catalog')}}" class="header_link">Каталог</a>
             <a href="{{route('courses')}}" class="header_link">Мои курсы</a>
+            <a href="{{route('notifications')}}" class="header_link">Уведомления</a>
+            <a href="{{route('courses-chats')}}" class="header_link">Обсуждения</a>
         </div>
         <div class="header_nav_buttons">
             <div class="dropdown">

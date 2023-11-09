@@ -109,7 +109,7 @@
                         </g>
                     </svg>
                 </a>
-                <a href="#">
+                <a href="{{route('courses-chats')}}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                         <mask id="mask0_201_1099" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28"
                               height="28">
@@ -144,69 +144,6 @@
     </div>
     <div class="main-content">
         <div class="main-content-container">
-            <div class="new-courses">
-                <div class="new-courses-title">
-                    <p>Explore Solution Prototypes</p>
-                    <a href="{{route('courses-catalog')}}" class="all-courses-link">See all</a>
-                </div>
-                <div class="courses-string">
-                    <a href="#">
-                        <div class="block-course">
-                            <div class="first-text">
-                                <p>Solution</p>
-                                <img src="{{ asset('storage/images/idea.svg')}}">
-                            </div>
-                            <div class="second-text">
-                                <p>Home Security
-                                    with basic electronics</p>
-                            </div>
-                            <img src="{{ asset('storage/images/bro-1.svg')}}" alt="" class="block-course-img">
-                        </div>
-                        <p class="sec-title-course">Home security with basic electronics</p>
-                    </a>
-                    <a href="#">
-                        <div class="block-course">
-                            <div class="first-text">
-                                <p>Solution</p>
-                                <img src="{{ asset('storage/images/idea.svg')}}">
-                            </div>
-                            <div class="second-text">
-                                <p>Simple Rocket Building</p>
-                            </div>
-                            <img src="{{ asset('storage/images/men-2.svg')}}" alt="" class="block-course-img">
-                        </div>
-                        <p class="sec-title-course">Simple Rocket building for beginners</p>
-                    </a>
-                    <a href="#">
-                        <div class="block-course">
-                            <div class="first-text">
-                                <p>Solution</p>
-                                <img src="{{ asset('storage/images/idea.svg')}}">
-                            </div>
-                            <div class="second-text">
-                                <p>Home Security
-                                    with basic electronics</p>
-                            </div>
-                            <img src="{{ asset('storage/images/bro-1.svg')}}" alt="" class="block-course-img">
-                        </div>
-                        <p class="sec-title-course">Home security with basic electronics</p>
-                    </a>
-                    <a href="#">
-                        <div class="block-course">
-                            <div class="first-text">
-                                <p>Solution</p>
-                                <img src="{{ asset('storage/images/idea.svg')}}">
-                            </div>
-                            <div class="second-text">
-                                <p>Home Security
-                                    with basic electronics</p>
-                            </div>
-                            <img src="{{ asset('storage/images/men-2.svg')}}" alt="" class="block-course-img">
-                        </div>
-                        <p class="sec-title-course">Home security with basic electronics</p>
-                    </a>
-                </div>
-            </div>
             <div class="my-courses">
                 <div class="my-courses-title">
                     <div class="my-courses-title-filter">

@@ -108,7 +108,7 @@
                     </g>
                 </svg>
             </a>
-            <a href="#">
+            <a href="{{route('courses-chats')}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                     <mask id="mask0_201_1099" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28"
                           height="28">
@@ -149,15 +149,6 @@
 
 <div class="main-content">
     <div class="main-content-container">
-        <div class="text-container">
-            <h1 class="text-container-title">Маленькая шпаргалка</h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero quidem expedita nulla corporis alias porro molestiae quo, et culpa, eius autem, reiciendis at. Neque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero quidem expedita nulla corporis alias porro molestiae quo, et culpa, eius autem, reiciendis at. Neque!
-            </p>
-        </div>
-        <div class="block-img">
-            <img src="{{ asset('storage/images/plata.svg')}}">
-        </div>
     </div>
     <div class="block-quiz">
         <h1 class="name-quiz">Ответьте на вопрос!</h1>
@@ -181,14 +172,6 @@
                     <label for="answer-4">Я дединстайд и мёртв внутри</label>
                 </div>
             </div>
-            <div class="btn-container">
-                <button class="button-send">Отправить</button>
-            </div>
-        </form>
-    </div>
-    <div class="block-quiz">
-        <h1 class="name-quiz">Ответьте на вопрос!</h1>
-        <form class="form-quiz">
             <h1 class="title-quiz-form">Какая видеокарта лучшая за свою цену?</h1>
             <div class="forms-answer">
                 <div class="quiz-answer">
@@ -213,8 +196,6 @@
             </div>
         </form>
     </div>
-</div>
-</div>
 </div>
 </body>
 </html>

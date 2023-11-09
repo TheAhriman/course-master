@@ -7,6 +7,8 @@ export default defineConfig({
             input: [
                 'resources/js/code.jquery.com_jquery-3.7.1.min.js',
                 'resources/css/course-quiz.css',
+                'resources/css/courses-chats.css',
+                'resources/css/course-chat.css',
                 'resources/css/header.css',
                 'resources/css/footer.css',
                 'resources/css/index.css',

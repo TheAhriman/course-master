@@ -109,7 +109,7 @@
                     </g>
                 </svg>
             </a>
-            <a href="#">
+            <a href="{{route('courses-chats')}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                     <mask id="mask0_201_1099" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28"
                           height="28">
@@ -148,7 +148,6 @@
             <input type="search" placeholder="Поиск уведомления..." class="">
             <button class="button-search-notifications">Найти</button>
         </div>
-
         <div class="incoming-notifications">
             <div class="incoming-notification">
                 <div class="notification-title">
@@ -157,6 +156,7 @@
                     </div>
                     <div class="author-notification-content">
                        <h1 class="notification-author-name">Fundamentals of Electronics</h1>
+                        <div class="notification-text"><span class="notification-message">Сообщение: </span>Вас отчислили!</div>
                         <div class="notification-author-content"><span>Shams Tabrez</span><span>3</span><span>days ago</span></div>
                     </div>
                 </div>
@@ -175,6 +175,7 @@
                     </div>
                     <div class="author-notification-content">
                         <h1 class="notification-author-name">Fundamentals of Electronics</h1>
+                        <div class="notification-text"><span class="notification-message">Сообщение: </span>Вас отчислили!</div>
                         <div class="notification-author-content"><span>Shams Tabrez</span><span>3</span><span>days ago</span></div>
                     </div>
                 </div>
@@ -193,6 +194,7 @@
                     </div>
                     <div class="author-notification-content">
                         <h1 class="notification-author-name">Fundamentals of Electronics</h1>
+                        <div class="notification-text"><span class="notification-message">Сообщение: </span>Вас отчислили!</div>
                         <div class="notification-author-content"><span>Shams Tabrez</span><span>3</span><span>days ago</span></div>
                     </div>
                 </div>
@@ -211,6 +213,7 @@
                     </div>
                     <div class="author-notification-content">
                         <h1 class="notification-author-name">Fundamentals of Electronics</h1>
+                        <div class="notification-text"><span class="notification-message">Сообщение: </span>Вас отчислили!</div>
                         <div class="notification-author-content"><span>Shams Tabrez</span><span>3</span><span>days ago</span></div>
                     </div>
                 </div>
@@ -229,6 +232,7 @@
                     </div>
                     <div class="author-notification-content">
                         <h1 class="notification-author-name">Fundamentals of Electronics</h1>
+                        <div class="notification-text"><span class="notification-message">Сообщение: </span>Вас отчислили!</div>
                         <div class="notification-author-content"><span>Shams Tabrez</span><span>3</span><span>days ago</span></div>
                     </div>
                 </div>

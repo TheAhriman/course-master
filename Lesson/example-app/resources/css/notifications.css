@@ -121,12 +121,25 @@
 }
 .incoming-notification{
     display: flex;
+    width: 100%;
+    max-width: 1200px;
     padding-bottom: 15px;
     margin-top: 10px;
     border-bottom: 1px solid #BDBDBD;
     justify-content: space-between;
     padding-right: 20px;
     padding-left: 20px;
+}
+.notification-message{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 500;
+    color: #4F4F4F;
+    font-size: 18px
+}
+.notification-text{
+    font-family: 'Mulish', sans-serif;
+    color: #4F4F4F;
+    font-size: 16px;
 }
 .notification-title{
     display: flex;
@@ -219,7 +232,13 @@
         padding: 6px 28px;
     }
     .notification-author-content span{
-        font-size: 14px;
+        font-size: 12px;
+    }
+    .notification-message{
+        font-size: 17px
+    }
+    .notification-text{
+        font-size: 15px;
     }
 }
 
@@ -242,7 +261,11 @@
     .notification-author-name {
         font-size: 16px;
     }
-    .notification-author-content span{
+
+    .notification-message{
+        font-size: 16px
+    }
+    .notification-text{
         font-size: 14px;
     }
 }

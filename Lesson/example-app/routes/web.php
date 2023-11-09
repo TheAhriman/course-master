@@ -36,5 +36,12 @@ Route::get('/notifications', function (){
 
 Route::get('/course-index',function (){
     return view('course-index');})->name('course-index');
+
 Route::get('/index',function (){
     return view('index');})->name('index');
+
+Route::get('/courses-chats', function (){
+    return view('courses-chats');})->name('courses-chats');
+
+Route::get('/course-chat',function (){
+    return view('course-chat');})->name('course-chat');
