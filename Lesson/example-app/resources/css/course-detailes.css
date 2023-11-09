@@ -18,6 +18,21 @@
     line-height: normal;
 }
 
+.nav-links{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+
+}
+.nav-links a, span{
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 .header-links {
     color: #828282;
     font-family: 'Mulish', sans-serif;
@@ -191,6 +206,9 @@
         font-size: 20px;
         display: flex;
         align-items: center;
+    }
+    .nav-links{
+        display: none;
     }
     .header-container{
         display: flex;

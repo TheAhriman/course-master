@@ -18,6 +18,22 @@
     font-weight: 400;
     line-height: normal;
 }
+
+.nav-links{
+   display: flex;
+    align-items: center;
+    column-gap: 5px;
+
+}
+.nav-links a, span{
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 .burger-button{
     display: none;
 }
@@ -362,6 +378,9 @@
 @media (max-width: 1024px){
     .burger-button{
         display: block;
+    }
+    .nav-links{
+        display: none;
     }
     .header-container{
         margin-left: 0;

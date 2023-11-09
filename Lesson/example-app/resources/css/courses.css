@@ -24,6 +24,21 @@
     line-height: normal;
 }
 
+.nav-links{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+
+}
+.nav-links a, span{
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 .header-links {
     color: #828282;
     font-family: 'Mulish', sans-serif;
@@ -172,16 +187,12 @@
     font-family: 'Mulish', sans-serif;
     font-size: 16px
 }
-.my-courses-title-filter span {
-    color: #000;
-    font-family: 'Mulish', sans-serif;
-    font-size: 16px;
-}
 
 .my-courses-filter {
-    color: #000;
+    color: #828282;
     font-family: 'Mulish', sans-serif;
     font-size: 16px;
+
 }
 .my-courses-title-filter{
     display: flex;
@@ -258,6 +269,9 @@
     }
     .header{
         box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    }
+    .nav-links{
+        display: none;
     }
     .header-container{
         margin-left: 10px;

@@ -6,6 +6,10 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/js/code.jquery.com_jquery-3.7.1.min.js',
+                'resources/css/course-quiz.css',
+                'resources/css/header.css',
+                'resources/css/footer.css',
+                'resources/css/index.css',
                 'resources/js/coments.js',
                 'resources/css/course-index.css',
                 'resources/css/notifications.css',
