@@ -1,3 +1,6 @@
+.nav-menu{
+    transform: translateX(-101%);
+}
 .main-content{
     display: flex;
     flex-direction: column;
@@ -14,20 +17,6 @@
     font-size: 32px;
     font-family: 'Mulish', sans-serif;
     color: #000;
-}
-.list-category{
-    display: flex;
-    column-gap: 25px;
-    margin-top: 10px;
-}
-
-.list-category a{
-    color: rgba(0, 0, 0, 0.87);
-    font-family: 'Mulish', sans-serif;
-    font-size: 16px;
-    border-radius: 16px;
-    border: 1px solid #BDBDBD;
-    padding: 4px 8px;
 }
 
 .main-content-new-block-content{
@@ -67,6 +56,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 250px;
     height: 100px;
     background: #E5D1FF;
@@ -82,6 +72,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 250px;
     height: 100px;
     background: #C6D9FB;
@@ -91,4 +82,67 @@
     row-gap: 10px;
     border-radius: 16px;
     font-weight: 700;
+}
+
+
+@media (max-width: 768px) {
+    .main-content-title{
+        font-size: 28px;
+    }
+    .block-category-content {
+        justify-content: center;
+    }
+    .footer-logo{
+        font-size: 28px;
+    }
+    .footer-links a {
+        font-size: 14px;
+    }
+    .footer-container-info-title{
+        font-size: 17px;
+    }
+    .footer-container-info-content p{
+        font-size: 14px;
+    }
+    .category-fist{
+        font-size: 16px;
+    }
+    .category-step{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .partners-block-content {
+        flex-direction: column;
+    }
+    .main-content-title{
+        font-size: 21px;
+    }
+    .footer-logo{
+        font-size: 24px;
+    }
+    .footer-links a {
+        font-size: 12px;
+    }
+    .footer-container-info-title{
+        font-size: 15px;
+    }
+    .footer-container-info-content p{
+        font-size: 12px;
+    }
+    .footer-container-info-content span{
+        font-size: 12px;
+    }
+    .footer_container{
+        flex-direction: column;
+        align-items: normal;
+        row-gap: 30px;
+    }
+    .category-fist{
+        font-size: 14px;
+    }
+    .category-step{
+        font-size: 14px;
+    }
 }

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     margin-left: 148px;
-    margin-right: 12px;
+    margin-right: 30px;
     background-color: white;
     padding-bottom: 10px;
     margin-top: 10px;
@@ -178,6 +178,10 @@
 .notification-content{
     display: flex;
     align-items: center;
+}
+.notification-content i{
+    font-size: 24px;
+    color: #828282;
 }
 
 @media (max-width: 1024px){

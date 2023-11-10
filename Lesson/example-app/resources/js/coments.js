@@ -1,9 +1,9 @@
 $(document).ready(function() {
     $(".button-insert").click(function() {
-       let comment = $(".input-comment").val(); 
-       if (comment != "") { 
-          let autor = "Евгений Козич"; 
-          let date = getCurrentDate(); 
+       let comment = $(".input-comment").val();
+       if (comment != "") {
+          let autor = "Евгений Козич";
+          let date = getCurrentDate();
           let newComment = '<div class="block-comments">' +
                             '<div class="title-comments">' +
                                '<a href="#" class="autor-comment">' + autor + '</a>' +
@@ -18,7 +18,7 @@ $(document).ready(function() {
        }
     });
   });
-  
+
   function getCurrentDate() {
     let now = new Date();
     let day = now.getDate();
@@ -26,4 +26,3 @@ $(document).ready(function() {
     let year = now.getFullYear();
     return (day < 10 ? "0" + day : day) + "." + (month < 10 ? "0" + month : month) + "." + year;
   }
-  

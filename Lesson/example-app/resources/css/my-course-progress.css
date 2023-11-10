@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     margin-left: 150px;
-    margin-right: 12px;
+    margin-right: 30px;
     background-color: white;
     padding-bottom: 10px;
     padding-top: 20px;
@@ -247,7 +247,10 @@
     flex-direction: column;
     row-gap: 10px;
 }
-
+.enrolled-cours-buttons-more i{
+    color: black;
+    font-size: 18px;
+}
 .enrolled-cours-progress-title {
     color: #4F4F4F;
     font-family: 'Mulish', sans-serif;

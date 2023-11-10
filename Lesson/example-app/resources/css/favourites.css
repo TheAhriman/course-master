@@ -7,7 +7,6 @@
     background-color: white;
     padding-bottom: 10px;
     margin-top: 20px;
-
 }
 .burger-button{
     display: none;
@@ -67,7 +66,6 @@
     margin-top: 20px;
     display: flex;
     margin-left: 150px;
-    margin-right: 12px;
     height: 100%;
     margin-right: 20px;
 }
@@ -75,113 +73,72 @@
 .main-content-container {
     width: 100%;
 }
-
-.block-chat{
+.favourites-courses{
     display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+.my-course {
+    width: 300px;
+    display: flex;
+    position: relative;
     flex-direction: column;
-    width: 100%;
-    justify-content: center;
-}
-.chat-place{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    height: 600px;
-    border-radius: 16px;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25), 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
-    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.25);
 }
 
-.chat-place-header{
-    width: 100%;
-    height: 60px;
-    background: #2D9CDB;
+.my-course-top {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 200px;
+    background: #E0E0E0;
 }
 
-.name-chat{
+.my-course-bottom {
+    width: 100%;
+    height: 62px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.my-course-bottom p {
     font-family: 'Mulish', sans-serif;
-    font-size: 18px;
-    color: #FFFFFF;
+    color: #141A2F;
+    font-size: 16px;
+    font-style: normal;
     font-weight: 400;
-}
-
-.chat-place-body{
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-
-}
-.chat-place-footer{
-    display: flex;
-    width: 100%;
-    height: 60px;
-    background: #2d9cdb;
-}
-
-.message-person{
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-    padding: 10px;
-    width: auto;
-    max-width: 300px;
-    border-radius:  0% 10% 10% 10%;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25), 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
-}
-
-.message-person-title{
-    display: flex;
-    align-items: baseline;
-    column-gap: 5px;
-}
-
-.message-person h1{
-    font-size: 15px;
-    font-family: 'Mulish', sans-serif;
-}
-.message-person p{
-    font-size: 14px;
-    font-family: 'Mulish', sans-serif;
-    color: #4F4F4F;
     line-height: normal;
 }
-.chats-controls{
-    margin-top: 10px;
+
+.my-course-bottom-text{
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     column-gap: 5px;
 }
-.chat-input{
-    width: 100%;
-    max-width: 1000px;
-    height: 40px;
-    border-radius: 8px;
-    border: 1px solid  #E0E0E0;
-    outline: none;
-    padding: 16px 18px;
+
+.my-course-bottom-text span{
     font-family: 'Mulish', sans-serif;
-    font-size: 14px;
+    color: #828282;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
-.button-insert{
-    border-radius: 8px;
-    background: #2D9CDB;
-    color: #FFFFFF;
-    font-family: 'Mulish', sans-serif;
-    font-size: 14px;
+
+.favourites-icon{
+    position: absolute;
+    background: none;
     border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 10px;
-
+    top: 10px;
+    right: 10px;
 }
 
+.favourites-icon i{
+    color: red;
+    font-size: 32px;
+}
 
 @media (max-width: 1024px){
     .burger-button{
@@ -203,33 +160,38 @@
     .header-container h1{
         font-size: 20px;
         color: #000;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        font-family: 'Mulish', sans-serif;
     }
     .main-content{
         margin-left: 0px;
         margin-right: 0px;
         padding: 20px 20px 20px 20px;
+        justify-content: center;
     }
-    .burger-button{
-        display: block;
+    .favourites-courses{
+        display: flex;
+        align-items: center;
     }
+}
+
+@media (max-width: 768px){
+    .header-container{
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 20px;
+        align-items: center;
+        display: flex;
+    }
+    .favourites-courses{
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
     .main-title{
         display: flex;
         column-gap: 20px;
     }
-
-}
-
-@media (max-width: 768px){
-
-}
-
-
-@media (max-width: 480px) {
-    .setting{
+    .header-search{
         display: none;
     }
 }

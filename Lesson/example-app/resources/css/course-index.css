@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     margin-left: 148px;
-    margin-right: 12px;
+    margin-right: 30px;
     background-color: white;
     padding-bottom: 10px;
     margin-top: 10px;
@@ -230,6 +230,7 @@
     color: #4F4F4F;
 }
 @media (max-width: 1024px){
+
     .main-content{
         margin-left: 0px;
     }
@@ -246,6 +247,7 @@
         align-items: center;
         font-size: 20px;
         column-gap: 5px;
+        margin-left: 10px;
     }
     .nav-links{
         display: none;

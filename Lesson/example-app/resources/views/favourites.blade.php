@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css', 'resources/css/course-index.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/js/code.jquery.com_jquery-3.7.1.min.js','resources/js/coments.js'])
+    @vite(['resources/css/zero-down.css','resources/css/favourites.css','resources/css/side-bar-menu.css','resources/js/burger-button.js'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Course-index</title>
+    <title>Избранное</title>
 </head>
 
 <body>
@@ -14,9 +14,9 @@
     <div class="header-container">
         <div class="main-title">
             <img src="{{ asset('storage/images/icon-header/header-menu-block.svg')}}" alt="" class="burger-button">
-            <h1 class="title-page">О курсе</h1>
+            <h1 class="title-page">Избранное</h1>
             <div class="nav-links">
-                <a href="#">Главная</a><span>/</span><a href="{{route('my-courses-progress')}}">Профиль</a><span>/</span><a href="{{route('courses-catalog')}}">Каталог курсов</a><span>/</span><a href="{{route('courses-catalog')}}">О курсе</a><span>:</span><a href="{{route('courses-catalog')}}">Машинное обучение</a>
+                <a href="{{route('index')}}">Главная</a><span>/</span><a href="{{route('courses')}}">Мои курсы</a><span>/</span><a href="{{route('favourites')}}">Избранное</a>
             </div>
         </div>
         <div class="block-search">
@@ -113,7 +113,6 @@
                     </g>
                 </svg>
             </a>
-
         </div>
         <div class="nav-menu-exite">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -133,81 +132,41 @@
 </div>
 <div class="main-content">
     <div class="main-content-container">
-        <div class="course-header">
-           <div class="header-title">
-                <h1 class="header-title-name">Machine Learning</h1>
-           </div>
-            <div class="header-title-step">
-                <h1 class="header-title-step-name">Basic data-structure and algorithm</h1>
-            </div>
-            <div class="header-img-container">
-                <img  src="{{ asset('storage/images/images-course-index/women-1.svg')}}" alt="" class="header-img">
-            </div>
-            <div class="header-title-logo">
-                <img src="{{ asset('storage/images/images-course-index/logo-course-index.svg')}}" alt="" class="header-title-logo-img">
-            </div>
-        </div>
-        <div class="course-content">
-            <div class="block-about-course">
-                <h1 class="about-course-title">Чему вы научититесь</h1>
-                <div class="block-about-course-content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero q Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero q Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero quidem expedita nulla corporis alias porro molestiae quo, et culpa, eius autem, reiciendis at. Neque!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero quidem expedita nulla corporis alias porro molestiae quo, et culpa, eius autem, reiciendis at. Neque!</p>
-                </div>
-            </div>
-            <div class="block-requirements">
-                <h1 class="block-requirements-title">Что нужно знать</h1>
-                <div class="block-requirements-content">
-                    <p>Ничего не нужно. Просто начните</p>
-                </div>
-            </div>
-            <div class="bock-about-lessons">
-                <h1 class="about-lesson-title">Какие уроки будут в курсе</h1>
-                <div class="block-about-lessons-content">
-                    <p>Много чего интернесного</p>
-                    <p>Урок 1</p>
-                    <p>Урок 2</p>
-                    <p>Урок 3</p>
-                    <p>Урок 4</p>
-                    <p>Урок 5</p>
-                    <p>Тест 1</p>
-                    <p>Урок 1</p>
-                </div>
-            </div>
-            <div class="block-about-learn">
-                <h1 class="about-learn-title">Как вы обучаетесь</h1>
-                <div class="block-about-learn-content">
-                    <p>Вы обучаетесь проходя различные уроки и мере прохождения нужно будет пройти тестирование. Во время тестирования вам не будут доступны уроки, но будет дан некий справочный материал. Если вы не прошли тест с 1 раза, то вам придётся подать заявку на повторное прохождение теста и эту заявку вам должен одобрить администратор курса!</p>
-                </div>
-            </div>
-            <div class="actions">
-                <button class="btn-join">Присоединиться</button>
-                <button class="btn-favourites">&#9825; В избранное</button>
-            </div>
-            <hr>
-            <div class="coments">
-                <div class="comments-container">
-                    <div class="comments-filter">
-                        <div class="block-coments-count">
-                            <span>Комментариев</span><span class="coments-count"> 1</span>
-                        </div>
-                    </div>
-                    <div class="comments-insert">
-                        <input type="text" placeholder="Введите комментарий" class="input-comment">
-                        <button class="button-insert">Опубликовать</button>
-                    </div>
-                    <div class="block-comments">
-                        <div class="title-comments">
-                            <a href="#" class="autor-comment">Евгений Козич</a><span
-                                class="comment-date">01.11.2023</span>
-                        </div>
-                        <div class="comments-content">Всё отлично и понятно!</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+      <div class="favourites-courses">
+          <a href="{{route('course-detailes')}}" class="my-course">
+              <button class="favourites-icon" type="button">
+                  <i class='bx bxs-heart'></i>
+              </button>
+              <div class="my-course-top">
+                  <img src="{{ asset('storage/images/game-controler.svg')}}" alt="">
+              </div>
+              <div  class="my-course-bottom">
+                  <p>Soil Moisture Project</p>
+                  <div class="my-course-bottom-text">
+                      <span>In Dreaft</span><span>-</span><span>Edited</span><span>5</span><span>min
+                                    ego</span>
+                  </div>
+              </div>
+          </a>
+          <a href="{{route('course-detailes')}}" class="my-course">
+              <button class="favourites-icon" type="button">
+                  <i class='bx bxs-heart'></i>
+              </button>
+              <div class="my-course-top">
+                  <img src="{{ asset('storage/images/motor.svg')}}" alt="">
+              </div>
+              <div  class="my-course-bottom">
+                  <p>Soil Moisture Project</p>
+                  <div class="my-course-bottom-text">
+                      <span>In Dreaft</span><span>-</span><span>Edited</span><span>5</span><span>min
+                                    ego</span>
+                  </div>
+              </div>
+          </a>
+      </div>
     </div>
 </div>
+
 </body>
+
 </html>

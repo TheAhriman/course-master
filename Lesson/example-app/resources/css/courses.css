@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: center;
     margin-left: 150px;
-    margin-right: 12px;
+    margin-right: 30px;
     background-color: white;
     padding-bottom: 10px;
     margin-top: 20px;
@@ -69,7 +69,6 @@
     margin-top: 20px;
     display: flex;
     margin-left: 150px;
-    margin-right: 12px;
     height: 100%;
     margin-right: 20px;
 }
@@ -86,7 +85,6 @@
 }
 
 .my-courses {
-
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -137,12 +135,22 @@
 
 .my-course {
     width: 300px;
+    position: relative;
     display: flex;
     flex-direction: column;
     border-radius: 4px;
     box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.25);
 }
-
+.button-favourites{
+    position: absolute;
+    background: none;
+    border: none;
+    top: 10px;
+    right: 10px;
+}
+.button-favourites i{
+   font-size: 24px;
+}
 .my-course-top {
     display: flex;
     justify-content: space-around;
@@ -228,10 +236,12 @@
         align-items: center;
         display: flex;
     }
+    .my-courses-container {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
-
     .main-title{
         display: flex;
         column-gap: 20px;
@@ -239,7 +249,12 @@
     .header-search{
         display: none;
     }
-
+    .setting{
+        display: none;
+    }
+    .block-search{
+        column-gap: 0;
+    }
 }
 
 

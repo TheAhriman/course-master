@@ -45,3 +45,6 @@ Route::get('/courses-chats', function (){
 
 Route::get('/course-chat',function (){
     return view('course-chat');})->name('course-chat');
+
+Route::get('/favourites',function (){
+    return view('favourites');})->name('favourites');
