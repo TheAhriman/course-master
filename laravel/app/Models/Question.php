@@ -21,7 +21,8 @@ class Question extends Model
 		'type',
 		'priority',
 		'required',
-		'question_group_id'
+		'question_group_id',
+        'score'
 	];
 
     protected $casts = [

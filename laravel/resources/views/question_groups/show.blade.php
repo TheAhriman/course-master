@@ -156,7 +156,7 @@
                     <div class="forms-answer">
                         @foreach($question->question_response as $response)
                             <div class="quiz-answer">
-                                <input type="radio" value="{{$response->correct}}" id="{{$response->id}}" name="questions[{{$response->id}}]">
+                                <input type="radio" value="{{$response->id}}" id="{{$response->id}}" name="questions[{{$response->question_id}}]">
                                 <label for="{{$response->id}}">{{$response->answer}}</label>
                             </div>
                         @endforeach

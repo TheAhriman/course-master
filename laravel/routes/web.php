@@ -44,6 +44,7 @@ Route::middleware('guest')
 
 Route::get('/courses',[CourseController::class,'index'])->name('courses.index');
 Route::get('/courses/{course}',[CourseController::class,'show'])->name('courses.show');
+Route::get('/courses/{course}/sing_up',[CourseController::class,'signUp'])->name('courses.sign_up');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/',function () {return view('layouts.app'); });

@@ -154,22 +154,23 @@
                         <video controls>
                             <source src="{{asset(\Illuminate\Support\Facades\Storage::url($content->value))}}" type="video/mp4">
                         </video>
-                @else
+                @endif
+                @if($content->media_type->value == 'image')
                         <div class="block-img">
                             <img src="{{asset(\Illuminate\Support\Facades\Storage::url($content->value))}}" alt="">
                         </div>
                 @endif
 
             @endforeach
+                <form id="confirm-lesson" action="{{route('lessons.finished', $lesson)}}" method="post">@csrf @method('PATCH')</form>
                 <div class="actions-block">
                     @if(array_key_exists('previousLesson',$data))
                         <a href="{{route('lessons.show',$data['previousLesson'])}}" class="button-main-container-back">BACK</a>
                     @endif
                     @if(\Illuminate\Support\Facades\Auth::user()->can('confirm',$lesson->resource))
                         @can('notLastLesson',$lesson->resource)
-                                <form id="confirm-lesson" action="{{route('lessons.finished', $lesson)}}" method="post">@csrf @method('PATCH')</form>
                                 <a onclick="document.getElementById('confirm-lesson').submit();" type="submit" class="button-main-container-end">COMPLETE LESSON</a>
-                        @endcan
+                            @endcan
                         @can('lastLesson', $lesson->resource)
                             <form id="finish-course" action="{{route('lessons.finish_course',$lesson)}}" method="post">@csrf @method('PATCH')
                             </form>
@@ -182,6 +183,5 @@
                 </div>
             </div>
         </div>
-    </div>
 </body>
 </html>

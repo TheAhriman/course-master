@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\UserTakenCourse\CreateUserTakenCourseDTO;
+use App\Http\Services\AboutCourseService;
 use App\Http\Services\CourseService;
 use App\Http\Services\LessonService;
+use App\Http\Services\UserTakenCourseService;
+use App\Models\Course;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
 	/**
 	 * @param CourseService $courseService
 	 */
-    public function __construct(private readonly CourseService $courseService, private readonly LessonService $lessonService)
+    public function __construct(
+        private readonly CourseService $courseService,
+        private readonly LessonService $lessonService,
+        private readonly AboutCourseService $aboutCourseService,
+        private readonly UserTakenCourseService $takenCourseService
+    )
     {
     }
 
@@ -27,8 +37,24 @@ class CourseController extends Controller
         return view('courses.index',compact('data'));
     }
 
-    public function show()
+    public function show(Course $course)
     {
-        return view('courses.show');
+        $course = $this->courseService->findFirstById($course->id);
+        $aboutCourse = $this->aboutCourseService->findFirstById($course->about_course_id);
+        $content = $this->lessonService->getWithExaminationsByCourseId($course->id);
+
+        return view('courses.show',compact(['course','content','aboutCourse']));
+    }
+
+    public function signUp(Course $course)
+    {
+        $this->takenCourseService->create(new CreateUserTakenCourseDTO(
+            Auth::id(),
+            $course->id,
+            $this->lessonService->getLessonsFromCourseWithPriority($course->id)->first()->id,
+            'requested')
+        );
+
+        return redirect()->route('courses.index');
     }
 }

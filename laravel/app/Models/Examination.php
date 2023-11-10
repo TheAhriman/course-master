@@ -17,7 +17,8 @@ class Examination extends Model
 
     protected $fillable = [
 		'title',
-		'lesson_id'
+		'lesson_id',
+        'min_score'
 	];
 
     public function lesson(): BelongsTo

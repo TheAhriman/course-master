@@ -30,13 +30,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/user_taken_courses',[UserTakenCourseController::class,'index'])->name('user_taken_courses.index');
+Route::get('/user_taken_courses/{user_taken_course}/confirm',[UserTakenCourseController::class,'confirmLesson'])->name('user_taken_courses.confirm');
 
 Route::middleware('role:admin|creator')->group(function() {
     Route::get('/',function () { return view('layouts.admin_panel.admin_panel'); })->name('admin');
-
-
-    Route::get('/user_taken_courses',[UserTakenCourseController::class,'index'])->name('user_taken_courses.index');
-    Route::get('/user_taken_courses/{user_taken_course}/confirm',[UserTakenCourseController::class,'confirmLesson'])->name('user_taken_courses.confirm');
 
     Route::get('/user_progresses/create',[UserProgressController::class,'create'])->name('admin.user_progresses.create');
 

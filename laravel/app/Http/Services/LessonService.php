@@ -57,14 +57,17 @@ class LessonService extends BaseService
     {
         foreach ($courses as $course){
             $k = 0;
-            $lessons = $this->repository->with('examinations')->where(['course_id' => $course->id]);
+            $lessons = $this->getWithExaminationsByCourseId($course->id);
             foreach ($lessons as $lesson){
-                if ($lesson->examinations) {
-                    $k++;
-                }
+                if ($lesson->examinations->first()) $k++;
             }
             $course->setAttribute('examinations_count', $k);
         }
         return $courses->paginate();
+    }
+
+    public function getWithExaminationsByCourseId(string $course_id): Collection
+    {
+        return $this->repository->with('examinations')->where(['course_id' => $course_id]);
     }
 }

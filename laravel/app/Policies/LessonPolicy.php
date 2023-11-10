@@ -25,7 +25,7 @@ class LessonPolicy
 	 * @param User $user
 	 * @return bool|null
 	 */
-	public function before(User $user,string $lesson): bool|null
+	public function before(User $user): bool|null
 	{
 		if ($user->role->name == 'admin')
 			return true;
@@ -34,7 +34,12 @@ class LessonPolicy
 
     public function notFinishedCourse(User $user, Lesson $lesson): bool
     {
-        if($this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id)->status == 'finished')
+        $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id);
+
+        if ($takenCourse->resource == null)
+            return false;
+
+        if ($takenCourse->status == 'finished')
             return false;
         return true;
     }
@@ -46,10 +51,12 @@ class LessonPolicy
 	 */
     public function show(User $user, Lesson $lesson): bool
     {
-        if(!$this->notFinishedCourse($user,$lesson))
+        $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id,$user->id);
+        if($takenCourse->resource == null || $takenCourse->status == 'requested')
             return false;
 
-        if ($user->role->name == 'creator' && $user->id == $lesson->course->user_id) return true;
+        if(!$this->notFinishedCourse($user,$lesson))
+            return false;
 
         return $this->viewLesson($user, $lesson);
     }
@@ -98,7 +105,7 @@ class LessonPolicy
 	{
         $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id);
 
-		if ($takenCourse->lesson->priority > $lesson->priority) return true;
+		if ($takenCourse->resource != null && $takenCourse->lesson->priority > $lesson->priority) return true;
 
 		return false;
 	}
@@ -121,7 +128,8 @@ class LessonPolicy
 	public function confirm(User $user, Lesson $lesson): bool
 	{
         $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id);
-
+        if (!$takenCourse->resource)
+            return false;
 		return ($takenCourse->lesson->priority == $lesson->priority && $takenCourse->status != 'waiting');
 	}
 }

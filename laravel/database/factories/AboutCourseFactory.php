@@ -12,7 +12,9 @@ class AboutCourseFactory extends Factory
 	public function definition(): array
 	{
 		return [
-
+            'audience' => fake()->text(),
+            'requirements' => fake()->text(),
+            'value' => fake()->text()
 		];
 	}
 }

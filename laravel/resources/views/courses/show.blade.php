@@ -139,11 +139,8 @@
     <div class="main-content-container">
         <div class="course-header">
            <div class="header-title">
-                <h1 class="header-title-name">Machine Learning</h1>
+                <h1 class="header-title-name">{{$course->title}}</h1>
            </div>
-            <div class="header-title-step">
-                <h1 class="header-title-step-name">Basic data-structure and algorithm</h1>
-            </div>
             <div class="header-img-container">
                 <img  src="{{ asset('storage/images/images-course-index/women-1.svg')}}" alt="" class="header-img">
             </div>
@@ -155,27 +152,31 @@
             <div class="block-about-course">
                 <h1 class="about-course-title">Чему вы научититесь</h1>
                 <div class="block-about-course-content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero q Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero q Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero quidem expedita nulla corporis alias porro molestiae quo, et culpa, eius autem, reiciendis at. Neque!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo adipisci repellendus labore quos vero quidem expedita nulla corporis alias porro molestiae quo, et culpa, eius autem, reiciendis at. Neque!</p>
+                    {!! $aboutCourse->value !!}
                 </div>
             </div>
             <div class="block-requirements">
                 <h1 class="block-requirements-title">Что нужно знать</h1>
                 <div class="block-requirements-content">
-                    <p>Ничего не нужно. Просто начните</p>
+                    {!! $aboutCourse->requirements !!}
+                </div>
+            </div>
+            <div class="block-requirements">
+                <h1 class="block-requirements-title">Для кого курс</h1>
+                <div class="block-requirements-content">
+                    {!! $aboutCourse->audience !!}
                 </div>
             </div>
             <div class="bock-about-lessons">
                 <h1 class="about-lesson-title">Какие уроки будут в курсе</h1>
                 <div class="block-about-lessons-content">
                     <p>Много чего интернесного</p>
-                    <p>Урок 1</p>
-                    <p>Урок 2</p>
-                    <p>Урок 3</p>
-                    <p>Урок 4</p>
-                    <p>Урок 5</p>
-                    <p>Тест 1</p>
-                    <p>Урок 1</p>
+                    @foreach($content as $lesson)
+                        <p>{{ $lesson->title }}</p>
+                        @if($lesson->examinations->first())
+                            <p>{{ $lesson->examinations->first()->title }}</p>
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <div class="block-about-learn">
@@ -185,9 +186,12 @@
                 </div>
             </div>
             <div class="actions">
-                <button class="btn-join">Присоедениться</button>
+                @cannot('requested',$course->resource)
+                    <a href="{{route('courses.sign_up',$course)}}" type="submit" class="btn-join" onclick="document.getElementById('sign-up').submit();">Присоединиться</a>
+                @endcannot
                 <button class="btn-favourites">&#9825; В избранное</button>
             </div>
+            <form action="{{route('courses.sign_up',$course)}}" id="sign-up" method="post">@csrf</form>
             <hr>
             <div class="coments">
                 <div class="comments-container">
@@ -210,7 +214,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <script src="{{ asset('js/code.jquery.com_jquery-3.7.1.min.js') }}"></script>

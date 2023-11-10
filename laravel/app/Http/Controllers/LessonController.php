@@ -54,19 +54,9 @@ class LessonController extends Controller
 	 */
     public function setLessonFinished(Lesson $lesson): RedirectResponse
     {
-        if($this->checkExaminationsInLesson($lesson)){
-            $this->takenExaminationService->create(new CreateUserTakenExaminationDTO(Auth::id(),$lesson->examinations[0]->id,$lesson->examinations[0]->question_groups[0]->id));
-            $this->takenCourseService->setTestingStatus($this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, Auth::id())->resource);
-        } else {
-            $this->takenCourseService->setWaitingStatus(
-                takenCourse: $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, Auth::id())->resource);
-        }
+        $this->takenCourseService->setWaitingStatus(
+            takenCourse: $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, Auth::id())->resource);
         return redirect()->route('lessons.show',$lesson);
-    }
-
-    public function checkExaminationsInLesson(Lesson $lesson)
-    {
-        return $lesson->examinations[0] != null;
     }
 
     public function finishCourse(Lesson $lesson)

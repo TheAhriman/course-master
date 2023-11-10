@@ -32,8 +32,18 @@ class UserTakenExaminationService extends BaseService
      * @param UserTakenExamination $userTakenExamination
      * @return void
      */
-    public function setInProcessStatus(UserTakenExamination $userTakenExamination)
+    public function setInProcessStatus(UserTakenExamination $userTakenExamination): void
     {
         $this->repository->updateById($userTakenExamination->id, new SetStatusUserTakenExaminationDTO('in_process'));
+    }
+
+    public function setLoggedStatus(UserTakenExamination $userTakenExamination): void
+    {
+        $this->repository->updateById($userTakenExamination->id, new SetStatusUserTakenExaminationDTO('logged'));
+    }
+
+    public function setFinishStatus(UserTakenExamination $userTakenExamination): void
+    {
+        $this->repository->updateById($userTakenExamination->id, new SetStatusUserTakenExaminationDTO('finished'));
     }
 }

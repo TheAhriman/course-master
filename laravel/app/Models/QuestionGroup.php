@@ -25,7 +25,7 @@ class QuestionGroup extends Model
         return $this->belongsTo(Examination::class,'examination_id','id');
     }
 
-    public function question(): HasMany
+    public function questions(): HasMany
     {
         return $this->hasMany(Question::class,'question_group_id','id');
     }
