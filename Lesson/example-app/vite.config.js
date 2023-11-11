@@ -6,6 +6,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/js/code.jquery.com_jquery-3.7.1.min.js',
+                'resources/js/button-more.js',
                 'resources/css/favourites.css',
                 'resources/css/course-quiz.css',
                 'resources/css/courses-chats.css',

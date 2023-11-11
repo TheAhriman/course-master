@@ -28,10 +28,11 @@
 .footer-links a{
     font-family: 'Mulish', sans-serif;
     font-size: 16px;
-    color: #FFFFFF;
+    color: #787a80;
+    transition: color 0.1s ease;
 }
 .footer-container-info-title{
-    font-size: 21px;
+    font-size: 18px;
     color: #FFFFFF;
     font-family: 'Mulish', sans-serif;
 }
@@ -47,7 +48,15 @@
     font-family: 'Mulish', sans-serif;
 }
 .footer-container-info-content span{
-    color: #FFFFFF;
+    color: #787a80;
     font-size: 14px;
     font-family: 'Mulish', sans-serif;
+    transition: color 0.1s ease;
 }
+.footer-links a:hover{
+    color: #FFFFFF;
+}
+.footer-container-info-content span:hover{
+    color: #FFFFFF;
+}
+

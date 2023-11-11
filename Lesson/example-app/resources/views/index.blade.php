@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css','resources/css/header.css','resources/css/footer.css','resources/css/index.css', 'resources/css/card-course-style.css','resources/css/side-bar-menu.css','resources/js/burger-button.js'])
+    @vite(['resources/css/zero-down.css','resources/css/header.css','resources/css/footer.css','resources/css/index.css', 'resources/css/card-course-style.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/js/button-more.js'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Главная</title>
 </head>
@@ -126,16 +126,43 @@
                         fill="#1C1B1F" />
                 </g>
             </svg>
-            <ul id="dropdownContent">
-                <li>Элемент 1</li>
-                <li>Элемент 2</li>
-                <li>Элемент 3</li>
-            </ul>
         </div>
     </div>
 </div>
 <div class="main-content">
     <div class="main-content-container">
+        <div class="block-category">
+            <h1 class="main-content-title">Мы предлагаем вам:</h1>
+            <div class="block-category-content">
+                <a href="#" class="">
+                    <div class="category-fist">
+                        <p>Английский</p>
+                        <p><span>12</span> курсов</p>
+                    </div>
+                </a>
+                <a href="#" class="">
+                    <div class="category-step">
+                        <p>Машинное обучение</p>
+                        <p><span>5</span> курсов</p>
+                    </div>
+                </a>
+                <a href="#" class="">
+                    <div class="category-fist">
+                        <p>Биология</p>
+                        <p><span>2</span> курсов</p>
+                    </div>
+                </a>
+                <a href="#" class="">
+                    <div class="category-fist">
+                        <p>Биология</p>
+                        <p><span>2</span> курсов</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="category-link-more-block">
+            <a href="{{route('courses-catalog')}}" class="category-link-more">Больше категорий</a>
+        </div>
        <div class="main-content-new">
            <h1 class="main-content-title">Новинки для вас!</h1>
            <div class="main-content-new-block-content">
@@ -169,6 +196,7 @@
                        </div>
                    </div>
                </div>
+
                <div class="card-course">
                    <div class="top-content">
                        <div class="top-content-title">
@@ -199,6 +227,7 @@
                        </div>
                    </div>
                </div>
+
                <div class="card-course">
                    <div class="top-content">
                        <div class="top-content-title">
@@ -229,6 +258,7 @@
                        </div>
                    </div>
                </div>
+
                <div class="card-course">
                    <div class="top-content">
                        <div class="top-content-title">
@@ -259,6 +289,7 @@
                        </div>
                    </div>
                </div>
+
                <div class="card-course">
                    <div class="top-content">
                        <div class="top-content-title">
@@ -289,6 +320,7 @@
                        </div>
                    </div>
                </div>
+
                <div class="card-course">
                    <div class="top-content">
                        <div class="top-content-title">
@@ -319,8 +351,162 @@
                        </div>
                    </div>
                </div>
+
+           </div>
+           <div class="more-button-block">
+               <button id="button-more">Ещё</button>
            </div>
        </div>
+        <div class="popular-courses-block">
+            <h1 class="main-content-title">Самый топ:</h1>
+            <div class="popular-courses-block-content">
+
+                <div class="card-course-step">
+                    <div class="card-course-step-title">
+                        <div>
+                            <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                        </div>
+                        <div class="card-course-step-title-lessons">
+                            <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
+                        </div>
+                    </div>
+                    <div class="card-course-slogans">
+                        <div class="card-course-slogan">
+                            Fundamental to IoT
+                        </div>
+                        <div class="card-course-step-slogan-step">
+                            Overview of available development boards
+                        </div>
+                    </div>
+                    <div class="card-course-step-autor-block">
+                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                    </div>
+                    <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
+                </div>
+
+                <div class="card-course-step-2">
+                    <div class="card-course-step-title">
+                        <div>
+                            <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                        </div>
+                        <div class="card-course-step-title-lessons">
+                            <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
+                        </div>
+                    </div>
+                    <div class="card-course-slogans">
+                        <div class="card-course-slogan">
+                            Fundamental to IoT
+                        </div>
+                        <div class="card-course-step-slogan-step">
+                            Overview of available development boards
+                        </div>
+                    </div>
+                    <div class="card-course-step-autor-block">
+                        <img src="{{ asset('storage/images/copyright-2.svg')}}" alt="">
+                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                    </div>
+                    <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
+                </div>
+
+                <div class="card-course-step">
+                    <div class="card-course-step-title">
+                        <div>
+                            <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                        </div>
+                        <div class="card-course-step-title-lessons">
+                            <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
+                        </div>
+                    </div>
+                    <div class="card-course-slogans">
+                        <div class="card-course-slogan">
+                            Fundamental to IoT
+                        </div>
+                        <div class="card-course-step-slogan-step">
+                            Overview of available development boards
+                        </div>
+                    </div>
+                    <div class="card-course-step-autor-block">
+                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                    </div>
+                    <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
+                </div>
+
+                <div class="card-course-step-2">
+                    <div class="card-course-step-title">
+                        <div>
+                            <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                        </div>
+                        <div class="card-course-step-title-lessons">
+                            <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
+                        </div>
+                    </div>
+                    <div class="card-course-slogans">
+                        <div class="card-course-slogan">
+                            Fundamental to IoT
+                        </div>
+                        <div class="card-course-step-slogan-step">
+                            Overview of available development boards
+                        </div>
+                    </div>
+                    <div class="card-course-step-autor-block">
+                        <img src="{{ asset('storage/images/copyright-2.svg')}}" alt="">
+                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                    </div>
+                    <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
+                </div>
+
+                <div class="card-course-step">
+                    <div class="card-course-step-title">
+                        <div>
+                            <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                        </div>
+                        <div class="card-course-step-title-lessons">
+                            <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
+                        </div>
+                    </div>
+                    <div class="card-course-slogans">
+                        <div class="card-course-slogan">
+                            Fundamental to IoT
+                        </div>
+                        <div class="card-course-step-slogan-step">
+                            Overview of available development boards
+                        </div>
+                    </div>
+                    <div class="card-course-step-autor-block">
+                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                    </div>
+                    <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
+                </div>
+
+                <div class="card-course-step-2">
+                    <div class="card-course-step-title">
+                        <div>
+                            <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                        </div>
+                        <div class="card-course-step-title-lessons">
+                            <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
+                        </div>
+                    </div>
+                    <div class="card-course-slogans">
+                        <div class="card-course-slogan">
+                            Fundamental to IoT
+                        </div>
+                        <div class="card-course-step-slogan-step">
+                            Overview of available development boards
+                        </div>
+                    </div>
+                    <div class="card-course-step-autor-block">
+                        <img src="{{ asset('storage/images/copyright-2.svg')}}" alt="">
+                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                    </div>
+                    <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
+                </div>
+
+            </div>
+        </div>
         <div class="partners-block">
             <h1 class="main-content-title">Наши партнёры:</h1>
             <div class="partners-block-content">
@@ -332,35 +518,6 @@
                 <img src="{{ asset('storage/images/images-index/bayboll.svg')}}" alt="" class="partner-logo">
                 <img src="{{ asset('storage/images/images-index/bibi.png')}}" alt="" class="partner-logo">
                 <img src="{{ asset('storage/images/images-index/biograd.svg')}}" alt="" class="partner-logo">
-            </div>
-        </div>
-        <div class="block-category">
-            <h1 class="main-content-title">Мы предлагаем вам:</h1>
-            <div class="block-category-content">
-                <a href="#" class="">
-                    <div class="category-fist">
-                        <p>Английский</p>
-                        <p><span>12</span> курсов</p>
-                    </div>
-                </a>
-                <a href="#" class="">
-                    <div class="category-step">
-                        <p>Машинное обучение</p>
-                        <p><span>5</span> курсов</p>
-                    </div>
-                </a>
-                <a href="#" class="">
-                    <div class="category-fist">
-                        <p>Биология</p>
-                        <p><span>2</span> курсов</p>
-                    </div>
-                </a>
-                <a href="#" class="">
-                    <div class="category-fist">
-                        <p>Биология</p>
-                        <p><span>2</span> курсов</p>
-                    </div>
-                </a>
             </div>
         </div>
     </div>

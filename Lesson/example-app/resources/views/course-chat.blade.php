@@ -137,16 +137,26 @@
                   <h1 class="name-chat">Machine learning</h1>
               </div>
               <div class="chat-place-body">
-                      <div class="message-person">
+                  <div class="message-person">
                       <div class="message-person-title">
                           <h1>Nobody</h1><span>10:29</span>
                       </div>
                       <p>Привет мир! Как дела у тебя! И что ты делаешь?</p>
                   </div>
+                  <div class="main-message">
+                      <div class="main-message-title">
+                          <h1>You</h1><span>10:31</span>
+                      </div>
+                      <p>Привет! Я читаю книги и слушаю музыку и всё! Потом я буду кушать и спать! А после сна я пойду гулять на улицу!</p>
+                  </div>
+                  <div class="message-person">
+                      <div class="message-person-title">
+                          <h1>Nobody</h1><span>10:32</span>
+                      </div>
+                      <p>Ого! А я вот пришёл с работы и потом пойду перебирать картошку! И весь день буду работать после работы!</p>
+                  </div>
               </div>
-{{--              <div class="chat-place-footer">--}}
 
-{{--              </div>--}}
           </div>
           <div class="chats-controls">
              <input type="text" placeholder="Введите сообщение" class="chat-input">

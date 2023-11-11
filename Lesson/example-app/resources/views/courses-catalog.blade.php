@@ -136,15 +136,71 @@
             <div>
                 <input type="search" class="search-content" placeholder="Поиск...">
                 <ul class="category-list">
-                    <li class="category"><a href="{{route('courses')}}">Мои курсы</a></li>
-                    <li class="category"><a href="#">Машинное обучение</a></li>
-                    <li class="category"><a href="#">UX/UI</a></li>
-                    <li class="category"><a href="#">Английский</a></li>
-                    <li class="category"><a href="#">Биология</a></li>
+                    <li class="category">
+                        <a href="{{route('courses')}}" class="hover-link">
+                            Мои курсы
+                        </a>
+                    </li>
+                    <li class="category">
+                        <a href="#" class="hover-link">
+                            Машинное обучение
+                        </a>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <a href="#">Робототехника</a>
+                                <a href="#">Радиоэлектроника</a>
+                                <a href="#">ИИ</a>
+                                <a href="#">Привет мир</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="category">
+                        <a href="#" class="hover-link">
+                            UX/UI
+                        </a>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <a href="#">Photoshop</a>
+                                <a href="#">Figma</a>
+                                <a href="#">After Effects</a>
+                                <a href="#">Web Desire</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="category">
+                        <a href="#" class="hover-link">
+                            Английский
+                        </a>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <a href="#">Робототехника</a>
+                                <a href="#">Радиоэлектроника</a>
+                                <a href="#">ИИ</a>
+                                <a href="#">Привет мир</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="category">
+                        <a href="#" class="hover-link">
+                            Биология
+                        </a>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <a href="#">Робототехника</a>
+                                <a href="#">Радиоэлектроника</a>
+                                <a href="#">ИИ</a>
+                                <a href="#">Привет мир</a>
+                            </div>
+                        </div>
+                    </li>
+{{--                    <li class="category">--}}
+{{--                        <a href="#" class="hover-link">--}}
+{{--                            Новое--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
             <div class="courses-container">
-
                     <div class="card-course">
                         <div class="top-content">
                             <div class="top-content-title">
@@ -175,8 +231,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
                 <div class="card-course">
                     <div class="top-content">

@@ -111,7 +111,9 @@
     background: #2D9CDB;
     color: #FFF;
 }
-
+.lessons-links-list li:hover a{
+    color: #FFF;
+}
 .title-list-links {
     color: #828282;
     font-family: 'Mulish', sans-serif;

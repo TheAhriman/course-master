@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
 
 .header-container {
     display: flex;
@@ -60,8 +59,8 @@
     color: #828282;
     outline: none;
     display: none;
-
 }
+
 .header-search {
     width: 215px;
     padding: 4px 10px;
@@ -93,6 +92,38 @@
     border-radius: 16px;
     border: 1px solid #BDBDBD;
     padding: 8px 16px;
+    position: relative;
+}
+
+.category:hover .overlay {
+    display: block;
+}
+
+.overlay {
+    left: 0;
+    border-radius: 16px ;
+    top: 35px;
+    display: none;
+    border: 16px;
+    position: absolute;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    background: #FFFFFF;
+    z-index: 1;
+
+    max-width: 450px;
+
+}
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+.overlay-content a {
+    display: flex;
 }
 
 .category a {
@@ -172,15 +203,15 @@
         padding: 30px;
         flex-direction: column;
     }
-    .search-content{
-        display: block;
-    }
     .category-list{
-        display: none;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 10px;
     }
-    .courses-container{
+    .courses-container {
         justify-content: center;
     }
+
 }
 
 
@@ -213,6 +244,12 @@
         margin-left: 0px;
         margin-right: 0px;
         padding: 20px 20px 20px 20px;
+    }
+    .category-list{
+        display: none;
+    }
+    .search-content{
+        display: block;
     }
     .my-courses-container{
         align-items: center;
