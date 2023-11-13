@@ -11,13 +11,17 @@ use App\Models\Course;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-	/**
-	 * @param CourseService $courseService
-	 */
+    /**
+     * @param CourseService $courseService
+     * @param LessonService $lessonService
+     * @param AboutCourseService $aboutCourseService
+     * @param UserTakenCourseService $takenCourseService
+     */
     public function __construct(
         private readonly CourseService $courseService,
         private readonly LessonService $lessonService,
@@ -37,16 +41,22 @@ class CourseController extends Controller
         return view('courses.index',compact('data'));
     }
 
+
     public function show(Course $course)
     {
         $course = $this->courseService->findFirstById($course->id);
         $aboutCourse = $this->aboutCourseService->findFirstById($course->about_course_id);
         $content = $this->lessonService->getWithExaminationsByCourseId($course->id);
+        $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($course->id, Auth::id());
 
-        return view('courses.show',compact(['course','content','aboutCourse']));
+        return view('courses.show',compact(['course','content','aboutCourse', 'takenCourse']));
     }
 
-    public function signUp(Course $course)
+    /**
+     * @param Course $course
+     * @return RedirectResponse
+     */
+    public function signUp(Course $course): RedirectResponse
     {
         $this->takenCourseService->create(new CreateUserTakenCourseDTO(
             Auth::id(),

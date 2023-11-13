@@ -2,12 +2,15 @@
 
 namespace App\DTO\UserTakenCourse;
 
+use App\Enums\TakingCourseStatusTypeEnum;
+use Spatie\DataTransferObject\Attributes\MapFrom;
 use Spatie\LaravelData\Data;
 
 class SetStatusUserTakenCourseDTO extends Data
 {
     public function __construct(
-        public string $status)
+        #[MapFrom(TakingCourseStatusTypeEnum::class)]
+        public TakingCourseStatusTypeEnum $status)
     {
     }
 }

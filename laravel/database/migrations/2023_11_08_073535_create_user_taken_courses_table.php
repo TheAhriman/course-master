@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('lesson_id');
-            $table->enum('status', ['requested', 'logged', 'on_course', 'waiting', 'testing', 'finished']);
+            $table->enum('status', \App\Enums\TakingCourseStatusTypeEnum::toArray());
             $table->dateTime('started_at')->nullable();
             $table->dateTime('finished_at')->nullable();
             $table->timestamps();

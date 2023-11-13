@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TakingExaminationStatusTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,11 +18,13 @@ class UserTakenExamination extends Model
         'examination_id',
         'question_group_id',
         'status',
+        'slug',
         'started_at',
         'finished_at'
     ];
 
     protected $casts = [
+        'status' => TakingExaminationStatusTypeEnum::class,
         'started_at' => 'datetime',
         'finished_at' => 'datetime'
     ];

@@ -186,9 +186,12 @@
                 </div>
             </div>
             <div class="actions">
-                @cannot('requested',$course->resource)
+                @can('register',$course->resource)
                     <a href="{{route('courses.sign_up',$course)}}" type="submit" class="btn-join" onclick="document.getElementById('sign-up').submit();">Присоединиться</a>
-                @endcannot
+                @endcan
+                @can('notFinishedCourse',$course->resource)
+                    <a href="{{route('lessons.show', $takenCourse->lesson_id)}}" class="btn-join">Продолжить</a>
+                @endcan
                 <button class="btn-favourites">&#9825; В избранное</button>
             </div>
             <form action="{{route('courses.sign_up',$course)}}" id="sign-up" method="post">@csrf</form>

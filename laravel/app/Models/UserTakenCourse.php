@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TakingCourseStatusTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +24,7 @@ class UserTakenCourse extends Model
     ];
 
     protected $casts = [
+        'status' => TakingCourseStatusTypeEnum::class,
         'started_at' => 'datetime',
         'finished_at' => 'datetime'
     ];

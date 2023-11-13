@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\TakingCourseStatusTypeEnum;
 use App\Http\Services\UserTakenCourseService;
 use App\Models\Course;
 use App\Models\User;
@@ -19,11 +20,24 @@ class CoursePolicy
             ? true : null;
     }
 
-    public function requested(User $user, Course $course): bool
+    public function register(User $user, Course $course): bool
     {
         $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($course->id, $user->id);
 
-        if ($takenCourse->resource == null || $takenCourse->status != 'requested')
+        if ($takenCourse->resource == null)
+            return true;
+
+        return false;
+    }
+
+    public function notFinishedCourse(User $user, Course $course): bool
+    {
+        $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($course->id, $user->id);
+
+        if ($takenCourse->resource == null)
+            return false;
+
+        if ($takenCourse->status == TakingCourseStatusTypeEnum::FINISHED || $takenCourse->status == TakingCourseStatusTypeEnum::FINISH_REQUEST)
             return false;
 
         return true;

@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\DTO\UpdateUserProgressDTO;
 use App\DTO\UserTakenCourse\SetStatusUserTakenCourseDTO;
 use App\DTO\UserTakenCourse\UpdateLessonUserTakenCourseDTO;
+use App\Enums\TakingCourseStatusTypeEnum;
 use App\Models\UserTakenCourse;
 use App\Repositories\Interfaces\ScaleCriteriaRepositoryInterface;
 use App\Repositories\Interfaces\UserTakenCourseRepositoryInterface;
@@ -35,7 +36,7 @@ class UserTakenCourseService extends BaseService
             $lessons->next();
 
         if($lessons->current() == end($lessons))
-            $this->setCourseFinished($takenCourse);
+            $this->setFinishRequestStatus($takenCourse);
 
         $lessons->next();
         parent::updateById($takenCourse->id, new UpdateLessonUserTakenCourseDTO($lessons->current()->id));
@@ -45,14 +46,19 @@ class UserTakenCourseService extends BaseService
      * @param UserTakenCourse $takenCourse
      * @return void
      */
-    public function setCourseFinished(UserTakenCourse $takenCourse): void
+    public function setFinishRequestStatus(UserTakenCourse $takenCourse): void
     {
-        parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO('finished'));
+        parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO(TakingCourseStatusTypeEnum::FINISH_REQUEST));
+    }
+
+    public function setOnCourseStatus(UserTakenCourse $takenCourse)
+    {
+        parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO(TakingCourseStatusTypeEnum::ON_COURSE));
     }
 
     public function setTestingStatus(UserTakenCourse $takenCourse): void
     {
-        parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO('testing'));
+        parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO(TakingCourseStatusTypeEnum::TESTING));
     }
 
     /**
@@ -71,7 +77,7 @@ class UserTakenCourseService extends BaseService
      */
     public function setWaitingStatus(UserTakenCourse $takenCourse): void
     {
-        parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO('waiting'));
+        parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO(TakingCourseStatusTypeEnum::WAITING));
     }
 
     /**
@@ -80,12 +86,16 @@ class UserTakenCourseService extends BaseService
      */
     public function findWaiting(string $course_id): Collection
     {
-        return $this->repository->where(['course_id' => $course_id, 'status' => 'waiting']);
+        return $this->repository->where(['course_id' => $course_id, 'status' => TakingCourseStatusTypeEnum::WAITING]);
     }
 
-    public function waiting(Collection $courses)
+    /**
+     * @param Collection $courses
+     * @return Collection
+     */
+    public function findWaitingConfirm(Collection $courses): Collection
     {
-        return $this->repository->whereIn(['course_id',$courses->keyBy('id')->keys()])->where(['status' => 'waiting']);
+        return $this->repository->whereIn(['course_id',$courses->keyBy('id')->keys()])->whereIn(['status', [TakingCourseStatusTypeEnum::REQUESTED,TakingCourseStatusTypeEnum::WAITING, TakingCourseStatusTypeEnum::FINISH_REQUEST]])->get();
     }
 
 }

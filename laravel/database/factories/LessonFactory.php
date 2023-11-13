@@ -2,14 +2,17 @@
 
 namespace Database\Factories;
 
+
 use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
 
 /**
  * @extends Factory<Lesson>
  */
 class LessonFactory extends Factory
 {
+
     /**
      * Define the model's default state.
      *
@@ -22,7 +25,7 @@ class LessonFactory extends Factory
             'slug' => fake()->url(),
             'description' => fake()->realText(300),
             'course_id' => 1,
-            'priority' => Lesson::count()+1
+            'priority' => Lesson::all()->count()+1
         ];
     }
 }

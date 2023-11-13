@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DTO\UpdateUserProgressDTO;
 use App\DTO\UserTakenExamination\CreateUserTakenExaminationDTO;
+use App\Enums\TakingExaminationStatusTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Services\CourseService;
 use App\Http\Services\LessonService;
+use App\Http\Services\QuestionGroupService;
+use App\Http\Services\QuestionService;
+use App\Http\Services\UserLessonService;
 use App\Http\Services\UserTakenCourseService;
 use App\Http\Services\UserTakenExaminationService;
 use App\Models\Lesson;
-use App\Models\UserProgress;
 use App\Models\UserTakenCourse;
-use Illuminate\Support\Collection;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class UserTakenCourseController extends Controller
@@ -21,21 +26,46 @@ class UserTakenCourseController extends Controller
         private readonly UserTakenCourseService $takenCourseService,
         private readonly CourseService $courseService,
         private readonly LessonService $lessonService,
-        private readonly UserTakenExaminationService $takenExaminationService
+        private readonly UserTakenExaminationService $takenExaminationService,
+        private readonly UserLessonService $userLessonService,
+        private readonly QuestionGroupService $questionGroupService,
+        private readonly QuestionService $questionService
     )
     {
     }
 
-    public function index()
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+     */
+    public function index(): \Illuminate\Contracts\Foundation\Application|Factory|View|Application
     {
-        Auth::user()->hasRole('admin')
-            ? $data = $this->takenCourseService->paginate()
-            : $data = $this->takenCourseService->waiting($this->courseService->getAllByAuthor(Auth::id()))->paginate();
+        Auth::user()->role->name == 'admin'
+            ? $data = $this->takenCourseService->getAll()
+            : $data = $this->takenCourseService->findWaitingConfirm($this->courseService->getAllByAuthor(Auth::id()));
+
+        $data = $this->userLessonService->addCompletionTime($data);
+        $data = $this->takenExaminationService->addCompletionTime($data);
+        $data = $data->paginate();
 
         return view('admin_panel.user_taken_courses.index', compact('data'));
     }
 
-    public function confirmLesson(UserTakenCourse $userTakenCourse)
+    /**
+     * @param UserTakenCourse $userTakenCourse
+     * @return RedirectResponse
+     */
+    public function logUserInCourse(UserTakenCourse $userTakenCourse): RedirectResponse
+    {
+        $this->takenCourseService->setOnCourseStatus($this->takenCourseService->findFirstById($userTakenCourse->id)->resource);
+
+        return redirect()->route('admin.user_taken_courses.index');
+    }
+
+    /**
+     * @param UserTakenCourse $userTakenCourse
+     * @return RedirectResponse
+     */
+    public function confirmLesson(UserTakenCourse $userTakenCourse): RedirectResponse
     {
         $userTakenCourse = $this->takenCourseService->findFirstById($userTakenCourse->id);
         $lesson = $this->lessonService->findFirstById($userTakenCourse->lesson_id);
@@ -43,22 +73,35 @@ class UserTakenCourseController extends Controller
             $this->logUserOnTest($userTakenCourse->resource, $lesson->resource);
 
         } else
-            $this->takenCourseService->updateToNext($userTakenCourse->resource, $this->lessonService->getLessonsFromCourseWithPriority($userTakenCourse   ->course_id));
+            $this->takenCourseService->updateToNext($userTakenCourse->resource, $this->lessonService->getLessonsFromCourseWithPriority($userTakenCourse->course_id));
 
         return redirect()->route('admin.user_taken_courses.index');
     }
 
-    public function logUserOnTest(UserTakenCourse $userTakenCourse, Lesson $lesson)
+    /**
+     * @param UserTakenCourse $userTakenCourse
+     * @param Lesson $lesson
+     * @return void
+     */
+    public function logUserOnTest(UserTakenCourse $userTakenCourse, Lesson $lesson): void
     {
-        $this->takenExaminationService->create(new CreateUserTakenExaminationDTO(Auth::id(),$lesson->examinations[0]->id,$lesson->examinations[0]->question_groups[0]->id));
+        $questionGroup = $this->questionGroupService->findFirstById($lesson->examinations->first()->question_groups->first()->id);
+        $questions = $this->questionService->getQuestionsWithResponsesByQuestionGroupId($questionGroup->resource, $questionGroup->questions_number);
+        $slug = $this->questionService->turnQuestionsToSlug($questions);
+        $this->takenExaminationService->create(new CreateUserTakenExaminationDTO(Auth::id(),$lesson->examinations->first()->id,$questionGroup->id,TakingExaminationStatusTypeEnum::LOGGED, $slug));
         $this->takenCourseService->setTestingStatus($userTakenCourse);
     }
 
-    public function checkNextTest(Lesson $lesson)
+    /**
+     * @param Lesson $lesson
+     * @return bool
+     */
+    public function checkNextTest(Lesson $lesson): bool
     {
         if($lesson->examinations->first() != null){
-            $takenExamination = $this->takenExaminationService->findByExaminationIdAndUserId(Auth::id(), $lesson->examinations->first()->id);
-            if($takenExamination->resource != null && $takenExamination->status == 'finished') return false;
+            $takenExamination = $this->takenExaminationService->findByUserIdAndExaminationId(Auth::id(), $lesson->examinations->first()->id);
+
+            if($takenExamination->resource != null && $takenExamination->status == TakingExaminationStatusTypeEnum::FINISHED) return false;
 
             return true;
         }

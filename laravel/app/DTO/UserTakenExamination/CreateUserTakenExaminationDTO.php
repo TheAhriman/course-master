@@ -2,6 +2,8 @@
 
 namespace App\DTO\UserTakenExamination;
 
+use App\Enums\TakingExaminationStatusTypeEnum;
+use Spatie\DataTransferObject\Attributes\MapFrom;
 use Spatie\LaravelData\Data;
 
 class CreateUserTakenExaminationDTO extends Data
@@ -10,7 +12,9 @@ class CreateUserTakenExaminationDTO extends Data
         public int $user_id,
         public int $examination_id,
         public int $question_group_id,
-        public string $status = 'logged'
+        #[MapFrom(TakingExaminationStatusTypeEnum::class)]
+        public TakingExaminationStatusTypeEnum $status = TakingExaminationStatusTypeEnum::LOGGED,
+        public ?string $slug = null
     )
     {
     }

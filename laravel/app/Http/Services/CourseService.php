@@ -79,11 +79,18 @@ class CourseService extends BaseService
         return $this->getAllWithAuthorCategoriesAndLessons()->paginate();
     }
 
+    /**
+     * @param string $id
+     * @return Collection
+     */
     public function getAllByAuthor(string $id): Collection
     {
         return $this->repository->where(['user_id' => $id]);
     }
 
+    /**
+     * @return Collection
+     */
     public function getAllWithAuthorCategoriesAndLessons(): Collection
     {
         return $this->repository->with(['lessons','user','categories'])->get();

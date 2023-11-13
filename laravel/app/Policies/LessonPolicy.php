@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
+use App\Enums\TakingCourseStatusTypeEnum;
 use App\Http\Services\LessonService;
-use App\Http\Services\UserProgressService;
 use App\Http\Services\UserTakenCourseService;
 use App\Models\Lesson;
 use App\Models\User;
@@ -32,6 +32,11 @@ class LessonPolicy
 		return null;
 	}
 
+    /**
+     * @param User $user
+     * @param Lesson $lesson
+     * @return bool
+     */
     public function notFinishedCourse(User $user, Lesson $lesson): bool
     {
         $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id);
@@ -39,7 +44,7 @@ class LessonPolicy
         if ($takenCourse->resource == null)
             return false;
 
-        if ($takenCourse->status == 'finished')
+        if ($takenCourse->status == TakingCourseStatusTypeEnum::FINISHED || $takenCourse->status == TakingCourseStatusTypeEnum::FINISH_REQUEST)
             return false;
         return true;
     }
@@ -130,6 +135,7 @@ class LessonPolicy
         $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id);
         if (!$takenCourse->resource)
             return false;
-		return ($takenCourse->lesson->priority == $lesson->priority && $takenCourse->status != 'waiting');
+
+		return ($takenCourse->lesson->priority == $lesson->priority && $takenCourse->status != TakingCourseStatusTypeEnum::WAITING);
 	}
 }

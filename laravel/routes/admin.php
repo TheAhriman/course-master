@@ -31,7 +31,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/user_taken_courses',[UserTakenCourseController::class,'index'])->name('user_taken_courses.index');
-Route::get('/user_taken_courses/{user_taken_course}/confirm',[UserTakenCourseController::class,'confirmLesson'])->name('user_taken_courses.confirm');
+Route::patch('/user_taken_courses/{user_taken_course}/confirm',[UserTakenCourseController::class,'confirmLesson'])->name('user_taken_courses.confirm');
+Route::patch('/user_taken_courses/{user_taken_course}/log',[UserTakenCourseController::class,'logUserInCourse'])->name('user_taken_courses.log');
 
 Route::middleware('role:admin|creator')->group(function() {
     Route::get('/',function () { return view('layouts.admin_panel.admin_panel'); })->name('admin');

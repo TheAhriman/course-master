@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\TakingCourseStatusTypeEnum;
 use App\Http\Services\UserExaminationsProgressService;
 use App\Http\Services\UserTakenCourseService;
 use App\Http\Services\UserTakenExaminationService;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EnsureUserNotTakingExamination
 {
-    public function __construct(private readonly UserTakenCourseService $takenCourseService, private readonly UserTakenExaminationService $takenExaminationService)
+    public function __construct(private readonly UserTakenCourseService $takenCourseService)
     {
     }
 
@@ -25,7 +26,7 @@ class EnsureUserNotTakingExamination
     {
         $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($request->lesson->course_id, Auth::id());
 
-        if ($takenCourse->resource != null && $takenCourse->status == 'testing')
+        if ($takenCourse->resource != null && $takenCourse->status == TakingCourseStatusTypeEnum::TESTING)
             return redirect()->route('examinations.show', $takenCourse->lesson->examinations->first());
 
         return $next($request);

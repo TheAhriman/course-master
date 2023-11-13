@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\EnsureUserNotTakingExamination;
+use App\Http\Middleware\RedirectIfExaminationStarted;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleMiddleware;
@@ -71,7 +72,8 @@ class Kernel extends HttpKernel
         'role' => RoleMiddleware::class,
         'permission' => PermissionMiddleware::class,
         'role_or_permission' => RoleOrPermissionMiddleware::class,
-        'notExamining' => EnsureUserNotTakingExamination::class
+        'notExamining' => EnsureUserNotTakingExamination::class,
+        'examinationStarted' => RedirectIfExaminationStarted::class
     ];
 
     /**

@@ -26,6 +26,7 @@ use App\Repositories\Interfaces\RoleRepositoryInterface;
 use App\Repositories\Interfaces\ScaleCriteriaRepositoryInterface;
 use App\Repositories\Interfaces\UserAnswerRepositoryInterface;
 use App\Repositories\Interfaces\UserExaminationsProgressRepositoryInterface;
+use App\Repositories\Interfaces\UserLessonRepositoryInterface;
 use App\Repositories\Interfaces\UserProgressRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\UserTakenCourseRepositoryInterface;
@@ -40,6 +41,7 @@ use App\Repositories\RoleRepository;
 use App\Repositories\ScaleCriteriaRepository;
 use App\Repositories\UserAnswerRepository;
 use App\Repositories\UserExaminationsProgressRepository;
+use App\Repositories\UserLessonRepository;
 use App\Repositories\UserProgressRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\UserTakenCourseRepository;
@@ -69,11 +71,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserAnswerRepositoryInterface::class,UserAnswerRepository::class);
         $this->app->bind(LessonContentRepositoryInterface::class,LessonContentRepository::class);
         $this->app->bind(AboutCourseRepositoryInterface::class,AboutCourseRepository::class);
-        $this->app->bind(UserProgressRepositoryInterface::class, UserProgressRepository::class);
         $this->app->bind(FinishedCourseRepositoryInterface::class, FinishedCourseRepository::class);
         $this->app->bind(UserExaminationsProgressRepositoryInterface::class, UserExaminationsProgressRepository::class);
         $this->app->bind(UserTakenCourseRepositoryInterface::class,UserTakenCourseRepository::class);
         $this->app->bind(UserTakenExaminationRepositoryInterface::class, UserTakenExaminationRepository::class);
+        $this->app->bind(UserLessonRepositoryInterface::class, UserLessonRepository::class);
     }
 
     /**

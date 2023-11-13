@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\DTO\CreateUserAnswerDTO;
 use App\Models\Examination;
 use App\Repositories\Interfaces\UserAnswerRepositoryInterface;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class UserAnswerService extends BaseService
@@ -17,7 +18,11 @@ class UserAnswerService extends BaseService
         parent::__construct($repository);
     }
 
-    public function storeUserAnswers(array $data)
+    /**
+     * @param array $data
+     * @return void
+     */
+    public function storeUserAnswers(array $data): void
     {
         foreach($data['questions'] as $answer){
             $this->create(new CreateUserAnswerDTO(Auth::id(),array_search($answer,$data['questions']),$answer));
@@ -48,19 +53,34 @@ class UserAnswerService extends BaseService
         return false;
     }
 
-    public function findByUserIdAndQuestionId(string $user_id, string $question_id)
+    /**
+     * @param string $user_id
+     * @param string $question_id
+     * @return Collection
+     */
+    public function findByUserIdAndQuestionId(string $user_id, string $question_id): Collection
     {
         return $this->repository->where(['user_id' => $user_id, 'question_id' => $question_id]);
     }
 
-    public function deleteWrongExaminationAnswers(Examination $examination, string $user_id)
+    /**
+     * @param Examination $examination
+     * @param string $user_id
+     * @return void
+     */
+    public function deleteWrongExaminationAnswers(Examination $examination, string $user_id): void
     {
         foreach ($this->findByExaminationAndUserId($examination, $user_id) as $answer) {
             $this->deleteById($answer->id);
         }
     }
 
-    public function findByExaminationAndUserId(Examination $examination, string $user_id)
+    /**
+     * @param Examination $examination
+     * @param string $user_id
+     * @return Collection
+     */
+    public function findByExaminationAndUserId(Examination $examination, string $user_id): Collection
     {
         $collection = collect();
         foreach ($examination->question_groups as $question_group) {

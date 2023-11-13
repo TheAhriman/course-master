@@ -48,11 +48,19 @@ class LessonService extends BaseService
 		return $this->repository->first($lesson->priority-1, 'priority');
 	}
 
+    /**
+     * @param Lesson $lesson
+     * @return JsonResource
+     */
 	public function findNext(Lesson $lesson): JsonResource
 	{
 		return $this->repository->first($lesson->priority+1, 'priority');
 	}
 
+    /**
+     * @param Collection $courses
+     * @return LengthAwarePaginator
+     */
     public function countExaminationsAndPaginate(Collection $courses): LengthAwarePaginator
     {
         foreach ($courses as $course){
@@ -66,6 +74,10 @@ class LessonService extends BaseService
         return $courses->paginate();
     }
 
+    /**
+     * @param string $course_id
+     * @return Collection
+     */
     public function getWithExaminationsByCourseId(string $course_id): Collection
     {
         return $this->repository->with('examinations')->where(['course_id' => $course_id]);

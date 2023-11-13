@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->unsignedSmallInteger('priority');
             $table->unsignedBigInteger('examination_id');
+            $table->integer('questions_number')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

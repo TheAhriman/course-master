@@ -62,6 +62,10 @@ Route::prefix('lessons/{lesson}')
 
 Route::post('/user_answers',[UserAnswerController::class,'store'])->name('user_answers.store');
 Route::get('/examinations/{examination}/start',[ExaminationController::class,'startTest'])->name('examinations.start');
-Route::get('/question_groups/{question_group}',[QuestionGroupController::class,'show'])->name('question_groups.show');
-Route::post('/finished_courses/store',[FinishedCourseController::class,'store'])->name('finished_courses.store');
-Route::get('/examinations/{examination}',[ExaminationController::class,'show'])->name('examinations.show')->middleware('can:takeExamination,examination');
+
+Route::middleware('examinationStarted')->group(function () {
+    Route::get('/examinations/{examination}',[ExaminationController::class,'show'])->name('examinations.show')->middleware('can:show,examination');
+});
+Route::get('/question_groups/{question_group}',[QuestionGroupController::class,'show'])->name('question_groups.show')->middleware('can:show,question_group');
+
+
