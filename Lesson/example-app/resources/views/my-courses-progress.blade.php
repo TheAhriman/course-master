@@ -163,12 +163,6 @@
                             </div>
                         </div>
                         <div class="status-block">
-                            <img src="{{ asset('storage/images/controler-icon.svg')}}" alt="" class="status-block-img">
-                            <div class="status-block-count">
-                                <span>2 </span><span> prototypes</span>
-                            </div>
-                        </div>
-                        <div class="status-block">
                             <img src="{{ asset('storage/images/timelapse-icon.svg')}}" alt="" class="status-block-img">
                             <div class="status-block-count">
                                 <span>2 </span><span> hours learning</span>

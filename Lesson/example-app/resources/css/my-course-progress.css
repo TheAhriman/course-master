@@ -447,5 +447,8 @@
     .setting{
         display: none;
     }
+    .progess-block h1 {
+        font-size: 20px;
+    }
 }
 

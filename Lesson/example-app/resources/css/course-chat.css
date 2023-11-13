@@ -181,6 +181,7 @@
     display: flex;
     justify-content: center;
     column-gap: 5px;
+    margin-bottom: 20px;
 }
 .chat-input{
     width: 100%;
@@ -249,7 +250,10 @@
 }
 
 @media (max-width: 768px){
-
+    .message-person{
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
 }
 
 

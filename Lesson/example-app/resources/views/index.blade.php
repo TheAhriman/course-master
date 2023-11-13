@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css','resources/css/header.css','resources/css/footer.css','resources/css/index.css', 'resources/css/card-course-style.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/js/button-more.js'])
+    @vite(['resources/css/zero-down.css','resources/css/header.css','resources/css/footer.css','resources/css/index.css', 'resources/css/card-course-style.css','resources/css/side-bar-menu.css','resources/js/burger-button.js'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Главная</title>
 </head>
@@ -166,202 +166,177 @@
        <div class="main-content-new">
            <h1 class="main-content-title">Новинки для вас!</h1>
            <div class="main-content-new-block-content">
-               <div class="card-course">
-                   <div class="top-content">
-                       <div class="top-content-title">
-                           <a href="#" class="top-content-link">Machine Learning</a>
+
+               <div class="card-course-step">
+                   <input type="checkbox" id="0" class="button-favourites">
+                   <label for="0" class="label-favourites">&#9829</label>
+                   <div class="card-course-step-title">
+                       <div>
+                           <img src="{{ asset('storage/images/school.svg')}}" alt="">
                        </div>
-                       <div class="top-content-text">
-                           <a href="#" class="top-content-text-link">Basic data-structure and algorithm</a>
-                       </div>
-                       <div class="top-content-logo">
-                           <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
-                       </div>
-                       <div class="top-content-img">
-                           <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="">
+                       <div class="card-course-step-title-lessons">
+                           <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                        </div>
                    </div>
-                   <div class="bottom-content">
-                       <div class="bottom-content-title">
-                           <a href="#" class="bottom-content-title-link">Machine Learning and Data analysis</a>
+                   <a href="{{route('course-index')}}" class="card-course-slogans">
+                       <div class="card-course-slogan">
+                           Fundamental to IoT
                        </div>
-                       <div class="bottom-content-date">
-                           <div class="bottom-content-autor_block">
-                               <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                               <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
-                           </div>
-                           <div class="bottom-content-date-lesson">
-                               <span>12</span><span>lessons</span><span>&#183;</span><span>7</span><span>quiz</span>
-                           </div>
+                       <div class="card-course-step-slogan-step">
+                           Overview of available development boards
                        </div>
+                   </a>
+                   <div class="card-course-step-autor-block">
+                       <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                       <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                    </div>
+                   <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
                </div>
 
-               <div class="card-course">
-                   <div class="top-content">
-                       <div class="top-content-title">
-                           <a href="#" class="top-content-link">Machine Learning</a>
+               <div class="card-course-step">
+                   <input type="checkbox" id="1" class="button-favourites">
+                   <label for="1" class="label-favourites">&#9829</label>
+                   <div class="card-course-step-title">
+                       <div>
+                           <img src="{{ asset('storage/images/school.svg')}}" alt="">
                        </div>
-                       <div class="top-content-text">
-                           <a href="#" class="top-content-text-link">Basic data-structure and algorithm</a>
-                       </div>
-                       <div class="top-content-logo">
-                           <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
-                       </div>
-                       <div class="top-content-img">
-                           <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="">
+                       <div class="card-course-step-title-lessons">
+                           <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                        </div>
                    </div>
-                   <div class="bottom-content">
-                       <div class="bottom-content-title">
-                           <a href="#" class="bottom-content-title-link">Machine Learning and Data analysis</a>
+                   <a href="{{route('course-index')}}" class="card-course-slogans">
+                       <div class="card-course-slogan">
+                           Fundamental to IoT
                        </div>
-                       <div class="bottom-content-date">
-                           <div class="bottom-content-autor_block">
-                               <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                               <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
-                           </div>
-                           <div class="bottom-content-date-lesson">
-                               <span>12</span><span>lessons</span><span>&#183;</span><span>7</span><span>quiz</span>
-                           </div>
+                       <div class="card-course-step-slogan-step">
+                           Overview of available development boards
                        </div>
+                   </a>
+                   <div class="card-course-step-autor-block">
+                       <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                       <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                    </div>
+                   <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                </div>
 
-               <div class="card-course">
-                   <div class="top-content">
-                       <div class="top-content-title">
-                           <a href="#" class="top-content-link">Machine Learning</a>
+               <div class="card-course-step">
+                   <input type="checkbox" id="2" class="button-favourites">
+                   <label for="2" class="label-favourites">&#9829</label>
+                   <div class="card-course-step-title">
+                       <div>
+                           <img src="{{ asset('storage/images/school.svg')}}" alt="">
                        </div>
-                       <div class="top-content-text">
-                           <a href="#" class="top-content-text-link">Basic data-structure and algorithm</a>
-                       </div>
-                       <div class="top-content-logo">
-                           <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
-                       </div>
-                       <div class="top-content-img">
-                           <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="">
+                       <div class="card-course-step-title-lessons">
+                           <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                        </div>
                    </div>
-                   <div class="bottom-content">
-                       <div class="bottom-content-title">
-                           <a href="#" class="bottom-content-title-link">Machine Learning and Data analysis</a>
+                   <a href="{{route('course-index')}}" class="card-course-slogans">
+                       <div class="card-course-slogan">
+                           Fundamental to IoT
                        </div>
-                       <div class="bottom-content-date">
-                           <div class="bottom-content-autor_block">
-                               <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                               <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
-                           </div>
-                           <div class="bottom-content-date-lesson">
-                               <span>12</span><span>lessons</span><span>&#183;</span><span>7</span><span>quiz</span>
-                           </div>
+                       <div class="card-course-step-slogan-step">
+                           Overview of available development boards
                        </div>
+                   </a>
+                   <div class="card-course-step-autor-block">
+                       <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                       <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                    </div>
+                   <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
                </div>
 
-               <div class="card-course">
-                   <div class="top-content">
-                       <div class="top-content-title">
-                           <a href="#" class="top-content-link">Machine Learning</a>
+               <div class="card-course-step">
+                   <input type="checkbox" id="3" class="button-favourites">
+                   <label for="3" class="label-favourites">&#9829</label>
+                   <div class="card-course-step-title">
+                       <div>
+                           <img src="{{ asset('storage/images/school.svg')}}" alt="">
                        </div>
-                       <div class="top-content-text">
-                           <a href="#" class="top-content-text-link">Basic data-structure and algorithm</a>
-                       </div>
-                       <div class="top-content-logo">
-                           <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
-                       </div>
-                       <div class="top-content-img">
-                           <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="">
+                       <div class="card-course-step-title-lessons">
+                           <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                        </div>
                    </div>
-                   <div class="bottom-content">
-                       <div class="bottom-content-title">
-                           <a href="#" class="bottom-content-title-link">Machine Learning and Data analysis</a>
+                   <a href="{{route('course-index')}}" class="card-course-slogans">
+                       <div class="card-course-slogan">
+                           Fundamental to IoT
                        </div>
-                       <div class="bottom-content-date">
-                           <div class="bottom-content-autor_block">
-                               <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                               <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
-                           </div>
-                           <div class="bottom-content-date-lesson">
-                               <span>12</span><span>lessons</span><span>&#183;</span><span>7</span><span>quiz</span>
-                           </div>
+                       <div class="card-course-step-slogan-step">
+                           Overview of available development boards
                        </div>
+                   </a>
+                   <div class="card-course-step-autor-block">
+                       <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                       <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                    </div>
+                   <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                </div>
 
-               <div class="card-course">
-                   <div class="top-content">
-                       <div class="top-content-title">
-                           <a href="#" class="top-content-link">Machine Learning</a>
+               <div class="card-course-step">
+                   <input type="checkbox" id="4" class="button-favourites">
+                   <label for="4" class="label-favourites">&#9829</label>
+                   <div class="card-course-step-title">
+                       <div>
+                           <img src="{{ asset('storage/images/school.svg')}}" alt="">
                        </div>
-                       <div class="top-content-text">
-                           <a href="#" class="top-content-text-link">Basic data-structure and algorithm</a>
-                       </div>
-                       <div class="top-content-logo">
-                           <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
-                       </div>
-                       <div class="top-content-img">
-                           <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="">
+                       <div class="card-course-step-title-lessons">
+                           <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                        </div>
                    </div>
-                   <div class="bottom-content">
-                       <div class="bottom-content-title">
-                           <a href="#" class="bottom-content-title-link">Machine Learning and Data analysis</a>
+                   <a href="{{route('course-index')}}" class="card-course-slogans">
+                       <div class="card-course-slogan">
+                           Fundamental to IoT
                        </div>
-                       <div class="bottom-content-date">
-                           <div class="bottom-content-autor_block">
-                               <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                               <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
-                           </div>
-                           <div class="bottom-content-date-lesson">
-                               <span>12</span><span>lessons</span><span>&#183;</span><span>7</span><span>quiz</span>
-                           </div>
+                       <div class="card-course-step-slogan-step">
+                           Overview of available development boards
                        </div>
+                   </a>
+                   <div class="card-course-step-autor-block">
+                       <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                       <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                    </div>
+                   <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
                </div>
 
-               <div class="card-course">
-                   <div class="top-content">
-                       <div class="top-content-title">
-                           <a href="#" class="top-content-link">Machine Learning</a>
+               <div class="card-course-step">
+                   <input type="checkbox" id="5" class="button-favourites">
+                   <label for="5" class="label-favourites">&#9829</label>
+                   <div class="card-course-step-title">
+                       <div>
+                           <img src="{{ asset('storage/images/school.svg')}}" alt="">
                        </div>
-                       <div class="top-content-text">
-                           <a href="#" class="top-content-text-link">Basic data-structure and algorithm</a>
-                       </div>
-                       <div class="top-content-logo">
-                           <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
-                       </div>
-                       <div class="top-content-img">
-                           <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="">
+                       <div class="card-course-step-title-lessons">
+                           <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                        </div>
                    </div>
-                   <div class="bottom-content">
-                       <div class="bottom-content-title">
-                           <a href="#" class="bottom-content-title-link">Machine Learning and Data analysis</a>
+                   <a href="{{route('course-index')}}" class="card-course-slogans">
+                       <div class="card-course-slogan">
+                           Fundamental to IoT
                        </div>
-                       <div class="bottom-content-date">
-                           <div class="bottom-content-autor_block">
-                               <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                               <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
-                           </div>
-                           <div class="bottom-content-date-lesson">
-                               <span>12</span><span>lessons</span><span>&#183;</span><span>7</span><span>quiz</span>
-                           </div>
+                       <div class="card-course-step-slogan-step">
+                           Overview of available development boards
                        </div>
+                   </a>
+                   <div class="card-course-step-autor-block">
+                       <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                       <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                    </div>
+                   <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                </div>
+
 
            </div>
            <div class="more-button-block">
-               <button id="button-more">Ещё</button>
+               <a href="{{route('courses-catalog')}}" id="button-more">Ещё</a>
            </div>
        </div>
+
         <div class="popular-courses-block">
             <h1 class="main-content-title">Самый топ:</h1>
             <div class="popular-courses-block-content">
 
                 <div class="card-course-step">
+                    <input type="checkbox" id="8" class="button-favourites">
+                    <label for="8" class="label-favourites">&#9829</label>
                     <div class="card-course-step-title">
                         <div>
                             <img src="{{ asset('storage/images/school.svg')}}" alt="">
@@ -370,46 +345,24 @@
                             <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                         </div>
                     </div>
-                    <div class="card-course-slogans">
+                    <a href="{{route('course-index')}}" class="card-course-slogans">
                         <div class="card-course-slogan">
                             Fundamental to IoT
                         </div>
                         <div class="card-course-step-slogan-step">
                             Overview of available development boards
                         </div>
-                    </div>
+                    </a>
                     <div class="card-course-step-autor-block">
                         <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
-                    </div>
-                    <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
-                </div>
-
-                <div class="card-course-step-2">
-                    <div class="card-course-step-title">
-                        <div>
-                            <img src="{{ asset('storage/images/school.svg')}}" alt="">
-                        </div>
-                        <div class="card-course-step-title-lessons">
-                            <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
-                        </div>
-                    </div>
-                    <div class="card-course-slogans">
-                        <div class="card-course-slogan">
-                            Fundamental to IoT
-                        </div>
-                        <div class="card-course-step-slogan-step">
-                            Overview of available development boards
-                        </div>
-                    </div>
-                    <div class="card-course-step-autor-block">
-                        <img src="{{ asset('storage/images/copyright-2.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                     </div>
                     <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
                 </div>
 
                 <div class="card-course-step">
+                    <input type="checkbox" id="9" class="button-favourites">
+                    <label for="9" class="label-favourites">&#9829</label>
                     <div class="card-course-step-title">
                         <div>
                             <img src="{{ asset('storage/images/school.svg')}}" alt="">
@@ -418,14 +371,14 @@
                             <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                         </div>
                     </div>
-                    <div class="card-course-slogans">
+                    <a href="{{route('course-index')}}" class="card-course-slogans">
                         <div class="card-course-slogan">
                             Fundamental to IoT
                         </div>
                         <div class="card-course-step-slogan-step">
                             Overview of available development boards
                         </div>
-                    </div>
+                    </a>
                     <div class="card-course-step-autor-block">
                         <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -433,7 +386,9 @@
                     <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                 </div>
 
-                <div class="card-course-step-2">
+                <div class="card-course-step">
+                    <input type="checkbox" id="10" class="button-favourites">
+                    <label for="10" class="label-favourites">&#9829</label>
                     <div class="card-course-step-title">
                         <div>
                             <img src="{{ asset('storage/images/school.svg')}}" alt="">
@@ -442,22 +397,24 @@
                             <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                         </div>
                     </div>
-                    <div class="card-course-slogans">
+                    <a href="{{route('course-index')}}" class="card-course-slogans">
                         <div class="card-course-slogan">
                             Fundamental to IoT
                         </div>
                         <div class="card-course-step-slogan-step">
                             Overview of available development boards
                         </div>
-                    </div>
+                    </a>
                     <div class="card-course-step-autor-block">
-                        <img src="{{ asset('storage/images/copyright-2.svg')}}" alt="">
+                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                     </div>
                     <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
                 </div>
 
                 <div class="card-course-step">
+                    <input type="checkbox" id="11" class="button-favourites">
+                    <label for="11" class="label-favourites">&#9829</label>
                     <div class="card-course-step-title">
                         <div>
                             <img src="{{ asset('storage/images/school.svg')}}" alt="">
@@ -466,14 +423,14 @@
                             <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                         </div>
                     </div>
-                    <div class="card-course-slogans">
+                    <a href="{{route('course-index')}}" class="card-course-slogans">
                         <div class="card-course-slogan">
                             Fundamental to IoT
                         </div>
                         <div class="card-course-step-slogan-step">
                             Overview of available development boards
                         </div>
-                    </div>
+                    </a>
                     <div class="card-course-step-autor-block">
                         <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -481,7 +438,9 @@
                     <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                 </div>
 
-                <div class="card-course-step-2">
+                <div class="card-course-step">
+                    <input type="checkbox" id="12" class="button-favourites">
+                    <label for="12" class="label-favourites">&#9829</label>
                     <div class="card-course-step-title">
                         <div>
                             <img src="{{ asset('storage/images/school.svg')}}" alt="">
@@ -490,19 +449,45 @@
                             <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                         </div>
                     </div>
-                    <div class="card-course-slogans">
+                    <a href="{{route('course-index')}}" class="card-course-slogans">
                         <div class="card-course-slogan">
                             Fundamental to IoT
                         </div>
                         <div class="card-course-step-slogan-step">
                             Overview of available development boards
                         </div>
-                    </div>
+                    </a>
                     <div class="card-course-step-autor-block">
-                        <img src="{{ asset('storage/images/copyright-2.svg')}}" alt="">
+                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                     </div>
                     <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
+                </div>
+
+                <div class="card-course-step">
+                    <input type="checkbox" id="13" class="button-favourites">
+                    <label for="13" class="label-favourites">&#9829</label>
+                    <div class="card-course-step-title">
+                        <div>
+                            <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                        </div>
+                        <div class="card-course-step-title-lessons">
+                            <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
+                        </div>
+                    </div>
+                    <a href="{{route('course-index')}}" class="card-course-slogans">
+                        <div class="card-course-slogan">
+                            Fundamental to IoT
+                        </div>
+                        <div class="card-course-step-slogan-step">
+                            Overview of available development boards
+                        </div>
+                    </a>
+                    <div class="card-course-step-autor-block">
+                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                    </div>
+                    <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                 </div>
 
             </div>

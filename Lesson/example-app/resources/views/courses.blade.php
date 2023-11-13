@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css', 'resources/css/courses.css','resources/css/side-bar-menu.css','resources/js/burger-button.js'])
+    @vite(['resources/css/zero-down.css', 'resources/css/courses.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/css/card-course-style.css'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Courses</title>
 </head>
@@ -140,36 +140,59 @@
                     <a href="{{route('favourites')}}" class="create-course">&#10084; Избранное</a>
                 </div>
                 <div class="my-courses-container">
-                    <a href="{{route('course-detailes')}}" class="my-course">
-                            <button class="button-favourites">
-                                <i class='bx bx-heart'></i>
-                            </button>
-                        <div class="my-course-top">
-                            <img src="{{ asset('storage/images/game-controler.svg')}}" alt="">
-                        </div>
-                        <div class="my-course-bottom">
-                            <p>Soil Moisture Project</p>
-                            <div class="my-course-bottom-text">
-                                <span>In Dreaft</span><span>-</span><span>Edited</span><span>5</span><span>min
-                                    ego</span>
+
+                    <div class="card-course-step">
+                        <input type="checkbox" id="4" class="button-favourites">
+                        <label for="4" class="label-favourites">&#9829</label>
+                        <div class="card-course-step-title">
+                            <div>
+                                <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                            </div>
+                            <div class="card-course-step-title-lessons">
+                                <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                             </div>
                         </div>
-                    </a>
-                    <a href="{{route('course-detailes')}}" class="my-course">
-                        <button class="button-favourites">
-                            <i class='bx bx-heart'></i>
-                        </button>
-                        <div class="my-course-top">
-                            <img src="{{ asset('storage/images/motor.svg')}}" alt="">
+                        <a href="{{route('course-index')}}" class="card-course-slogans">
+                            <div class="card-course-slogan">
+                                Fundamental to IoT
+                            </div>
+                            <div class="card-course-step-slogan-step">
+                                Overview of available development boards
+                            </div>
+                        </a>
+                        <div class="card-course-step-autor-block">
+                            <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                            <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
                         </div>
-                        <div class="my-course-bottom">
-                            <p>Soil Moisture Project</p>
-                            <div class="my-course-bottom-text">
-                                <span>In Dreaft</span><span>-</span><span>Edited</span><span>5</span><span>min
-                                       ego</span>
-                             </div>
+                        <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
+                    </div>
+
+                    <div class="card-course-step">
+                        <input type="checkbox" id="5" class="button-favourites">
+                        <label for="5" class="label-favourites">&#9829</label>
+                        <div class="card-course-step-title">
+                            <div>
+                                <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                            </div>
+                            <div class="card-course-step-title-lessons">
+                                <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
+                            </div>
                         </div>
-                    </a>
+                        <a href="{{route('course-index')}}" class="card-course-slogans">
+                            <div class="card-course-slogan">
+                                Fundamental to IoT
+                            </div>
+                            <div class="card-course-step-slogan-step">
+                                Overview of available development boards
+                            </div>
+                        </a>
+                        <div class="card-course-step-autor-block">
+                            <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                            <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                        </div>
+                        <img src="{{ asset('storage/images/sitting-1.svg')}}" alt="" class="card-course-step-img">
+                    </div>
+
                 </div>
             </div>
         </div>

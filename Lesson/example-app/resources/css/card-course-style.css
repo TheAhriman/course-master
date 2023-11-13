@@ -1,136 +1,22 @@
-.card-course {
-    width: 300px;
-    border-radius: 4px;
-    background: #FFF;
-    box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.25);
-    margin-left: 20px;
+.button-favourites{
+    display: none;
 }
 
-.top-content {
-    width: 300px;
-    height: 200px;
-    border-radius: 4px 4px 0px 0px;
-    background: #001C27;
-    position: relative;
+.button-favourites:checked ~ .label-favourites{
+    color: red;
+    transition: color 0.3s ease;
 }
 
-.top-content-title {
-    margin-top: 32px;
-    display: inline-flex;
-    width: 160px;
-    height: 29px;
-    padding: 6px 9px 3px 8px;
-    border-radius: 2px;
-    background: rgba(13, 64, 89, 0.35);
-}
-
-.top-content-link {
-    color: #FFF;
-    font-family: 'Mulish', sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: normal;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.top-content-text {
-    margin-top: 5px;
-    width: 190px;
-    height: 45px;
-    border-radius: 2px;
-    background: rgba(45, 156, 219, 0.28);
-    display: inline-flex;
-    padding: 4px 8px;
-    justify-content: center;
-    align-items: center;
-}
-
-.top-content-text-link {
-    color: #FFF;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: 'Mulish', sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: normal;
-}
-
-.top-content-logo {
-    width: 134px;
-    height: 77px;
-    position: relative;
-}
-
-.top-content-logo {
+.label-favourites{
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
     position: absolute;
-    bottom: 0px;
-}
-
-.top-content-img {
-    position: absolute;
-    bottom: 0px;
-    left: 220px;
-}
-
-.bottom-content {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: 83px;
-    padding-left: 16px;
-    padding-top: 9px;
-    padding-bottom: 14px;
-    padding-right: 16px;
-    row-gap: 5px;
-}
-
-.bottom-content-title {
-    width: 206px;
-    height: 38px;
-}
-
-.bottom-content-title-link {
-    color: #000;
-    font-family: 'Mulish', sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.bottom-content-autor_block {
-    display: flex;
-    align-items: center;
-    column-gap: 3px;
-}
-
-.bottom-content-autor-link {
-    margin-top: 4px;
-    color: #4F4F4F;
-    font-family: 'Mulish', sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.bottom-content-date {
-    display: flex;
-    justify-content: space-between;
-}
-
-.bottom-content-date-lesson {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    column-gap: 5px;
-    color:  #4F4F4F;
-    font-family: 'Mulish', sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border: 2px solid;
+    border-radius: 50%;
+    transition: color 0.3s ease;
 }
 
 .card-course-step {
@@ -139,7 +25,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 4px;
-    background: #FFF;
+    background: rgb(0, 28, 39);
     box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.25);
     margin-left: 20px;
     padding-top: 16px;
@@ -152,7 +38,7 @@
 .card-course-step-title {
     display: flex;
     align-items: center;
-    column-gap: 70px;
+    column-gap: 15px;
 }
 
 .card-course-step-title-lessons {
@@ -171,10 +57,9 @@
 }
 
 .card-course-slogan {
-
     width: 127px;
     height: 17px;
-    color: #4F4F4F;
+    color: #fff;
     font-family: 'Mulish', sans-serif;
     font-size: 14px;
     float: left;
@@ -182,12 +67,31 @@
 
 .card-course-step-slogan-step {
     width: 271px;
-    color: #4F4F4F;
+    color: #fff;
     font-family: 'Mulish', sans-serif;
     font-size: 16px;
     text-align: left;
 }
 
+.card-category-block{
+    font-size: 12px;
+    color: #fff;
+    display: flex;
+    max-width: 190px;
+    column-gap: 3px;
+    white-space: nowrap;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.card-course-step-title-lessons span{
+    color: #fff;
+    font-family: Mulish,sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
 .card-course-step-img {
     position: absolute;
     bottom: 0;
@@ -206,7 +110,7 @@
 
 .bottom-content-autor-link {
     margin-top: 4px;
-    color: #4F4F4F;
+    color: #fff;
     font-family: 'Mulish', sans-serif;
     font-size: 12px;
     font-style: normal;

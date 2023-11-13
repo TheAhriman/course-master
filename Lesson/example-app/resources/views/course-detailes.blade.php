@@ -133,18 +133,17 @@
     </div>
 
     <div class="step-side-bar-menu">
-
         <div>
             <a href="{{route('courses')}}"class="link-home">&#9668; Назад</a>
         </div>
         <div class="lessons-links">
             <h1 class="title-list-links">Lessons</h1>
             <ul class="lessons-links-list">
-                <li><i class='bx bxs-bookmark-star'></i><a href="#">Basic boards</a><i class='bx bx-checkс' ></i></li>
+                <li><i class='bx bxs-bookmark-star'></i><a href="#">Basic boards</a><i class='bx bx-check' ></i></li>
                 <li><i class='bx bxs-bookmark-star'></i><a href="#">PCB boards</a><i class='bx bx-check'></i></li>
                 <li><i class='bx bxs-add-to-queue'></i><a href="{{route('course-quiz')}}">Quiz 1</a><i class='bx bx-check'></i></li>
-                <li><i class='bx bxs-bookmark-star'></i><a href="#">Understanding pins</a><i class='bx bx-checkbox'></i></li>
-                <li><i class='bx bxs-add-to-queue'></i><a href="#">Quiz 2</a><i class='bx bx-checkbox'></i></li>
+                <li><i class='bx bxs-bookmark-star'></i><a href="#">Understanding pins</a></li>
+                <li><i class='bx bxs-add-to-queue'></i><a href="#">Quiz 2</a></li>
             </ul>
         </div>
     </div>

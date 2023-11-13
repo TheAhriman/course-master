@@ -452,3 +452,8 @@ p {
         font-size: 21px;
     }
 }
+@media (max-width: 480px) {
+    .card-overview-content span{
+        font-size: 24px;
+    }
+}

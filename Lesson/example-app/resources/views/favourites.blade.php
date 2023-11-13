@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css','resources/css/favourites.css','resources/css/side-bar-menu.css','resources/js/burger-button.js'])
+    @vite(['resources/css/zero-down.css','resources/css/favourites.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/css/card-course-style.css'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Избранное</title>
 </head>
@@ -133,36 +133,35 @@
 <div class="main-content">
     <div class="main-content-container">
       <div class="favourites-courses">
-          <a href="{{route('course-detailes')}}" class="my-course">
-              <button class="favourites-icon" type="button">
-                  <i class='bx bxs-heart'></i>
-              </button>
-              <div class="my-course-top">
-                  <img src="{{ asset('storage/images/game-controler.svg')}}" alt="">
-              </div>
-              <div  class="my-course-bottom">
-                  <p>Soil Moisture Project</p>
-                  <div class="my-course-bottom-text">
-                      <span>In Dreaft</span><span>-</span><span>Edited</span><span>5</span><span>min
-                                    ego</span>
+
+          <div class="card-course-step">
+              <input type="checkbox" id="0" class="button-favourites">
+              <label for="0" class="label-favourites">&#9829</label>
+              <div class="card-course-step-title">
+                  <div>
+                      <img src="{{ asset('storage/images/school.svg')}}" alt="">
+                  </div>
+                  <div class="card-course-step-title-lessons">
+                      <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                   </div>
               </div>
-          </a>
-          <a href="{{route('course-detailes')}}" class="my-course">
-              <button class="favourites-icon" type="button">
-                  <i class='bx bxs-heart'></i>
-              </button>
-              <div class="my-course-top">
-                  <img src="{{ asset('storage/images/motor.svg')}}" alt="">
-              </div>
-              <div  class="my-course-bottom">
-                  <p>Soil Moisture Project</p>
-                  <div class="my-course-bottom-text">
-                      <span>In Dreaft</span><span>-</span><span>Edited</span><span>5</span><span>min
-                                    ego</span>
+              <a href="{{route('course-index')}}" class="card-course-slogans">
+                  <div class="card-course-slogan">
+                      Fundamental to IoT
                   </div>
+                  <div class="card-course-step-slogan-step">
+                      Overview of available development boards
+                  </div>
+              </a>
+              <div class="card-course-step-autor-block">
+                  <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                  <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
               </div>
-          </a>
+              <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
+          </div>
+
+
+
       </div>
     </div>
 </div>
