@@ -10,7 +10,8 @@ class CreateUserAnswerDTO extends Data
         public int $user_id,
         public int $question_id,
         public int $question_response_id,
-        public ?string $value = null,
+        public string $taken_examination_id,
+        public ?string $value = null
     )
     {
     }

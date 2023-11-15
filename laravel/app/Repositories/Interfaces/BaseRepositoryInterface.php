@@ -7,12 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Data;
 
-/**
- * @method onlyTrashed(string $string)
- * @method latest(string $string)
- * @method toBase(string $string)
- * @method whereIn(array $array)
- */
+
 interface BaseRepositoryInterface
 {
     /**
@@ -55,7 +50,7 @@ interface BaseRepositoryInterface
 	 * @param Data $data
 	 * @return void
 	 */
-    public function updateById(int $id, Data $data): void;
+    public function updateById(string $id, Data $data): void;
 
     /**
      * @param int $id

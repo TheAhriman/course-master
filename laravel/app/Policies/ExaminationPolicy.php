@@ -29,7 +29,8 @@ class ExaminationPolicy
         if (!$this->takeExamination($user, $examination))
             return false;
 
-        if ($this->takenExaminationService->findByUserIdAndExaminationId($user->id, $examination->id)->status == TakingExaminationStatusTypeEnum::FINISHED)
+        if ($this->takenExaminationService->findByUserIdAndExaminationId($user->id, $examination->id)->status
+            == TakingExaminationStatusTypeEnum::FINISHED)
             return false;
 
         return true;

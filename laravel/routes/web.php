@@ -56,7 +56,7 @@ Route::prefix('lessons/{lesson}')
 	->group(function () {
 		Route::get('/','show')->name('show')->middleware('can:show,lesson');
 		Route::patch('/finished','setLessonFinished')->name('finished')->middleware('can:confirm,lesson');
-        Route::patch('/finish_course','finishCourse')->name('finish_course');
+        Route::patch('/finish_course','setFinishCourseRequest')->name('finish_course');
 	});
 
 

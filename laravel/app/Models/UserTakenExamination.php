@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use App\Enums\TakingExaminationStatusTypeEnum;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class UserTakenExamination extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'user_taken_examinations';
 
@@ -42,5 +44,10 @@ class UserTakenExamination extends Model
     public function question_groups(): BelongsTo
     {
         return $this->belongsTo(QuestionGroup::class,'question_group_id','id');
+    }
+
+    public function questions(): BelongsToMany
+    {
+        return $this->belongsToMany(Question::class, 'user_taken_examinations_questions');
     }
 }

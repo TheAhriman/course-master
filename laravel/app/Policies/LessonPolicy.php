@@ -46,6 +46,7 @@ class LessonPolicy
 
         if ($takenCourse->status == TakingCourseStatusTypeEnum::FINISHED || $takenCourse->status == TakingCourseStatusTypeEnum::FINISH_REQUEST)
             return false;
+
         return true;
     }
 
@@ -76,6 +77,8 @@ class LessonPolicy
         $takenCourse = $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, $user->id);
 
 		if ($takenCourse->resource == null || $takenCourse->lesson->priority < $lesson->priority) return false;
+
+        if ($takenCourse->status == TakingCourseStatusTypeEnum::FAILED_TEST) return false;
 
 		return true;
 	}

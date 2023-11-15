@@ -25,7 +25,8 @@ class StoreUserAnswers extends FormRequest
         return [
             'questions' => 'array|required',
             'questions.*' => 'integer|required',
-            'question_group' => 'required|integer'
+            'question_group' => 'required|integer',
+            'taken_examination_id' => 'required|string'
         ];
     }
 }

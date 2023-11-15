@@ -21,7 +21,8 @@ class UserResource extends JsonResource
             'password' => $this->password,
             'role_id' => $this->role_id,
             'remember_token' => $this->remember_token,
-            'role' => new RoleResource($this->whenLoaded('role'))
+            'role' => new RoleResource($this->whenLoaded('role')),
+            'examination_id' => $this->examination_id
         ];
     }
 }

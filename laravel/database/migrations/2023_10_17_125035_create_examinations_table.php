@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->unsignedBigInteger('lesson_id');
             $table->integer('min_score');
+            $table->integer('tries')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

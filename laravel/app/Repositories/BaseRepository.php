@@ -122,6 +122,34 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
+     * @param array|string $relations
+     * @param array|string|null $value
+     * @param string $column
+     * @return Collection
+     */
+    public function whereHas(array|string $relations, array|string $value = null, string $column = 'id'): Collection
+    {
+        $query = $this->newQuery();
+        if (is_array($relations)) {
+            foreach ($relations as $relation)
+                $query->whereHas(array_search($relation,$relations), function (Builder $query) use ($relation, $column) {
+                    $query->where($column, $relation);
+                });
+        } else {
+            $query->whereHas($relations, function (Builder $query) use ($value, $column) {
+                if (is_array($value)) {
+                    foreach ($value as $val)
+                        $query->where(array_search($val,$value),$val);
+                } else {
+                    $query->where($column, $value);
+                }
+            });
+        }
+        return $query->get();
+    }
+
+
+    /**
      * @param Data $data
      * @return JsonResource
      */
@@ -131,11 +159,11 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @param Data $data
      * @return void
      */
-    public function updateById(int $id, Data $data): void
+    public function updateById(string $id, Data $data): void
     {
         $this->newQuery()->find($id)->update(($data->toArray()));
     }
@@ -155,6 +183,6 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function restoreById(int $id): void
     {
-        $this->model->onlyTrashed()->find($id)->restore();
+        $this->model->newQuery()->onlyTrashed()->find($id)->restore();
     }
 }

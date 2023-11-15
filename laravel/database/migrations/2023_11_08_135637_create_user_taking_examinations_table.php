@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_taken_examinations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('examination_id');
             $table->unsignedBigInteger('question_group_id');
             $table->enum('status',\App\Enums\TakingExaminationStatusTypeEnum::toArray());
-            $table->string('slug')->nullable();
             $table->dateTime('started_at')->nullable();
             $table->dateTime('finished_at')->nullable();
             $table->timestamps();

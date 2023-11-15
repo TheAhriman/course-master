@@ -29,6 +29,7 @@ class EnsureUserNotTakingExamination
         if ($takenCourse->resource != null && $takenCourse->status == TakingCourseStatusTypeEnum::TESTING)
             return redirect()->route('examinations.show', $takenCourse->lesson->examinations->first());
 
+
         return $next($request);
     }
 }

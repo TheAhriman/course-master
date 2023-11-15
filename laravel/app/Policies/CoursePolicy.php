@@ -37,7 +37,7 @@ class CoursePolicy
         if ($takenCourse->resource == null)
             return false;
 
-        if ($takenCourse->status == TakingCourseStatusTypeEnum::FINISHED || $takenCourse->status == TakingCourseStatusTypeEnum::FINISH_REQUEST)
+        if ($takenCourse->status == (TakingCourseStatusTypeEnum::FINISHED || TakingCourseStatusTypeEnum::FINISH_REQUEST || TakingCourseStatusTypeEnum::FAILED))
             return false;
 
         return true;

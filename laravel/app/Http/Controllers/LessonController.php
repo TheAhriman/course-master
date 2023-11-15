@@ -23,7 +23,8 @@ class LessonController extends Controller
      * @param UserTakenCourseService $takenCourseService
      * @param UserLessonService $userLessonService
      */
-    public function __construct(private readonly LessonService $lessonService,
+    public function __construct(
+        private readonly LessonService $lessonService,
         private readonly LessonContentService $lessonContentService,
         private readonly UserTakenCourseService $takenCourseService,
         private readonly UserLessonService $userLessonService
@@ -67,10 +68,10 @@ class LessonController extends Controller
      * @param Lesson $lesson
      * @return RedirectResponse
      */
-    public function finishCourse(Lesson $lesson): RedirectResponse
+    public function setFinishCourseRequest(Lesson $lesson): RedirectResponse
     {
         $this->takenCourseService->setFinishRequestStatus(
-            takenCourse: $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, Auth::id())->resource);
+            $this->takenCourseService->findByCourseIdAndUserId($lesson->course_id, Auth::id())->resource);
 
         return redirect()->route('courses.index');
     }

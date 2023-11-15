@@ -19,6 +19,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Ramsey\Uuid\Uuid;
 
 class UserTakenCourseController extends Controller
 {
@@ -69,27 +70,42 @@ class UserTakenCourseController extends Controller
     {
         $userTakenCourse = $this->takenCourseService->findFirstById($userTakenCourse->id);
         $lesson = $this->lessonService->findFirstById($userTakenCourse->lesson_id);
-        if($this->checkNextTest($lesson->resource)){
-            $this->logUserOnTest($userTakenCourse->resource, $lesson->resource);
 
-        } else
-            $this->takenCourseService->updateToNext($userTakenCourse->resource, $this->lessonService->getLessonsFromCourseWithPriority($userTakenCourse->course_id));
+        $this->checkNextTest($lesson->resource)
+            ? $this->logUserOnTest($userTakenCourse->resource)
+            : $this->takenCourseService->updateToNext($userTakenCourse->resource, $this->lessonService->getLessonsFromCourseWithPriority($userTakenCourse->course_id));
 
         return redirect()->route('admin.user_taken_courses.index');
     }
 
+    public function finishCourse(UserTakenCourse $userTakenCourse)
+    {
+        $this->takenCourseService->setFinishStatus($userTakenCourse);
+
+        return back();
+    }
+
     /**
      * @param UserTakenCourse $userTakenCourse
-     * @param Lesson $lesson
-     * @return void
+     * @return RedirectResponse
      */
-    public function logUserOnTest(UserTakenCourse $userTakenCourse, Lesson $lesson): void
+    public function logUserOnTest(UserTakenCourse $userTakenCourse)
     {
+        $lesson = $this->lessonService->findFirstById($userTakenCourse->lesson_id);
         $questionGroup = $this->questionGroupService->findFirstById($lesson->examinations->first()->question_groups->first()->id);
-        $questions = $this->questionService->getQuestionsWithResponsesByQuestionGroupId($questionGroup->resource, $questionGroup->questions_number);
-        $slug = $this->questionService->turnQuestionsToSlug($questions);
-        $this->takenExaminationService->create(new CreateUserTakenExaminationDTO(Auth::id(),$lesson->examinations->first()->id,$questionGroup->id,TakingExaminationStatusTypeEnum::LOGGED, $slug));
+        $questions = $this->questionService->getRandomQuestionsKeysByQuestionGroupId($questionGroup->id, $questionGroup->questions_number);
+
+        $this->takenExaminationService->createAndAttachQuestions(
+            new CreateUserTakenExaminationDTO(
+                Auth::id(),
+                $lesson->examinations->first()->id,
+                $questionGroup->id
+            ),
+            $questions
+        );
         $this->takenCourseService->setTestingStatus($userTakenCourse);
+
+        return redirect()->route('admin.user_taken_courses.index');
     }
 
     /**
@@ -99,7 +115,10 @@ class UserTakenCourseController extends Controller
     public function checkNextTest(Lesson $lesson): bool
     {
         if($lesson->examinations->first() != null){
-            $takenExamination = $this->takenExaminationService->findByUserIdAndExaminationId(Auth::id(), $lesson->examinations->first()->id);
+            $takenExamination = $this->takenExaminationService->findByUserIdAndExaminationId(
+                Auth::id(),
+                $lesson->examinations->first()->id
+            );
 
             if($takenExamination->resource != null && $takenExamination->status == TakingExaminationStatusTypeEnum::FINISHED) return false;
 

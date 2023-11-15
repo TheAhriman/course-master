@@ -31,7 +31,7 @@ class QuestionGroupService extends BaseService
      * @param QuestionGroup $questionGroup
      * @return bool
      */
-    public function checkLast(Collection $questionGroups, QuestionGroup $questionGroup): bool
+    public function isLastQuestionGroup(Collection $questionGroups, QuestionGroup $questionGroup): bool
     {
         return $questionGroup->priority == $questionGroups->count();
     }

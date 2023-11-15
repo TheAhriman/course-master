@@ -14,7 +14,6 @@ class CreateUserTakenExaminationDTO extends Data
         public int $question_group_id,
         #[MapFrom(TakingExaminationStatusTypeEnum::class)]
         public TakingExaminationStatusTypeEnum $status = TakingExaminationStatusTypeEnum::LOGGED,
-        public ?string $slug = null
     )
     {
     }

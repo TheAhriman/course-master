@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\DTO\CreateUserAnswerDTO;
 use App\Models\Examination;
+use App\Models\UserTakenExamination;
 use App\Repositories\Interfaces\UserAnswerRepositoryInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,7 @@ class UserAnswerService extends BaseService
     public function storeUserAnswers(array $data): void
     {
         foreach($data['questions'] as $answer){
-            $this->create(new CreateUserAnswerDTO(Auth::id(),array_search($answer,$data['questions']),$answer));
+            $this->create(new CreateUserAnswerDTO(Auth::id(),array_search($answer,$data['questions']),$answer, $data['taken_examination_id']));
         }
     }
 
@@ -33,12 +34,12 @@ class UserAnswerService extends BaseService
      * @param Examination $examination
      * @return bool
      */
-    public function checkUserPassedTest(Examination $examination): bool
+    public function checkUserPassedTest(Examination $examination, UserTakenExamination $takenExamination): bool
     {
         $score = 0;
         foreach ($examination->question_groups as $question_group){
             foreach ($question_group->questions as $question){
-                $answers = $this->findByUserIdAndQuestionId(Auth::id(), $question->id);
+                $answers = $this->findByUserIdQuestionIdAndExaminationId(Auth::id(), $question->id, $takenExamination->id);
                 foreach ($answers as $answer){
                     if($answer->question_response->correct == 0){
                         $score -= $question->score;
@@ -54,13 +55,14 @@ class UserAnswerService extends BaseService
     }
 
     /**
-     * @param string $user_id
-     * @param string $question_id
+     * @param string $userId
+     * @param string $questionId
+     * @param string $examinationId
      * @return Collection
      */
-    public function findByUserIdAndQuestionId(string $user_id, string $question_id): Collection
+    public function findByUserIdQuestionIdAndExaminationId(string $userId, string $questionId, string $examinationId): Collection
     {
-        return $this->repository->where(['user_id' => $user_id, 'question_id' => $question_id]);
+        return $this->repository->where(['user_id' => $userId, 'question_id' => $questionId, 'taken_examination_id' => $examinationId]);
     }
 
     /**

@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
+use Spatie\LaravelData\Data;
 
 class UserTakenExaminationService extends BaseService
 {
@@ -32,7 +33,7 @@ class UserTakenExaminationService extends BaseService
      */
     public function findByUserIdAndExaminationId(string $user_id, string $examination_id): JsonResource
     {
-        return new JsonResource($this->repository->where(['user_id' => $user_id, 'examination_id' => $examination_id])->first());
+        return new JsonResource($this->repository->where(['user_id' => $user_id, 'examination_id' => $examination_id])->where('status','!=',TakingExaminationStatusTypeEnum::FAILED)->first());
     }
 
     /**
@@ -60,6 +61,11 @@ class UserTakenExaminationService extends BaseService
     public function setFinishStatus(UserTakenExamination $userTakenExamination): void
     {
         $this->repository->updateById($userTakenExamination->id, new SetStatusUserTakenExaminationDTO(TakingExaminationStatusTypeEnum::FINISHED));
+    }
+
+    public function setFailedStatus(UserTakenExamination $userTakenExamination): void
+    {
+        $this->repository->updateById($userTakenExamination->id, new SetStatusUserTakenExaminationDTO(TakingExaminationStatusTypeEnum::FAILED));
     }
 
     /**
@@ -106,11 +112,16 @@ class UserTakenExaminationService extends BaseService
         return $data;
     }
 
-    public function updateToNext(Collection $questionGroups, UserTakenExamination $examination)
+    /**
+     * @param Collection $questionGroups
+     * @param UserTakenExamination $examination
+     * @return void
+     */
+    public function updateToNext(Collection $questionGroups, UserTakenExamination $examination): void
     {
         $questionGroups = $questionGroups->getIterator();
 
-        while($questionGroups->current()->id !== $examination->question_group_id)
+        while($questionGroups->current()->id != $examination->question_group_id)
             $questionGroups->next();
 
         $questionGroups->next();
@@ -118,10 +129,23 @@ class UserTakenExaminationService extends BaseService
         $this->repository->updateById($examination->id, new UpdateQuestionGroupIdUserTakenExaminationDTO($questionGroups->current()->id));
     }
 
-    public function turnSlugToQuestionIds(UserTakenExamination $userTakenExamination): Collection
+    /**
+     * @param Data $data
+     * @param Collection $questions
+     * @return void
+     */
+    public function createAndAttachQuestions(Data $data, Collection $questions): void
     {
-        $array = [];
-        parse_str($userTakenExamination->slug, $array);
-        return collect($array);
+        $this->create($data)->resource->questions()->attach($questions);
+    }
+
+    /**
+     * @param UserTakenExamination $takenExamination
+     * @param Collection $questions
+     * @return void
+     */
+    public function attachQuestions(UserTakenExamination $takenExamination, Collection $questions): void
+    {
+        $takenExamination->questions()->attach($questions);
     }
 }

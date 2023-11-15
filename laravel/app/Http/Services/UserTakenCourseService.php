@@ -51,6 +51,11 @@ class UserTakenCourseService extends BaseService
         parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO(TakingCourseStatusTypeEnum::FINISH_REQUEST));
     }
 
+    public function setFinishStatus(UserTakenCourse $takenCourse)
+    {
+        parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO(TakingCourseStatusTypeEnum::FINISHED));
+    }
+
     public function setOnCourseStatus(UserTakenCourse $takenCourse)
     {
         parent::updateById($takenCourse->id, new SetStatusUserTakenCourseDTO(TakingCourseStatusTypeEnum::ON_COURSE));
@@ -69,6 +74,11 @@ class UserTakenCourseService extends BaseService
     public function findByCourseIdAndUserId(string $course_id, string $user_id): JsonResource
     {
         return new JsonResource($this->repository->where(['course_id' => $course_id, 'user_id' => $user_id])->first());
+    }
+
+    public function setFailedTestStatus(UserTakenCourse $takenCourse): void
+    {
+        $this->repository->updateById($takenCourse->id, new SetStatusUserTakenCourseDTO(TakingCourseStatusTypeEnum::FAILED_TEST));
     }
 
     /**
@@ -95,7 +105,6 @@ class UserTakenCourseService extends BaseService
      */
     public function findWaitingConfirm(Collection $courses): Collection
     {
-        return $this->repository->whereIn(['course_id',$courses->keyBy('id')->keys()])->whereIn(['status', [TakingCourseStatusTypeEnum::REQUESTED,TakingCourseStatusTypeEnum::WAITING, TakingCourseStatusTypeEnum::FINISH_REQUEST]])->get();
+        return $this->repository->whereIn(['course_id',$courses->keyBy('id')->keys()])->whereIn(['status', [TakingCourseStatusTypeEnum::REQUESTED,TakingCourseStatusTypeEnum::WAITING, TakingCourseStatusTypeEnum::FINISH_REQUEST, TakingCourseStatusTypeEnum::FAILED_TEST]])->get();
     }
-
 }

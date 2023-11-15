@@ -29,6 +29,20 @@ class QuestionService extends BaseService
     }
 
     /**
+     * @param string $questionGroupId
+     * @param int|null $number
+     * @return Collection
+     */
+    public function getRandomQuestionsKeysByQuestionGroupId(string $questionGroupId,?int $number = null): Collection
+    {
+        $number != null
+        ? $questions = $this->repository->where(['question_group_id' => $questionGroupId])->random($number)->keyBy('id')->keys()
+        : $questions = $this->repository->where(['question_group_id' => $questionGroupId])->keyBy('id')->keys();
+
+        return $questions;
+    }
+
+    /**
      * @param Collection $questions
      * @return string
      */
@@ -46,11 +60,20 @@ class QuestionService extends BaseService
     }
 
     /**
-     * @param Collection $questions_ids
+     * @param Collection $questionsIds
      * @return Collection
      */
-    public function getQuestionsWithResponsesByIds(Collection $questions_ids): Collection
+    public function getQuestionsWithResponsesByIds(Collection $questionsIds): Collection
     {
-        return $this->repository->whereIn(['id', $questions_ids->toArray()['questions']])->with('question_response')->get();
+        return $this->repository->whereIn(['id', $questionsIds->toArray()['questions']])->with('question_response')->get();
+    }
+
+    /**
+     * @param string $id
+     * @return Collection
+     */
+    public function getQuestionsByUserTakenExaminationIdQuestionGroupId(string $examination_id, string $question_group_id): Collection
+    {
+        return $this->repository->whereHas(['userExamination' => $examination_id, 'question_group' => $question_group_id]);
     }
 }

@@ -165,6 +165,7 @@
             </div>
         @endforeach
         <input type="hidden" name='question_group' value="{{$questionGroup->id}}">
+        <input type="hidden" name='taken_examination_id' value="{{$takenExamination->id}}">
         <div class="btn-container">
             <button class="button-send" type="submit">Отправить</button>
         </div>

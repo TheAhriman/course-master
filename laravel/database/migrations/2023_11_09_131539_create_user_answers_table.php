@@ -17,13 +17,18 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('question_id');
             $table->unsignedBigInteger('question_response_id');
+            $table->uuid('taken_examination_id');
             $table->timestamps();
             $table->softDeletes();
 
+            $table->index('taken_examination_id','user_answers_user_taken_examinations_idx');
             $table->index('user_id','user_answers_users_idx');
             $table->index('question_id','user_answers_questions_idx');
             $table->index('question_response_id','user_answer_question_responses_idx');
 
+            $table->foreign('taken_examination_id','user_answers_user_taken_examinations_fk')
+                ->on('user_taken_examinations')
+                ->references('id');
             $table->foreign('user_id','user_answer_users_fk')
                 ->on('users')
                 ->references('id');

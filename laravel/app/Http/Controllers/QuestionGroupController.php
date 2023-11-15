@@ -16,8 +16,8 @@ class QuestionGroupController extends Controller
 {
     public function __construct(
         private readonly QuestionGroupService $questionGroupService,
-        private readonly QuestionService $questionService,
-        private readonly UserTakenExaminationService $takenExaminationService
+        private readonly UserTakenExaminationService $takenExaminationService,
+        private readonly QuestionService $questionService
     )
     {
     }
@@ -29,13 +29,12 @@ class QuestionGroupController extends Controller
     public function show(QuestionGroup $questionGroup): \Illuminate\Contracts\Foundation\Application|Factory|View|Application
     {
         $questionGroup = $this->questionGroupService->findFirstById($questionGroup->id);
+        $takenExamination = $this->takenExaminationService->findByUserIdAndExaminationId(
+            Auth::id(),
+            $questionGroup->examination_id
+        );
+        $questions = $this->questionService->getQuestionsByUserTakenExaminationIdQuestionGroupId($takenExamination->id, $questionGroup->id);
 
-        $questions = $this->questionService->getQuestionsWithResponsesByIds(
-            questions_ids: $this->takenExaminationService->turnSlugToQuestionIds(
-                userTakenExamination: $this->takenExaminationService->findByUserIdAndExaminationId(
-                    Auth::id(), $questionGroup->examination_id)->resource));
-
-
-        return view('question_groups.show',compact(['questionGroup','questions']));
+        return view('question_groups.show',compact(['questionGroup','questions','takenExamination']));
     }
 }

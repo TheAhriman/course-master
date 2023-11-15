@@ -11,6 +11,8 @@ enum TakingCourseStatusTypeEnum: string
     case TESTING = 'testing';
     case FINISH_REQUEST = 'finish_request';
     case FINISHED = 'finished';
+    case FAILED = 'failed';
+    case FAILED_TEST = 'failed_test';
 
     public static function toArray(): array
     {

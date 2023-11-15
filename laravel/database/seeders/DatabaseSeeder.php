@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         Course::factory(1)->create();
         Lesson::factory(5)->create();
         Examination::query()->create(['title' => '1 урок', 'lesson_id' => 1, 'min_score' => 50]);
-        QuestionGroup::query()->create(['title' => fake()->title, 'priority' => 1, 'examination_id' => 1, 'questions_number' => 4]);
+        QuestionGroup::query()->create(['title' => fake()->title, 'priority' => 1, 'examination_id' => 1]);
         QuestionGroup::query()->create(['title' => fake()->title, 'priority' => 2, 'examination_id' => 1]);
         Question::query()->create([
             'question' => 'Пидор?',
@@ -79,7 +79,7 @@ class DatabaseSeeder extends Seeder
             'question_group_id' => 2,
             'score' => 25
         ]);
-        Question::factory(10)->create();
+//        Question::factory(10)->create();
         QuestionResponse::query()->create(['answer' => 'Да', 'correct' => 1, 'enabled' => 0, 'question_id' => 1]);
         QuestionResponse::query()->create(['answer' => 'Нет', 'correct' => 0, 'enabled' => 1, 'question_id' => 1]);
         QuestionResponse::query()->create(['answer' => '5', 'correct' => 0, 'enabled' => 1, 'question_id' => 2]);

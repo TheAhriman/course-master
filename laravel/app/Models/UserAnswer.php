@@ -17,7 +17,8 @@ class UserAnswer extends Model
 		'value',
 		'user_id',
 		'question_id',
-		'question_response_id'
+		'question_response_id',
+        'taken_examination_id'
 	];
 
     public function user(): BelongsTo
