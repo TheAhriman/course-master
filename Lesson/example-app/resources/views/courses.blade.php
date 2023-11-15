@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css', 'resources/css/courses.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/css/card-course-style.css'])
+    @vite(['resources/css/zero-down.css', 'resources/css/courses.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/css/card-course-style.css','resources/js/drop-down-exite.js','resources/css/notification-block.css','resources/js/drop-notification-block.js'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Courses</title>
 </head>
@@ -21,8 +21,8 @@
             </div>
             <div class="block-search">
                 <input type="search" placeholder="Поиск" class="header-search">
-                <a href="{{route('notifications')}}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none" class="notification-img">
                         <mask id="mask0_201_1111" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28"
                               height="28">
                             <rect width="28" height="28" fill="#1C1B1F" fill-opacity="0.7" />
@@ -34,6 +34,88 @@
                         </g>
                     </svg>
                 </a>
+                <div class="notification-block">
+                    <div class="notification-block-content">
+                        <div class="notification-block-incoming">
+                            <a href="{{route('notifications')}}">
+                                <div class="notification-block-content-title">
+                                    <div class="notification-block-content-title-author">
+                                        <img src="{{asset('storage/images/images-notification/notification-img-autor.svg')}}" alt="">
+                                    </div>
+                                    <div class="notification-block-content-body-author">
+                                        <h1>Fundamentals of Electronics</h1>
+                                        <div class="notification-block-content-body-author-massage">
+                                            <p>Сообщение:</p><span>Пошёл....</span>
+                                        </div>
+                                        <div class="notification-block-content-body-author-time">
+                                            <span>Shams Tabrez</span>
+                                            <span>3</span>
+                                            <span>days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notification-block-content-body">
+                                    <a href="#">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="notification-block-incoming">
+                            <a href="{{route('notifications')}}">
+                                <div class="notification-block-content-title">
+                                    <div class="notification-block-content-title-author">
+                                        <img src="{{asset('storage/images/images-notification/notification-img-autor.svg')}}" alt="">
+                                    </div>
+                                    <div class="notification-block-content-body-author">
+                                        <h1>Fundamentals of Electronics</h1>
+                                        <div class="notification-block-content-body-author-massage">
+                                            <p>Сообщение:</p><span>Пошёл....</span>
+                                        </div>
+                                        <div class="notification-block-content-body-author-time">
+                                            <span>Shams Tabrez</span>
+                                            <span>3</span>
+                                            <span>days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notification-block-content-body">
+                                    <a href="#">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="notification-block-incoming">
+                            <a href="{{route('notifications')}}">
+                                <div class="notification-block-content-title">
+                                    <div class="notification-block-content-title-author">
+                                        <img src="{{asset('storage/images/images-notification/notification-img-autor.svg')}}" alt="">
+                                    </div>
+                                    <div class="notification-block-content-body-author">
+                                        <h1>Fundamentals of Electronics</h1>
+                                        <div class="notification-block-content-body-author-massage">
+                                            <p>Сообщение:</p><span>Пошёл....</span>
+                                        </div>
+                                        <div class="notification-block-content-body-author-time">
+                                            <span>Shams Tabrez</span>
+                                            <span>3</span>
+                                            <span>days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notification-block-content-body">
+                                    <a href="#" class="button-delete">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="link-notifications-block">
+                            <a href="{{route('notifications')}}" class="link-notifications">Все уведомления</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -115,7 +197,7 @@
                 </a>
             </div>
             <div class="nav-menu-exite">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" class="img-exit">
                     <circle cx="20" cy="20" r="20" fill="#BB6BD9" />
                     <mask id="mask0_201_1075" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="8" y="8" width="24"
                           height="24">
@@ -127,6 +209,12 @@
                             fill="#1C1B1F" />
                     </g>
                 </svg>
+                <div class="block-excite">
+                    <div class="block-excite-content">
+                        <a href="{{route('index')}}">Выход</a>
+                        <a href="{{'my-courses-progress'}}">Профиль</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -160,6 +248,19 @@
                                 Overview of available development boards
                             </div>
                         </a>
+                        <div id="show-nav" class="dropbtncat">
+                            <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                            <div  class="dropdown-content-card">
+                                <div class="content-card">
+                                    <a href="#option1">English</a>
+                                    <a href="#option2">Machine learning</a>
+                                    <a href="#option3">Biology</a>
+                                    <a href="#option3">UX/UI</a>
+                                    <a href="#option3">Math</a>
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-course-step-autor-block">
                             <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                             <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -186,6 +287,19 @@
                                 Overview of available development boards
                             </div>
                         </a>
+                        <div id="show-nav" class="dropbtncat">
+                            <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                            <div  class="dropdown-content-card">
+                                <div class="content-card">
+                                    <a href="#option1">English</a>
+                                    <a href="#option2">Machine learning</a>
+                                    <a href="#option3">Biology</a>
+                                    <a href="#option3">UX/UI</a>
+                                    <a href="#option3">Math</a>
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-course-step-autor-block">
                             <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                             <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -197,6 +311,14 @@
             </div>
         </div>
     </div>
+    <script>
+        @verbatim
+        function DropCard(a) {
+            a.parentNode.getElementsByClassName('dropdown-content-card')[0].classList.toggle("show");
+            a.parentNode.getElementsByClassName('arrow')[0].classList.toggle("active");
+        }
+        @endverbatim
+    </script>
 </body>
 
 </html>

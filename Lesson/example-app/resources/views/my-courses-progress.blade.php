@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css','resources/css/side-bar-menu.css','resources/css/my-course-progress.css','resources/css/card-course-style.css','resources/js/burger-button.js'])
+    @vite(['resources/css/zero-down.css','resources/css/side-bar-menu.css','resources/css/my-course-progress.css','resources/css/card-course-style.css','resources/js/burger-button.js','resources/js/drop-down-exite.js','resources/css/notification-block.css','resources/js/drop-notification-block.js'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>My courses-progress</title>
 </head>
@@ -21,8 +21,8 @@
             </div>
             <div class="block-search">
                 <input type="search" placeholder="Поиск" class="header-search">
-                <a href="{{route('notifications')}}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none" class="notification-img">
                         <mask id="mask0_201_1111" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28"
                               height="28">
                             <rect width="28" height="28" fill="#1C1B1F" fill-opacity="0.7" />
@@ -34,6 +34,88 @@
                         </g>
                     </svg>
                 </a>
+                <div class="notification-block">
+                    <div class="notification-block-content">
+                        <div class="notification-block-incoming">
+                            <a href="{{route('notifications')}}">
+                                <div class="notification-block-content-title">
+                                    <div class="notification-block-content-title-author">
+                                        <img src="{{asset('storage/images/images-notification/notification-img-autor.svg')}}" alt="">
+                                    </div>
+                                    <div class="notification-block-content-body-author">
+                                        <h1>Fundamentals of Electronics</h1>
+                                        <div class="notification-block-content-body-author-massage">
+                                            <p>Сообщение:</p><span>Пошёл....</span>
+                                        </div>
+                                        <div class="notification-block-content-body-author-time">
+                                            <span>Shams Tabrez</span>
+                                            <span>3</span>
+                                            <span>days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notification-block-content-body">
+                                    <a href="#">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="notification-block-incoming">
+                            <a href="{{route('notifications')}}">
+                                <div class="notification-block-content-title">
+                                    <div class="notification-block-content-title-author">
+                                        <img src="{{asset('storage/images/images-notification/notification-img-autor.svg')}}" alt="">
+                                    </div>
+                                    <div class="notification-block-content-body-author">
+                                        <h1>Fundamentals of Electronics</h1>
+                                        <div class="notification-block-content-body-author-massage">
+                                            <p>Сообщение:</p><span>Пошёл....</span>
+                                        </div>
+                                        <div class="notification-block-content-body-author-time">
+                                            <span>Shams Tabrez</span>
+                                            <span>3</span>
+                                            <span>days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notification-block-content-body">
+                                    <a href="#">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="notification-block-incoming">
+                            <a href="{{route('notifications')}}">
+                                <div class="notification-block-content-title">
+                                    <div class="notification-block-content-title-author">
+                                        <img src="{{asset('storage/images/images-notification/notification-img-autor.svg')}}" alt="">
+                                    </div>
+                                    <div class="notification-block-content-body-author">
+                                        <h1>Fundamentals of Electronics</h1>
+                                        <div class="notification-block-content-body-author-massage">
+                                            <p>Сообщение:</p><span>Пошёл....</span>
+                                        </div>
+                                        <div class="notification-block-content-body-author-time">
+                                            <span>Shams Tabrez</span>
+                                            <span>3</span>
+                                            <span>days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notification-block-content-body">
+                                    <a href="#" class="button-delete">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="link-notifications-block">
+                            <a href="{{route('notifications')}}" class="link-notifications">Все уведомления</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -116,7 +198,7 @@
 
             </div>
             <div class="nav-menu-exite">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" class="img-exit">
                     <circle cx="20" cy="20" r="20" fill="#BB6BD9" />
                     <mask id="mask0_201_1075" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="8" y="8" width="24"
                           height="24">
@@ -128,6 +210,12 @@
                             fill="#1C1B1F" />
                     </g>
                 </svg>
+                <div class="block-excite">
+                    <div class="block-excite-content">
+                        <a href="{{route('index')}}">Выход</a>
+                        <a href="{{'my-courses-progress'}}">Профиль</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -173,7 +261,7 @@
                 </div>
                 <div class="enrolled-courses">
                     <div class="enrolled-courses-header">
-                        <h1>Enrolled Courses</h1>
+                        <h1>Курсы</h1>
                         <a href="{{route('courses')}}" class="course-catalog-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
@@ -366,73 +454,100 @@
                 </div>
             </div>
             <div class="featured-block">
-                <h1>Featured</h1>
+                <h1>Для вас</h1>
                 <div class="featured-block-items">
-                    <div class="card-course">
-                        <div class="top-content">
-                            <div class="top-content-title">
-                                <a href="#" class="top-content-link">Machine Learning</a>
+                    <div class="card-course-step">
+                        <input type="checkbox" id="7" class="button-favourites">
+                        <label for="7" class="label-favourites">&#9829</label>
+                        <div class="card-course-step-title">
+                            <div>
+                                <img src="{{ asset('storage/images/school.svg')}}" alt="">
                             </div>
-                            <div class="top-content-text">
-                                <a href="#" class="top-content-text-link">Basic data-structure and algorithm</a>
-                            </div>
-                            <div class="top-content-logo">
-                                <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
-                            </div>
-                            <div class="top-content-img">
-                                <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="">
+                            <div class="card-course-step-title-lessons">
+                                <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                             </div>
                         </div>
-                        <div class="bottom-content">
-                            <div class="bottom-content-title">
-                                <a href="#" class="bottom-content-title-link">Machine Learning and Data analysis</a>
+                        <a href="{{route('course-index')}}" class="card-course-slogans">
+                            <div class="card-course-slogan">
+                                Fundamental to IoT
                             </div>
-                            <div class="bottom-content-date">
-                                <div class="bottom-content-autor_block">
-                                    <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                                    <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
-                                </div>
-                                <div class="bottom-content-date-lesson">
-                                    <span>12</span><span>lessons</span><span>&#183;</span><span>7</span><span>quiz</span>
+                            <div class="card-course-step-slogan-step">
+                                Overview of available development boards
+                            </div>
+                        </a>
+                        <div id="show-nav" class="dropbtncat">
+                            <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                            <div  class="dropdown-content-card">
+                                <div class="content-card">
+                                    <a href="#option1">English</a>
+                                    <a href="#option2">Machine learning</a>
+                                    <a href="#option3">Biology</a>
+                                    <a href="#option3">UX/UI</a>
+                                    <a href="#option3">Math</a>
+
                                 </div>
                             </div>
                         </div>
+                        <div class="card-course-step-autor-block">
+                            <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                            <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                        </div>
+                        <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                     </div>
-                    <div class="card-course">
-                        <div class="top-content">
-                            <div class="top-content-title">
-                                <a href="#" class="top-content-link">Machine Learning</a>
+
+
+                    <div class="card-course-step">
+                        <input type="checkbox" id="7" class="button-favourites">
+                        <label for="7" class="label-favourites">&#9829</label>
+                        <div class="card-course-step-title">
+                            <div>
+                                <img src="{{ asset('storage/images/school.svg')}}" alt="">
                             </div>
-                            <div class="top-content-text">
-                                <a href="#" class="top-content-text-link">Basic data-structure and algorithm</a>
-                            </div>
-                            <div class="top-content-logo">
-                                <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
-                            </div>
-                            <div class="top-content-img">
-                                <img src="{{ asset('storage/images/sitting-1.svg')}}"alt="">
+                            <div class="card-course-step-title-lessons">
+                                <span>5</span><span>lessons</span><span>&#183;</span><span>4</span><span>quizes</span>
                             </div>
                         </div>
-                        <div class="bottom-content">
-                            <div class="bottom-content-title">
-                                <a href="#" class="bottom-content-title-link">Machine Learning and Data analysis</a>
+                        <a href="{{route('course-index')}}" class="card-course-slogans">
+                            <div class="card-course-slogan">
+                                Fundamental to IoT
                             </div>
-                            <div class="bottom-content-date">
-                                <div class="bottom-content-autor_block">
-                                    <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                                    <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
-                                </div>
-                                <div class="bottom-content-date-lesson">
-                                    <span>12</span><span>lessons</span><span>&#183;</span><span>7</span><span>quiz</span>
+                            <div class="card-course-step-slogan-step">
+                                Overview of available development boards
+                            </div>
+                        </a>
+                        <div id="show-nav" class="dropbtncat">
+                            <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                            <div  class="dropdown-content-card">
+                                <div class="content-card">
+                                    <a href="#option1">English</a>
+                                    <a href="#option2">Machine learning</a>
+                                    <a href="#option3">Biology</a>
+                                    <a href="#option3">UX/UI</a>
+                                    <a href="#option3">Math</a>
+
                                 </div>
                             </div>
                         </div>
+                        <div class="card-course-step-autor-block">
+                            <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                            <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
+                        </div>
+                        <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                     </div>
+
 
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        @verbatim
+        function DropCard(a) {
+            a.parentNode.getElementsByClassName('dropdown-content-card')[0].classList.toggle("show");
+            a.parentNode.getElementsByClassName('arrow')[0].classList.toggle("active");
+        }
+        @endverbatim
+    </script>
 </body>
 
 </html>

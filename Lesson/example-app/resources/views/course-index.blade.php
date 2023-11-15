@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css', 'resources/css/course-index.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/js/code.jquery.com_jquery-3.7.1.min.js','resources/js/coments.js'])
+    @vite(['resources/css/zero-down.css', 'resources/css/course-index.css','resources/css/side-bar-menu.css','resources/css/notification-block.css','resources/js/burger-button.js','resources/js/code.jquery.com_jquery-3.7.1.min.js','resources/js/coments.js','resources/js/drop-down-exite.js', 'resources/js/drop-notification-block.js'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Course-index</title>
 </head>
@@ -21,8 +21,8 @@
         </div>
         <div class="block-search">
             <input type="search" placeholder="Поиск" class="header-search">
-            <a href="{{route('notifications')}}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none" class="notification-img">
                     <mask id="mask0_201_1111" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28"
                           height="28">
                         <rect width="28" height="28" fill="#1C1B1F" fill-opacity="0.7" />
@@ -34,6 +34,88 @@
                     </g>
                 </svg>
             </a>
+            <div class="notification-block">
+                <div class="notification-block-content">
+                    <div class="notification-block-incoming">
+                        <a href="{{route('notifications')}}">
+                            <div class="notification-block-content-title">
+                                <div class="notification-block-content-title-author">
+                                    <img src="{{asset('storage/images/images-notification/notification-img-autor.svg')}}" alt="">
+                                </div>
+                                <div class="notification-block-content-body-author">
+                                    <h1>Fundamentals of Electronics</h1>
+                                    <div class="notification-block-content-body-author-massage">
+                                        <p>Сообщение:</p><span>Пошёл....</span>
+                                    </div>
+                                    <div class="notification-block-content-body-author-time">
+                                        <span>Shams Tabrez</span>
+                                        <span>3</span>
+                                        <span>days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-block-content-body">
+                                <a href="#">
+                                    <i class="bx bx-x"></i>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="notification-block-incoming">
+                        <a href="{{route('notifications')}}">
+                            <div class="notification-block-content-title">
+                                <div class="notification-block-content-title-author">
+                                    <img src="{{asset('storage/images/images-notification/notification-img-autor.svg')}}" alt="">
+                                </div>
+                                <div class="notification-block-content-body-author">
+                                    <h1>Fundamentals of Electronics</h1>
+                                    <div class="notification-block-content-body-author-massage">
+                                        <p>Сообщение:</p><span>Пошёл....</span>
+                                    </div>
+                                    <div class="notification-block-content-body-author-time">
+                                        <span>Shams Tabrez</span>
+                                        <span>3</span>
+                                        <span>days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-block-content-body">
+                                <a href="#">
+                                    <i class="bx bx-x"></i>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="notification-block-incoming">
+                        <a href="{{route('notifications')}}">
+                            <div class="notification-block-content-title">
+                                <div class="notification-block-content-title-author">
+                                    <img src="{{asset('storage/images/images-notification/notification-img-autor.svg')}}" alt="">
+                                </div>
+                                <div class="notification-block-content-body-author">
+                                    <h1>Fundamentals of Electronics</h1>
+                                    <div class="notification-block-content-body-author-massage">
+                                        <p>Сообщение:</p><span>Пошёл....</span>
+                                    </div>
+                                    <div class="notification-block-content-body-author-time">
+                                        <span>Shams Tabrez</span>
+                                        <span>3</span>
+                                        <span>days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-block-content-body">
+                                <a href="#" class="button-delete">
+                                    <i class="bx bx-x"></i>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="link-notifications-block">
+                        <a href="{{route('notifications')}}" class="link-notifications">Все уведомления</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </header>
@@ -115,8 +197,8 @@
             </a>
 
         </div>
-        <div class="nav-menu-exite">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <div class="nav-menu-exite" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" class="img-exit">
                 <circle cx="20" cy="20" r="20" fill="#BB6BD9" />
                 <mask id="mask0_201_1075" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="8" y="8" width="24"
                       height="24">
@@ -128,6 +210,12 @@
                         fill="#1C1B1F" />
                 </g>
             </svg>
+            <div class="block-excite">
+                <div class="block-excite-content">
+                    <a href="{{route('index')}}">Выход</a>
+                    <a href="{{'my-courses-progress'}}">Профиль</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -209,5 +297,41 @@
 
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    @verbatim
+    $(document).ready(function() {
+        $(".button-insert").click(function() {
+            let comment = $(".input-comment").val();
+            if (comment !== "") {
+                let autor = "Евгений Козич";
+                let date = getCurrentDate();
+                let newComment = '<div class="block-comments">' +
+                    '<div class="title-comments">' +
+                    '<a href="#" class="autor-comment">' + autor + '</a>' +
+                    '<span class="comment-date">' + date + '</span>' +
+                    '</div>' +
+                    '<div class="comments-content">' + comment + '</div>' +
+                    '</div>';
+                $(".comments-container").append(newComment);
+                let commentsCount = parseInt($(".coments-count").text().trim());
+                $(".coments-count").text(" " + (commentsCount + 1));
+                $(".input-comment").val("");
+            }
+        });
+    });
+
+    function getCurrentDate() {
+        let now = new Date();
+        let day = now.getDate();
+        let month = now.getMonth() + 1;
+        let year = now.getFullYear();
+        return (day < 10 ? "0" + day : day) + "." + (month < 10 ? "0" + month : month) + "." + year;
+    }
+
+    @endverbatim
+</script>
+
 </body>
 </html>

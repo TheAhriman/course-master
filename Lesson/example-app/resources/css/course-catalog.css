@@ -7,6 +7,7 @@
     background-color: white;
     padding-bottom: 10px;
     margin-top: 20px;
+
 }
 .burger-button{
     display: none;
@@ -45,6 +46,7 @@
     display: flex;
     align-items: center;
     column-gap: 25px;
+    position: relative;
 }
 .search-content{
     width: 100%;
@@ -145,6 +147,9 @@
 }
 
 @media (max-width: 1024px){
+    .header {
+        box-shadow: 0 1px 2px #00000040;
+    }
     .header-container h1{
         font-size: 20px;
         display: flex;
@@ -152,11 +157,6 @@
     }
     .nav-links{
         display: none;
-    }
-    .header-container{
-        display: flex;
-        align-items: center;
-        margin-top: 20px;
     }
     .step-side-bar-menu{
         display: none;
@@ -170,6 +170,7 @@
         font-size: 20px;
         align-items: center;
         display: flex;
+
     }
     .main-content{
         margin-left: 0px;
@@ -266,5 +267,8 @@
     }
     .step-side-bar-menu{
         display: none;
+    }
+    .courses-container {
+        justify-content: normal;
     }
 }

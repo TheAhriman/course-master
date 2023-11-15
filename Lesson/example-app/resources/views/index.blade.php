@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css','resources/css/header.css','resources/css/footer.css','resources/css/index.css', 'resources/css/card-course-style.css','resources/css/side-bar-menu.css','resources/js/burger-button.js'])
+    @vite(['resources/css/zero-down.css','resources/css/header.css','resources/css/footer.css','resources/css/index.css', 'resources/css/card-course-style.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/js/drop-down-exite.js'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Главная</title>
 </head>
@@ -114,7 +114,7 @@
             </a>
         </div>
         <div class="nav-menu-exite">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" class="img-exit">
                 <circle cx="20" cy="20" r="20" fill="#BB6BD9" />
                 <mask id="mask0_201_1075" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="8" y="8" width="24"
                       height="24">
@@ -126,6 +126,13 @@
                         fill="#1C1B1F" />
                 </g>
             </svg>
+            <div class="block-excite">
+                <div class="block-excite-content">
+                    <a href="{{route('index')}}">Выход</a>
+                    <a href="{{'my-courses-progress'}}">Профиль</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -186,6 +193,19 @@
                            Overview of available development boards
                        </div>
                    </a>
+                   <div id="show-nav" class="dropbtncat">
+                       <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                       <div  class="dropdown-content-card">
+                           <div class="content-card">
+                               <a href="#">English </a>
+                               <a href="#">Machine learning</a>
+                               <a href="#">Biology</a>
+                               <a href="#">UX/UI</a>
+                               <a href="#">Math</a>
+
+                           </div>
+                       </div>
+                   </div>
                    <div class="card-course-step-autor-block">
                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -212,6 +232,19 @@
                            Overview of available development boards
                        </div>
                    </a>
+                   <div id="show-nav" class="dropbtncat">
+                       <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow" >&#9668;</span></div>
+                       <div  class="dropdown-content-card">
+                           <div class="content-card">
+                               <a href="#">English</a>
+                               <a href="#">Machine learning</a>
+                               <a href="#">Biology</a>
+                               <a href="#">UX/UI</a>
+                               <a href="#">Math</a>
+
+                           </div>
+                       </div>
+                   </div>
                    <div class="card-course-step-autor-block">
                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -238,6 +271,19 @@
                            Overview of available development boards
                        </div>
                    </a>
+                   <div id="show-nav" class="dropbtncat">
+                       <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                       <div  class="dropdown-content-card">
+                           <div class="content-card">
+                               <a href="#">English</a>
+                               <a href="#">Machine learning</a>
+                               <a href="#">Biology</a>
+                               <a href="#">UX/UI</a>
+                               <a href="#">Math</a>
+
+                           </div>
+                       </div>
+                   </div>
                    <div class="card-course-step-autor-block">
                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -264,6 +310,19 @@
                            Overview of available development boards
                        </div>
                    </a>
+                   <div id="show-nav" class="dropbtncat">
+                       <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow" >&#9668;</span></div>
+                       <div  class="dropdown-content-card">
+                           <div class="content-card">
+                               <a href="#option1">English</a>
+                               <a href="#option2">Machine learning</a>
+                               <a href="#option3">Biology</a>
+                               <a href="#option3">UX/UI</a>
+                               <a href="#option3">Math</a>
+
+                           </div>
+                       </div>
+                   </div>
                    <div class="card-course-step-autor-block">
                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -290,6 +349,19 @@
                            Overview of available development boards
                        </div>
                    </a>
+                   <div id="show-nav" class="dropbtncat">
+                       <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                       <div  class="dropdown-content-card">
+                           <div class="content-card">
+                               <a href="#option1">English</a>
+                               <a href="#option2">Machine learning</a>
+                               <a href="#option3">Biology</a>
+                               <a href="#option3">UX/UI</a>
+                               <a href="#option3">Math</a>
+
+                           </div>
+                       </div>
+                   </div>
                    <div class="card-course-step-autor-block">
                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -316,6 +388,19 @@
                            Overview of available development boards
                        </div>
                    </a>
+                   <div id="show-nav" class="dropbtncat">
+                       <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                       <div  class="dropdown-content-card">
+                           <div class="content-card">
+                               <a href="#option1">English</a>
+                               <a href="#option2">Machine learning</a>
+                               <a href="#option3">Biology</a>
+                               <a href="#option3">UX/UI</a>
+                               <a href="#option3">Math</a>
+
+                           </div>
+                       </div>
+                   </div>
                    <div class="card-course-step-autor-block">
                        <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                        <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -353,6 +438,19 @@
                             Overview of available development boards
                         </div>
                     </a>
+                    <div id="show-nav" class="dropbtncat">
+                        <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                        <div  class="dropdown-content-card">
+                            <div class="content-card">
+                                <a href="#option1">English</a>
+                                <a href="#option2">Machine learning</a>
+                                <a href="#option3">Biology</a>
+                                <a href="#option3">UX/UI</a>
+                                <a href="#option3">Math</a>
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-course-step-autor-block">
                         <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -379,6 +477,19 @@
                             Overview of available development boards
                         </div>
                     </a>
+                    <div id="show-nav" class="dropbtncat">
+                        <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                        <div  class="dropdown-content-card">
+                            <div class="content-card">
+                                <a href="#option1">English</a>
+                                <a href="#option2">Machine learning</a>
+                                <a href="#option3">Biology</a>
+                                <a href="#option3">UX/UI</a>
+                                <a href="#option3">Math</a>
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-course-step-autor-block">
                         <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -405,6 +516,19 @@
                             Overview of available development boards
                         </div>
                     </a>
+                    <div id="show-nav" class="dropbtncat">
+                        <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                        <div  class="dropdown-content-card">
+                            <div class="content-card">
+                                <a href="#option1">English</a>
+                                <a href="#option2">Machine learning</a>
+                                <a href="#option3">Biology</a>
+                                <a href="#option3">UX/UI</a>
+                                <a href="#option3">Math</a>
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-course-step-autor-block">
                         <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -431,6 +555,19 @@
                             Overview of available development boards
                         </div>
                     </a>
+                    <div id="show-nav" class="dropbtncat">
+                        <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                        <div  class="dropdown-content-card">
+                            <div class="content-card">
+                                <a href="#option1">English</a>
+                                <a href="#option2">Machine learning</a>
+                                <a href="#option3">Biology</a>
+                                <a href="#option3">UX/UI</a>
+                                <a href="#option3">Math</a>
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-course-step-autor-block">
                         <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -457,6 +594,19 @@
                             Overview of available development boards
                         </div>
                     </a>
+                    <div id="show-nav" class="dropbtncat">
+                        <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                        <div  class="dropdown-content-card">
+                            <div class="content-card">
+                                <a href="#option1">English</a>
+                                <a href="#option2">Machine learning</a>
+                                <a href="#option3">Biology</a>
+                                <a href="#option3">UX/UI</a>
+                                <a href="#option3">Math</a>
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-course-step-autor-block">
                         <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -483,6 +633,19 @@
                             Overview of available development boards
                         </div>
                     </a>
+                    <div id="show-nav" class="dropbtncat">
+                        <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow">&#9668;</span></div>
+                        <div  class="dropdown-content-card">
+                            <div class="content-card">
+                                <a href="#option1">English</a>
+                                <a href="#option2">Machine learning</a>
+                                <a href="#option3">Biology</a>
+                                <a href="#option3">UX/UI</a>
+                                <a href="#option3">Math</a>
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-course-step-autor-block">
                         <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
                         <a href="#" class="bottom-content-autor-link">Shams Tabrez</a>
@@ -530,5 +693,13 @@
         </div>
     </div>
 </footer>
+<script>
+    @verbatim
+    function DropCard(a) {
+        a.parentNode.getElementsByClassName('dropdown-content-card')[0].classList.toggle("show");
+        a.parentNode.getElementsByClassName('arrow')[0].classList.toggle("active");
+    }
+    @endverbatim
+</script>
 </body>
 </html>

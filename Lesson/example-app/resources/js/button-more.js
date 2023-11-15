@@ -14,6 +14,5 @@ window.onload = function () {
                 box[i].style.display = "block";
             }
         }
-
     })
 }

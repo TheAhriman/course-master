@@ -44,6 +44,7 @@
     display: flex;
     align-items: center;
     column-gap: 25px;
+    position: relative;
 }
 
 .header-search {
@@ -143,6 +144,9 @@
 }
 
 @media (max-width: 1024px){
+    .header {
+        box-shadow: 0 1px 2px #00000040;
+    }
     .burger-button{
         display: block;
     }
@@ -201,6 +205,9 @@
 }
 
 @media (max-width: 480px) {
+    .header-search{
+        display: none;
+    }
     .discussion-author-name{
         font-size: 16px;
     }
