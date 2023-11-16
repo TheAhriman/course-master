@@ -226,6 +226,11 @@
                   <h1 class="name-chat">Machine learning</h1>
               </div>
               <div class="chat-place-body">
+                  <div class="notification-chat-remove-user">
+                     <div class="notification-chat-content-remove-user">
+                         <p class="notification-chat-content-remove-user-text">Пользователь<span class="notification-chat-remove-user-name-user"> Максимка</span> удалён из чата</p>
+                     </div>
+                  </div>
                   <div class="message-person">
                       <div class="message-person-title">
                           <h1>Nobody</h1><span>10:29</span>
@@ -237,6 +242,11 @@
                           <h1>You</h1><span>10:31</span>
                       </div>
                       <p>Привет! Я читаю книги и слушаю музыку и всё! Потом я буду кушать и спать! А после сна я пойду гулять на улицу!</p>
+                  </div>
+                  <div class="notification-chat-add-user">
+                      <div class="notification-chat-content-add-user">
+                          <p class="notification-chat-content-add-user-text">Пользователь <span class="notification-chat-add-user-content-name-user">You</span> присоединился к чату</p>
+                      </div>
                   </div>
                   <div class="message-person">
                       <div class="message-person-title">
@@ -277,8 +287,7 @@
     });
     function getTime(){
         let dt = new Date();
-        let time = dt.getHours() + ":" + dt.getMinutes();
-        return time
+        return dt.getHours() + ":" + dt.getMinutes()
     }
     @endverbatim
 </script>
