@@ -1,21 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
-
 .header-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-left: 150px;
+    margin-left: 148px;
     margin-right: 30px;
     background-color: white;
     padding-bottom: 10px;
-    margin-top: 20px;
-
-
+    margin-top: 10px;
 }
 .burger-button{
     display: none;
 }
-
 .title-page {
     color: #001C27;
     font-family: 'Mulish', sans-serif;
@@ -52,6 +46,7 @@
     column-gap: 25px;
     position: relative;
 }
+
 .header-search {
     width: 215px;
     padding: 4px 10px;
@@ -70,6 +65,7 @@
     margin-top: 20px;
     display: flex;
     margin-left: 150px;
+    margin-right: 12px;
     height: 100%;
     margin-right: 20px;
 }
@@ -77,106 +73,74 @@
 .main-content-container {
     width: 100%;
 }
-
-
-.all-courses-link {
-    color: #828282;
-    font-family: 'Mulish', sans-serif;
-    font-size: 16px;
-}
-
-.my-courses {
-    display: flex;
-    flex-direction: column;
+.search-discussion{
     width: 100%;
-    padding-bottom: 30px;
-}
-
-.my-courses-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.sec-title-course{
-    margin-top:5px ;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1px solid  #E0E0E0;
+    font-size: 16px;
+    outline: none;
     color: #4F4F4F;
-    font-family: 'Mulish', sans-serif;
-    font-size: 16px
 }
 
-.my-courses-filter {
-    color: #828282;
+
+.incoming-discussion{
+    display: flex;
+    padding-bottom: 15px;
+    margin-top: 10px;
+    border-bottom: 1px solid #BDBDBD;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.discussion-message{
     font-family: 'Mulish', sans-serif;
+    font-weight: 500;
+    color: #4F4F4F;
+    font-size: 18px
+}
+.discussion-text{
+    font-family: 'Mulish', sans-serif;
+    color: #4F4F4F;
     font-size: 16px;
-
 }
-.my-courses-title-filter{
+.discussion-title{
     display: flex;
     align-items: center;
-    justify-content: center;
+    column-gap: 10px;
 }
-.create-course {
-    padding: 6px 16px;
-    border-radius: 4px;
-    background: #2D9CDB;
-    font-family: 'Mulish', sans-serif;
-    color: #FFF;
-    font-size: 16px
+.discussion-img{
+    border-radius: 50%;
+    max-width: 38px;
 }
-
-.my-courses-container {
-    display: flex;
-    row-gap: 30px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-bottom: 30px
-}
-
-.my-course {
-    width: 300px;
-    position: relative;
+.author-discussion-content{
     display: flex;
     flex-direction: column;
-    border-radius: 4px;
-    box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    row-gap: 5px;
 }
-
-.my-course-top {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 200px;
-    background: #E0E0E0;
-}
-
-.my-course-bottom {
-    width: 100%;
-    height: 62px;
-    padding-top: 10px;
-    padding-left: 10px;
-}
-
-.my-course-bottom p {
+.discussion-author-name{
+    color:  #333;
     font-family: 'Mulish', sans-serif;
-    color: #141A2F;
-    font-size: 16px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
-.my-course-bottom-text{
+.discussion-author-content{
     display: flex;
-    flex-direction: row;
     column-gap: 5px;
 }
-.my-course-bottom-text span{
+.discussion-author-content span{
+    color:  #828282;
     font-family: 'Mulish', sans-serif;
-    color: #828282;
-    font-size: 12px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+.discussion-content{
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width: 1024px){
@@ -201,48 +165,37 @@
     }
     .header-container h1{
         font-size: 20px;
-        color: #000;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        font-family: 'Mulish', sans-serif;
     }
     .main-content{
         margin-left: 0px;
         margin-right: 0px;
         padding: 20px 20px 20px 20px;
-    }
-
-    .burger-button{
-        display: block;
-    }
-    .main-title{
-        display: flex;
-        column-gap: 20px;
-    }
-}
-
-@media (max-width: 768px){
-    .header-container{
-        margin-left: 10px;
-        margin-top: 10px;
-        font-size: 20px;
-        align-items: center;
-        display: flex;
-    }
-    .my-courses-container {
         justify-content: center;
     }
-}
-
-@media (max-width: 480px) {
     .main-title{
         display: flex;
-        column-gap: 20px;
+        align-items: center;
+        column-gap: 10px;
+
     }
-    .header-search{
-        display: none;
+}
+
+@media (max-width: 768px) {
+    .search-discussion{
+        font-size: 14px;
     }
+    .header-container h1{
+        font-size: 18px;
+    }
+    .discussion-author-name{
+        font-size: 20px;
+    }
+    .author-discussion{
+        width: 40px;
+    }
+}
+
+@media (max-width: 768px) {
     .setting{
         display: none;
     }
@@ -251,4 +204,14 @@
     }
 }
 
-
+@media (max-width: 480px) {
+    .header-search{
+        display: none;
+    }
+    .discussion-author-name{
+        font-size: 16px;
+    }
+    .author-discussion {
+        width: 36px;
+    }
+}

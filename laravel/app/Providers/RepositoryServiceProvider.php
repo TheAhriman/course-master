@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Repositories\AboutCourseRepository;
 use App\Repositories\BaseRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\ChatMessageRepository;
+use App\Repositories\ChatRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\CourseRepository;
 use App\Repositories\ExaminationRepository;
@@ -12,6 +14,8 @@ use App\Repositories\FinishedCourseRepository;
 use App\Repositories\Interfaces\AboutCourseRepositoryInterface;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
+use App\Repositories\Interfaces\ChatMessageRepositoryInterface;
+use App\Repositories\Interfaces\ChatRepositoryInterface;
 use App\Repositories\Interfaces\CommentRepositoryInterface;
 use App\Repositories\Interfaces\CourseRepositoryInterface;
 use App\Repositories\Interfaces\ExaminationRepositoryInterface;
@@ -76,6 +80,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserTakenCourseRepositoryInterface::class,UserTakenCourseRepository::class);
         $this->app->bind(UserTakenExaminationRepositoryInterface::class, UserTakenExaminationRepository::class);
         $this->app->bind(UserLessonRepositoryInterface::class, UserLessonRepository::class);
+        $this->app->bind(ChatRepositoryInterface::class, ChatRepository::class);
+        $this->app->bind(ChatMessageRepositoryInterface::class, ChatMessageRepository::class);
     }
 
     /**

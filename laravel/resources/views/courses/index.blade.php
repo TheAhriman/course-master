@@ -147,41 +147,51 @@
             </div>
             <div class="courses-container">
             @foreach($data as $course)
-                    <div class="card-course">
-                        <div class="top-content">
-{{--                            <div class="top-content-title">--}}
-{{--                                <a href="#" class="top-content-link">{{$course->categories[0]->name}}</a>--}}
-{{--                            </div>--}}
-{{--                            <div class="top-content-text">--}}
-{{--                                <a href="#" class="top-content-text-link">{{$course->categories[1]->name}}</a>--}}
-{{--                            </div>--}}
-                            <div class="top-content-logo">
-                                <img src="{{ asset('storage/images/logo-card.svg')}}" alt="" class="logo-card">
+                    <div class="card-course-step">
+                        <input type="checkbox" id="0" class="button-favourites">
+                        <label for="0" class="label-favourites">&#9829</label>
+                        <div class="card-course-step-title">
+                            <div>
+                                <img src="{{ asset('storage/images/school.svg')}}" alt="">
                             </div>
-                            <div class="top-content-img">
-                                <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="">
+                            <div class="card-course-step-title-lessons">
+                                <span>{{$course->lessons->count()}}</span><span>lessons</span><span>&#183;</span><span>{{$course->examinations_count}}</span><span>quizes</span>
                             </div>
                         </div>
-                        <div class="bottom-content">
-                            <div class="bottom-content-title">
-                                <!-- В роуте заглушка, не бейте пожалуйста :) -->
-                                <a href="{{route('courses.show',1)}}" class="bottom-content-title-link">{{$course->title}}</a>
+                        <a href="{{route('courses.show', $course->id)}}" class="card-course-slogans">
+                            <div class="card-course-step-slogan-step">
+                                {{$course->title}}
                             </div>
-                            <div class="bottom-content-date">
-                                <div class="bottom-content-autor_block">
-                                    <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
-                                    <a href="#" class="bottom-content-autor-link">{{$course->user->name}}</a>
-                                </div>
-                                <div class="bottom-content-date-lesson">
-                                    <span>{{$course->lessons->count()}}</span><span>lessons</span><span>&#183;</span><span>{{$course->examinations_count}}</span><span>quiz</span>
+                        </a>
+                        <div id="show-nav" class="dropbtncat">
+                            <div id="dropdown-card" onClick="DropCard(this)">Категории<span class="arrow" onClick="DropCard(this)">&#9668;</span></div>
+                            <div  class="dropdown-content-card">
+                                <div class="content-card">
+                                    <a href="#option1">English</a>
+                                    <a href="#option2">Machine learning</a>
+                                    <a href="#option3">Biology</a>
+                                    <a href="#option3">UX/UI</a>
+                                    <a href="#option3">Math</a>
                                 </div>
                             </div>
                         </div>
+                        <div class="card-course-step-autor-block">
+                            <img src="{{ asset('storage/images/copyright.svg')}}" alt="">
+                            <a href="#" class="bottom-content-autor-link">{{$course->user->name}}</a>
+                        </div>
+                        <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                     </div>
             @endforeach
             </div>
         </div>
     </div>
 </body>
-
+<script>
+    @verbatim
+    function DropCard(a) {
+        a.parentNode.getElementsByClassName('dropdown-content-card')[0].classList.toggle("show");
+        a.parentNode.getElementsByClassName('arrow')[0].classList.toggle("active");
+    }
+    @endverbatim
+</script>
 </html>

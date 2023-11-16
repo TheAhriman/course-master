@@ -2,10 +2,11 @@
     display: flex;
     justify-content: space-between;
     margin-left: 148px;
-    margin-right: 12px;
+    margin-right: 30px;
     background-color: white;
     padding-bottom: 10px;
     margin-top: 10px;
+
 }
 .burger-button{
     display: none;
@@ -24,11 +25,29 @@
     font-family: 'Mulish', sans-serif;
     font-size: 12px;
 }
+.nav-links{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+
+}
+.nav-links a{
+    color: #828282;
+}
+.nav-links{
+    color: #828282;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
 
 .block-search {
     display: flex;
     align-items: center;
     column-gap: 25px;
+    position: relative;
 }
 
 .header-search {
@@ -126,11 +145,11 @@
     font-weight: 400;
     line-height: normal;
 }
-.course-content div{
+.course-content p{
     width: 100%;
     color:  #4F4F4F;
     font-family: 'Mulish', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -188,8 +207,17 @@
 .block-comments{
     display: flex;
     flex-direction: column;
-    align-items: start;
-    margin-top: 10px;
+    row-gap: 10px;
+    margin-bottom: 10px;
+}
+.block-coments-count span{
+    font-family: 'Mulish', sans-serif;
+    color: #4F4F4F;
+}
+.block-comments span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     row-gap: 10px;
 }
 .title-comments{
@@ -204,9 +232,35 @@
 .comment-date{
     color: #4F4F4F;
 }
+
 @media (max-width: 1024px){
+    .header {
+        box-shadow: 0 1px 2px #00000040;
+    }
     .main-content{
         margin-left: 0px;
+    }
+    .header-container{
+        margin-left: 0px;
+
+    }
+    .title-page{
+        display: flex;
+        font-size: 24px;
+        white-space: nowrap;
+    }
+    .main-title{
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        column-gap: 5px;
+        margin-left: 10px;
+    }
+    .nav-links{
+        display: none;
+    }
+    .burger-button{
+        display: block;
     }
     .course-header{
         max-height: 275px;
@@ -235,8 +289,14 @@
     .course-header{
         max-height: 255px;
     }
+    .header-search{
+        display: none;
+    }
     .header-title {
         max-width: 200px;
+    }
+    .title-page{
+        font-size: 18px;
     }
     .header-title-name{
         font-size: 20px;

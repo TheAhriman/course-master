@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\UserProgressController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\FinishedCourseController;
@@ -62,6 +63,9 @@ Route::prefix('lessons/{lesson}')
 
 Route::post('/user_answers',[UserAnswerController::class,'store'])->name('user_answers.store');
 Route::get('/examinations/{examination}/start',[ExaminationController::class,'startTest'])->name('examinations.start');
+Route::get('/chats',[ChatController::class,'index'])->name('chats.index');
+Route::get('/chats/{show}',[ChatController::class,'show'])->name('chats.show');
+
 
 Route::middleware('examinationStarted')->group(function () {
     Route::get('/examinations/{examination}',[ExaminationController::class,'show'])->name('examinations.show')->middleware('can:show,examination');
