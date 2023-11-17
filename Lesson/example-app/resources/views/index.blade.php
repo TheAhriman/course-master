@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css','resources/css/header.css','resources/css/footer.css','resources/css/index.css', 'resources/css/card-course-style.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/js/drop-down-exite.js'])
+    @vite(['resources/css/zero-down.css','resources/css/header.css','resources/css/footer.css','resources/css/index.css', 'resources/css/card-course-style.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/js/drop-down-exite.js','resources/js/drop-lang.js','resources/js/drop-lang-content.js'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Главная</title>
 </head>
@@ -20,18 +20,40 @@
             <a href="{{route('courses-chats')}}" class="header_link">Обсуждения</a>
         </div>
         <div class="header_nav_buttons">
-{{--            <div class="dropdown">--}}
-{{--                <button onclick="myFunction()" class="dropbtn">Язык</button>--}}
-{{--                <div id="myDropdown" class="dropdown-content">--}}
-{{--                    <a href="#">Русский</a>--}}
-{{--                    <a href="#">Английский</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            @guest
+                @if (Route::has('login'))
             <div class="exite_links">
                 <a href="{{route('my-courses-progress')}}" class="exite_link">Войти</a>
                 <a href="#" class="exite_link">Регистрация</a>
+                <a href="#" class="dropdown-lang">Язык</a>
+            </div>
+                @endif
+            <div class="reg-user">
+                <div class="reg-user-content">
+                    <div class="reg-user-content-profile">
+                        <img src="{{ asset('storage/images/icon-header/image-profile.svg')}}" alt="" class="reg-user-content-profile-image">
+                        <span class="profile-drop-arrow">&#8249</span>
+                    </div>
+                    <div class="drop-down-reg-user">
+                        <div class="drop-down-reg-user-content">
+                            <ul class="drop-down-reg-user-content-list">
+                                <li><a href="{{route('my-courses-progress')}}">Профиль</a></li>
+                                <li><a href="#">Выйти</a></li>
+                                <li>
+                                    <a href="#" class="dropdown-lang">Язык</a>
+                                        <div class="dropdown-content-lang">
+                                            <a href="#">Русский</a>
+                                            <a href="#">Английский</a>
+                                        </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        @endguest
     </div>
 </header>
 <div class="nav-menu">
@@ -130,6 +152,7 @@
                 <div class="block-excite-content">
                     <a href="{{route('index')}}">Выход</a>
                     <a href="{{'my-courses-progress'}}">Профиль</a>
+                    </div>
                 </div>
             </div>
 

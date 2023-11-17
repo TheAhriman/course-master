@@ -11,6 +11,8 @@ export default defineConfig({
                 'resources/js/drop-down-exite.js',
                 'resources/js/burger-button.js',
                 'resources/js/drop-category.js',
+                'resources/js/drop-lang.js',
+                'resources/js/drop-lang-content.js',
                 'resources/js/drop-notification-block.js',
                 'resources/css/notification-block.css',
                 'resources/css/favourites.css',

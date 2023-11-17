@@ -1,4 +1,4 @@
-.burger-button{
+.burger-button {
     display: none;
     width: 37px;
 }
@@ -56,25 +56,11 @@
     align-items: center;
 }
 
-.dropbtn {
-    background-color: #1E212C;
-    color: #787A80;
-    padding: 7.5px 40px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: -30px;
-    font-family: 'Mulish', sans-serif;
-    border: 0.1px solid #4a4c4f;
-    border-radius: 3px;
-}
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
+.dropdown-content-lang{
     display: none;
+    left: -160px;
+    top: 70px;
     position: absolute;
     background-color: #1E212C;
     min-width: 160px;
@@ -82,11 +68,12 @@
     z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content-lang a {
     color: #787A80;
-    padding: 12px 16px;
+    padding: 9px 20px;
     text-decoration: none;
     display: block;
+    border: 1px solid #4F4F4F;
 }
 
 .dropdown-content a:hover {
@@ -94,7 +81,7 @@
     color: #fff;
 }
 
-.show {
+.dropdown-content-lang-show {
     display: block;
 }
 
@@ -104,13 +91,76 @@
     padding: 50px 30px;
 }
 
-.exite_link {
+.exite_links a {
     color: #787A80;
     padding: 9px 10px;
     border: 0.1px solid #4a4c4f;
     border-radius: 3px;
 }
 
+.reg-user {
+    margin-right: 50px;
+}
+
+.profile-drop-arrow {
+    color: #787A80;
+}
+
+.reg-user-content-profile-image {
+    width: 33px;
+    height: 39px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.reg-user {
+    position: relative;
+}
+
+.drop-down-reg-user {
+    position: absolute;
+    left: -65px;
+    display: none;
+}
+
+.drop-down-reg-user-show {
+    display: block;
+}
+
+.profile-drop-arrow {
+    transition: ease all 0.1s;
+    font-size: 28px;
+    transform: rotate(-90deg);
+}
+
+.profile-drop-arrow-active {
+    transition: ease all 0.1s;
+    transform: rotate(90deg);
+}
+
+.reg-user-content-profile {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.drop-down-reg-user-content-list li {
+    padding: 9px 20px;
+    border: 1px solid #4F4F4F;
+    background-color: #1E212C;
+}
+
+.drop-down-reg-user-content-list li a {
+    color: #787A80;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+}
+
+.drop-down-reg-user-content-list li a:hover{
+    color: #fff;
+    transition: 0.3s;
+}
 
 @media (max-width: 1024px) {
     .header_link{

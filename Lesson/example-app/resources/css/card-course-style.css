@@ -146,6 +146,7 @@ a {
     font-family: 'Mulish', sans-serif;
     margin-top: 10px;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .dropdown-content-card{
