@@ -38,6 +38,47 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const chatId = getChatId();
+console.log(chatId);
+Echo.channel(`chats.${chatId}`)
+    .listen('.chat-message.sent', (e) => {
+        let author = e.userName;
+        let message = e.message;
+        let timeMessage = e.sentAt;
+        let newMessage = '<div class="main-message">' +
+            '<div class="main-message-title">' +
+            '<h1>' + author + '</h1>' + '<span>'+ timeMessage +'</span>' +
+            '</div>' +
+            '<p>' + message + '</p>' +
+            '</div>';
+        $(".chat-place-body").append(newMessage);
+    });
+function getChatId() {
+    return document.getElementById('chat_id').value
+}
+
+$(document).ready(function () {
+    $(".button-insert").click(function () {
+        let message = $(".chat-input ").val();
+        let timeMessage = getTime();
+        if (message != "") {
+            let author = "You";
+            let newMessage = '<div class="main-message">' +
+                '<div class="main-message-title">' +
+                '<h1>' + author + '</h1>' + '<span>'+ timeMessage +'</span>' +
+                '</div>' +
+                '<p>' + message + '</p>' +
+                '</div>';
+            $(".chat-place-body").append(newMessage);
+            // $(".chat-input").val("");
+        }
+    });
+});
+function getTime(){
+    let dt = new Date();
+    return dt.getHours() + ":" + dt.getMinutes()
+}
+
 
 
 

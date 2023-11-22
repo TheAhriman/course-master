@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\UserProgressController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExaminationController;
-use App\Http\Controllers\FinishedCourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\QuestionGroupController;
@@ -23,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Broadcast::routes();
 
 Route::prefix('email')
     ->name('verification.')
@@ -46,6 +45,7 @@ Route::middleware('guest')
 Route::get('/courses',[CourseController::class,'index'])->name('courses.index');
 Route::get('/courses/{course}',[CourseController::class,'show'])->name('courses.show');
 Route::get('/courses/{course}/sing_up',[CourseController::class,'signUp'])->name('courses.sign_up');
+Route::post('/courses/{courses}/attach-detach',[CourseController::class,'attachOrDetachCourse'])->name('courses.attach-detach');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/',function () {return view('layouts.app'); });
@@ -64,7 +64,8 @@ Route::prefix('lessons/{lesson}')
 Route::post('/user_answers',[UserAnswerController::class,'store'])->name('user_answers.store');
 Route::get('/examinations/{examination}/start',[ExaminationController::class,'startTest'])->name('examinations.start');
 Route::get('/chats',[ChatController::class,'index'])->name('chats.index');
-Route::get('/chats/{show}',[ChatController::class,'show'])->name('chats.show');
+Route::get('/chats/{chat}',[ChatController::class,'show'])->name('chats.show');
+Route::post('/chats/{chat}/store-message',[ChatController::class,'storeMessage'])->name('chat.store_message');
 
 
 Route::middleware('examinationStarted')->group(function () {

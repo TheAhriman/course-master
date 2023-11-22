@@ -15,7 +15,6 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ScaleCriteriaController;
 use App\Http\Controllers\Admin\UserAnswerController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\UserProgressController;
 use App\Http\Controllers\Admin\UserTakenCourseController;
 use App\Models\Course;
 use Illuminate\Support\Facades\Route;
@@ -39,18 +38,9 @@ Route::patch('/user_taken_courses/{user_taken_course}/finish_course',[UserTakenC
 Route::middleware('role:admin|creator')->group(function() {
     Route::get('/',function () { return view('layouts.admin_panel.admin_panel'); })->name('admin');
 
-    Route::get('/user_progresses/create',[UserProgressController::class,'create'])->name('admin.user_progresses.create');
 
 
-    Route::prefix('user_progresses')
-        ->name('user_progresses.')
-        ->controller(UserProgressController::class)
-        ->group(function () {
-            Route::get('/','index')->name('index');
-            Route::get('/{user_progress}','confirmLessonFinished')->name('confirm');
-            //Route::get('/create','create')->name('create');
-            Route::post('/','store')->name('store');
-        });
+
 
     Route::resource('categories', CategoryController::class);
     Route::prefix('categories_trashed')

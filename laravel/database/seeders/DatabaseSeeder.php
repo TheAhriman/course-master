@@ -7,6 +7,7 @@ use App\Enums\QuestionTypeEnum;
 use App\Http\Resources\CourseResource;
 use App\Models\AboutCourse;
 use App\Models\Category;
+use App\Models\Chat;
 use App\Models\Comment;
 use App\Models\Course;
 use App\Models\Examination;
@@ -89,6 +90,6 @@ class DatabaseSeeder extends Seeder
         QuestionResponse::query()->create(['answer' => '5', 'correct' => 0, 'enabled' => 1, 'question_id' => 4]);
         QuestionResponse::query()->create(['answer' => '4', 'correct' => 1, 'enabled' => 0, 'question_id' => 4]);
         LessonContent::factory(10)->create();
-
+        Chat::query()->create(['course_id' => 1]);
     }
 }

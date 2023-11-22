@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/zero-down.css', 'resources/css/course-catalog.css','resources/css/side-bar-menu.css','resources/css/card-course-style.css'])
     <title>Course-catalog</title>
 </head>
@@ -146,9 +147,11 @@
                 </ul>
             </div>
             <div class="courses-container">
+                @csrf
             @foreach($data as $course)
                     <div class="card-course-step">
-                        <input type="checkbox" id="0" class="button-favourites">
+                        <input type="checkbox" id="0" value="{{{$course->id}}}" class="button-favourites"
+                        @if(\Illuminate\Support\Facades\Auth::user()->favouriteCourses->contains($course->id)) checked @endif>
                         <label for="0" class="label-favourites">&#9829</label>
                         <div class="card-course-step-title">
                             <div>
@@ -181,11 +184,40 @@
                         </div>
                         <img src="{{ asset('storage/images/sitting-2.svg')}}" alt="" class="card-course-step-img">
                     </div>
+                <form class="favourite-form">@csrf </form>
             @endforeach
             </div>
         </div>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".button-favourites").change(function(event) {
+            event.preventDefault();
+
+            var isChecked = $(this).prop('checked');
+            var courseId = $(this).prop('value');
+
+            url_ = $(this).data('url');
+            $.ajax({
+                headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+                type: 'POST',
+                url: '{{ route('courses.attach-detach',$course->id) }}',
+                data: {
+                    course: courseId,
+                    attach: isChecked
+                },
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+            });
+        });
+    });
+</script>
 <script>
     @verbatim
     function DropCard(a) {

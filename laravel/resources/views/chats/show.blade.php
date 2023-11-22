@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/zero-down.css','resources/css/course-chat.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/js/drop-down-exite.js','resources/css/notification-block.css','resources/js/drop-notification-block.js'])
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @vite(['resources/js/bootstrap.js','resources/css/zero-down.css','resources/css/course-chat.css','resources/css/side-bar-menu.css','resources/js/burger-button.js','resources/js/drop-down-exite.js','resources/css/notification-block.css','resources/js/drop-notification-block.js','resources/js/app.js'])
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Обсуждения</title>
 </head>
@@ -226,40 +227,24 @@
                   <h1 class="name-chat">Machine learning</h1>
               </div>
               <div class="chat-place-body">
-                  <div class="notification-chat-remove-user">
-                     <div class="notification-chat-content-remove-user">
-                         <p class="notification-chat-content-remove-user-text">Пользователь<span class="notification-chat-remove-user-name-user"> Максимка</span> удалён из чата</p>
-                     </div>
-                  </div>
-                  <div class="message-person">
-                      <div class="message-person-title">
-                          <h1>Nobody</h1><span>10:29</span>
+              @foreach($messages as $message)
+                      <div class="message-person">
+                          <div class="message-person-title">
+                              <h1>{{$message->user->name}}</h1><span>{{$message->sent_at}}</span>
+                          </div>
+                          <p>{{$message->message}}</p>
                       </div>
-                      <p>Привет, мир! Как дела у тебя! И что ты делаешь?</p>
-                  </div>
-                  <div class="main-message">
-                      <div class="main-message-title">
-                          <h1>You</h1><span>10:31</span>
-                      </div>
-                      <p>Привет! Я читаю книги и слушаю музыку и всё! Потом я буду кушать и спать! А после сна я пойду гулять на улицу!</p>
-                  </div>
-                  <div class="notification-chat-add-user">
-                      <div class="notification-chat-content-add-user">
-                          <p class="notification-chat-content-add-user-text">Пользователь <span class="notification-chat-add-user-content-name-user">You</span> присоединился к чату</p>
-                      </div>
-                  </div>
-                  <div class="message-person">
-                      <div class="message-person-title">
-                          <h1>Nobody</h1><span>10:32</span>
-                      </div>
-                      <p>Ого! А я вот пришёл с работы и потом пойду перебирать картошку! И весь день буду работать после работы!</p>
-                  </div>
+                      <br>
+                  @endforeach
               </div>
-
           </div>
           <div class="chats-controls">
-             <input type="text" placeholder="Введите сообщение" class="chat-input">
-              <button class="button-insert">Отправить</button>
+              <form id="form">
+                  @csrf
+                  <input type="text" placeholder="Введите сообщение" name="message" class="chat-input">
+                  <input type="hidden" name="chat_id" class="chat_id" id="chat_id" value="{{$chat->id}}">
+                  <button class="button-insert" type="submit">Отправить</button>
+              </form>
           </div>
       </div>
     </div>
@@ -267,31 +252,27 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
-    @verbatim
     $(document).ready(function() {
-        $(".button-insert").click(function() {
-            let message = $(".chat-input ").val();
-            let timeMessage = getTime();
-            if (message != "") {
-                let author = "You";
-                let newMessage = '<div class="main-message">' +
-                    '<div class="main-message-title">' +
-                    '<h1>' + author + '</h1>' + '<span>'+ timeMessage +'</span>' +
-                    '</div>' +
-                    '<p>' + message + '</p>' +
-                    '</div>';
-                $(".chat-place-body").append(newMessage);
-                $(".chat-input").val("");
-            }
+        $("#form").submit(function(event) {
+            event.preventDefault();
+            let message = $('input[name="message"]').val();
+            let chatId = $('input[name="chat_id"]').val();
+
+            $.ajax({
+                headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+                type: 'POST',
+                url: '{{ route("chat.store_message", $chat) }}',
+                data: {
+                    message: message,
+                    chat_id: chatId
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+            });
         });
     });
-    function getTime(){
-        let dt = new Date();
-        return dt.getHours() + ":" + dt.getMinutes()
-    }
-    @endverbatim
 </script>
-
 </body>
 </html>
 

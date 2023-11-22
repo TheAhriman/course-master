@@ -53,34 +53,34 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $table = 'users';
 
-    public function role() : BelongsTo
+    public function role(): BelongsTo
     {
-        return $this->belongsTo(Role::class,'role_id','id');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
-    public function comments() : HasMany
+    public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class,'user_id','id');
+        return $this->hasMany(Comment::class, 'user_id', 'id');
     }
 
     public function courses(): HasMany
     {
-        return $this->hasMany(Course::class,'user_id','id');
+        return $this->hasMany(Course::class, 'user_id', 'id');
     }
 
     public function user_answers(): HasMany
     {
-        return $this->HasMany(UserAnswer::class,'user_id','id');
+        return $this->HasMany(UserAnswer::class, 'user_id', 'id');
     }
 
     public function taken_courses()
     {
-        return $this->hasMany(UserTakenCourse::class,'user_id','id');
+        return $this->hasMany(UserTakenCourse::class, 'user_id', 'id');
     }
 
     public function user_examinations()
     {
-        return $this->hasMany(UserTakenExamination::class,'user_id','id');
+        return $this->hasMany(UserTakenExamination::class, 'user_id', 'id');
     }
 
     public function user_lessons(): HasMany
@@ -90,6 +90,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function chatMessage(): HasMany
     {
-        return $this->hasMany(ChatMessage::class,'user_id','id');
+        return $this->hasMany(ChatMessage::class, 'user_id', 'id');
+    }
+
+    public function favouriteCourses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class,'favourite_courses');
     }
 }

@@ -52,4 +52,9 @@ class Course extends Model
     {
         return $this->hasOne(Chat::class,'course_id','id');
     }
+
+    public function likedUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class,'favourite_courses');
+    }
 }

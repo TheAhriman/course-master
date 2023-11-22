@@ -6,6 +6,7 @@ use App\DTO\UserTakenCourse\CreateUserTakenCourseDTO;
 use App\Http\Services\AboutCourseService;
 use App\Http\Services\CourseService;
 use App\Http\Services\LessonService;
+use App\Http\Services\UserService;
 use App\Http\Services\UserTakenCourseService;
 use App\Models\Course;
 use Illuminate\Contracts\View\Factory;
@@ -21,12 +22,14 @@ class CourseController extends Controller
      * @param LessonService $lessonService
      * @param AboutCourseService $aboutCourseService
      * @param UserTakenCourseService $takenCourseService
+     * @param UserService $userService
      */
     public function __construct(
         private readonly CourseService $courseService,
         private readonly LessonService $lessonService,
         private readonly AboutCourseService $aboutCourseService,
-        private readonly UserTakenCourseService $takenCourseService
+        private readonly UserTakenCourseService $takenCourseService,
+        private readonly UserService $userService,
     )
     {
     }
@@ -66,5 +69,14 @@ class CourseController extends Controller
         );
 
         return redirect()->route('courses.index');
+    }
+
+    public function attachOrDetachCourse(string $course)
+    {
+        $course = $this->courseService->findFirstById($course);
+        $attach = true;
+        if (Auth::user()->favouriteCourses->contains($course->id))
+            $attach = false;
+        $this->userService->attachOrDetachCourse($course->id, $attach);
     }
 }

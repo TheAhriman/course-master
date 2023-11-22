@@ -13,4 +13,5 @@ class ChatService extends BaseService
     {
         parent::__construct($repository);
     }
+
 }
